@@ -4,6 +4,7 @@
 !/.projen/deps.json
 !/.projen/files.json
 !/.github/workflows/pull-request-lint.yml
+!/.github/workflows/auto-approve.yml
 !/package.json
 !/LICENSE
 !/.npmignore
@@ -50,3 +51,15 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+/assets/
+!/src/ecs-deployment-provider/is-complete-function.ts
+!/src/ecs-deployment-provider/on-event-function.ts
+test/.tmp
+test/deployment.integ.snapshot/asset.*
+test/deployment.integ.snapshot/**/asset.*
+test/deployment.integ.snapshot/cdk.out
+test/deployment.integ.snapshot/**/cdk.out
+test/deployment.integ.snapshot/manifest.json
+test/deployment.integ.snapshot/**/manifest.json
+test/deployment.integ.snapshot/tree.json
+test/deployment.integ.snapshot/**/tree.json
