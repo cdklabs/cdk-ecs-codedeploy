@@ -37,6 +37,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdklabs.ecs-codedeploy',
     module: 'cdk.ecs_codedeploy',
   },
+  publishToGo: {
+    moduleName: 'github.com/cdklabs/cdk-ecs-codedeploy-go',
+  },
   devDeps: [
     '@types/aws-lambda',
     'lambda-tester',
