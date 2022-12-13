@@ -8,7 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
-  repositoryUrl: 'git@github.com:cdklabs/cdk-ecs-codedeploy.git',
+  repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-codedeploy',
   stability: Stability.EXPERIMENTAL,
   docgen: true,
   autoApproveUpgrades: true,
