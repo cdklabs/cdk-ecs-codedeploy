@@ -76,6 +76,46 @@ describe('onEvent', () => {
       });
   });
 
+  test('Create deployment succeeds with autorolllback disabled', () => {
+    const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {
+      deploymentId: '1111111',
+    });
+
+    return lambdaTester(handler)
+      .event({
+        RequestType: 'Create',
+        ResourceProperties: {
+          applicationName: 'testapp',
+          autoRollbackConfigurationEnabled: 'false',
+          deploymentConfigName: 'testdeployconfig',
+          deploymentGroupName: 'testdeploygroup',
+          description: 'testing',
+          revisionAppSpecContent: 'appspec-goes-here',
+        },
+      } as OnEventRequest)
+      .expectResolve((resp: OnEventResponse) => {
+        expect(codeDeployMock).toHaveBeenCalledTimes(1);
+        expect(codeDeployMock).toHaveBeenCalledWith({
+          applicationName: 'testapp',
+          deploymentConfigName: 'testdeployconfig',
+          deploymentGroupName: 'testdeploygroup',
+          autoRollbackConfiguration: {
+            enabled: false,
+            events: undefined,
+          },
+          description: 'testing',
+          revision: {
+            revisionType: 'AppSpecContent',
+            appSpecContent: {
+              content: 'appspec-goes-here',
+            },
+          },
+        }, expect.any(Function));
+        expect(resp.PhysicalResourceId).toBe('1111111');
+        expect(resp.Data?.deploymentId).toBe('1111111');
+      });
+  });
+
   test('Create deployment fails', () => {
     const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {});
 
@@ -120,10 +160,7 @@ describe('onEvent', () => {
           applicationName: 'testapp',
           deploymentConfigName: 'testdeployconfig',
           deploymentGroupName: 'testdeploygroup',
-          autoRollbackConfiguration: {
-            enabled: false,
-            events: undefined,
-          },
+          autoRollbackConfiguration: undefined,
           description: 'testing',
           revision: {
             revisionType: 'AppSpecContent',

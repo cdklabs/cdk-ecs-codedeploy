@@ -1,4 +1,4 @@
-import { Template } from 'aws-cdk-lib/assertions';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as cdk from 'aws-cdk-lib/core';
@@ -28,8 +28,8 @@ describe('CodeDeploy ECS Deployment', () => {
         applicationName: 'TestApp',
         deploymentConfigName: 'CodeDeployDefault.ECSAllAtOnce',
         deploymentGroupName: 'MyDG',
-        autoRollbackConfigurationEnabled: 'false',
-        autoRollbackConfigurationEvents: '',
+        autoRollbackConfigurationEnabled: Match.absent(),
+        autoRollbackConfigurationEvents: Match.absent(),
         revisionAppSpecContent: appspec.toString(),
       },
     });
@@ -91,6 +91,40 @@ describe('CodeDeploy ECS Deployment', () => {
         deploymentGroupName: 'MyDG',
         autoRollbackConfigurationEnabled: 'true',
         autoRollbackConfigurationEvents: 'DEPLOYMENT_STOP_ON_ALARM,DEPLOYMENT_FAILURE,DEPLOYMENT_STOP_ON_REQUEST',
+        description: 'test deployment',
+        revisionAppSpecContent: appspec.toString(),
+      },
+    });
+  });
+
+  test('can be created with autorollback disabled', () => {
+    const stack = new cdk.Stack();
+    const arn = 'taskdefarn';
+    const taskDefinition = ecs.FargateTaskDefinition.fromFargateTaskDefinitionArn(stack, 'taskdef', arn);
+    const deploymentGroup = codedeploy.EcsDeploymentGroup.fromEcsDeploymentGroupAttributes(stack, 'MyDG', {
+      application: codedeploy.EcsApplication.fromEcsApplicationName(stack, 'MyApp', 'TestApp'),
+      deploymentGroupName: 'MyDG',
+    });
+    const appspec = new EcsAppSpec({
+      taskDefinition,
+      containerName: 'testContainer',
+      containerPort: 80,
+    });
+    EcsDeployment.forDeploymentGroup({
+      deploymentGroup,
+      appspec,
+      description: 'test deployment',
+      autoRollback: {
+      },
+    });
+
+    Template.fromStack(stack).hasResource('Custom::EcsDeployment', {
+      Properties: {
+        applicationName: 'TestApp',
+        deploymentConfigName: 'CodeDeployDefault.ECSAllAtOnce',
+        deploymentGroupName: 'MyDG',
+        autoRollbackConfigurationEnabled: 'false',
+        autoRollbackConfigurationEvents: Match.absent(),
         description: 'test deployment',
         revisionAppSpecContent: appspec.toString(),
       },

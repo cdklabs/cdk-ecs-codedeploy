@@ -2132,7 +2132,7 @@
     "DGDeploymentDeploymentProviderwaiterstatemachineRole56202F5B"
    ]
   },
-  "DGDeploymentDeploymentResource6D225FF6": {
+  "DGDeployment6F80FA0B": {
    "Type": "Custom::EcsDeployment",
    "Properties": {
     "ServiceToken": {
@@ -2205,7 +2205,7 @@
   "DeploymentId": {
    "Value": {
     "Fn::GetAtt": [
-     "DGDeploymentDeploymentResource6D225FF6",
+     "DGDeployment6F80FA0B",
      "deploymentId"
     ]
    }

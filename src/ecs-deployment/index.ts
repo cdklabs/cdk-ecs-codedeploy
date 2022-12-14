@@ -72,26 +72,37 @@ export class EcsDeployment extends Construct {
       timeout: props.timeout || cdk.Duration.minutes(30),
     });
 
-    let autoRollbackConfigurationEvents : string[] = [];
-    if (props.autoRollback?.deploymentInAlarm) {
-      autoRollbackConfigurationEvents.push('DEPLOYMENT_STOP_ON_ALARM');
-    }
-    if (props.autoRollback?.failedDeployment) {
-      autoRollbackConfigurationEvents.push('DEPLOYMENT_FAILURE');
-    }
-    if (props.autoRollback?.stoppedDeployment) {
-      autoRollbackConfigurationEvents.push('DEPLOYMENT_STOP_ON_REQUEST');
+    let autoRollbackConfigurationEvents : string | undefined = undefined;
+    let autoRollbackConfigurationEnabled : string | undefined = undefined;
+    if (props.autoRollback) {
+      let events : string[] = [];
+      if (props.autoRollback.deploymentInAlarm) {
+        events.push('DEPLOYMENT_STOP_ON_ALARM');
+      }
+      if (props.autoRollback.failedDeployment) {
+        events.push('DEPLOYMENT_FAILURE');
+      }
+      if (props.autoRollback.stoppedDeployment) {
+        events.push('DEPLOYMENT_STOP_ON_REQUEST');
+      }
+      if (events.length > 0) {
+        autoRollbackConfigurationEnabled = 'true';
+        autoRollbackConfigurationEvents = events.join(',');
+      } else {
+        autoRollbackConfigurationEnabled = 'false';
+      }
     }
 
-    const deployment = new cdk.CustomResource(this, 'DeploymentResource', {
+
+    const deployment = new cdk.CustomResource(this, 'Resource', {
       serviceToken: ecsDeploymentProvider.serviceToken,
       resourceType: 'Custom::EcsDeployment',
       properties: {
         applicationName: props.deploymentGroup.application.applicationName,
         deploymentConfigName: props.deploymentGroup.deploymentConfig.deploymentConfigName,
         deploymentGroupName: props.deploymentGroup.deploymentGroupName,
-        autoRollbackConfigurationEnabled: (autoRollbackConfigurationEvents.length > 0).toString(),
-        autoRollbackConfigurationEvents: autoRollbackConfigurationEvents.join(','),
+        autoRollbackConfigurationEnabled,
+        autoRollbackConfigurationEvents,
         description: props.description,
         revisionAppSpecContent: props.appspec.toString(),
       },

@@ -126,14 +126,22 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
     case 'Update': {
       // create deployment
       const props = event.ResourceProperties;
+      let autoRollbackConfiguration;
+      if (props.autoRollbackConfigurationEnabled === 'true') {
+        autoRollbackConfiguration = {
+          enabled: true,
+          events: props.autoRollbackConfigurationEvents.split(','),
+        };
+      } else if (props.autoRollbackConfigurationEnabled === 'false') {
+        autoRollbackConfiguration = {
+          enabled: false,
+        };
+      }
       const resp = await codedeployClient.createDeployment({
         applicationName: props.applicationName,
         deploymentConfigName: props.deploymentConfigName,
         deploymentGroupName: props.deploymentGroupName,
-        autoRollbackConfiguration: {
-          enabled: props.autoRollbackConfigurationEnabled === 'true',
-          events: props.autoRollbackConfigurationEvents?.split(','),
-        },
+        autoRollbackConfiguration,
         description: props.description,
         revision: {
           revisionType: 'AppSpecContent',
