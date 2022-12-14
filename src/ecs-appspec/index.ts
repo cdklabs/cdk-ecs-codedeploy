@@ -4,7 +4,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 /**
  * Represents an AppSpec to be used for ECS services.
  *
- * {@link https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs}
+ * see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
  */
 export class EcsAppSpec {
   /**
@@ -64,7 +64,7 @@ export class EcsAppSpec {
 }
 
 /**
- * Describe the target for CodeDeploy to use when creating a deployment for a {@link ecs.EcsDeploymentGroup}.
+ * Describe the target for CodeDeploy to use when creating a deployment for an ecs.EcsDeploymentGroup.
  */
 export interface TargetService {
   /**
@@ -84,7 +84,7 @@ export interface TargetService {
 
   /**
    * The platform version of the Fargate tasks in the deployed Amazon ECS service.
-   * {@link https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html}
+   * see: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html
    *
    * @default LATEST
    */

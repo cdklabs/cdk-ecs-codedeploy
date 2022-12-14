@@ -5,7 +5,7 @@ import { EcsAppSpec } from '../ecs-appspec';
 import { EcsDeploymentProvider } from '../ecs-deployment-provider';
 
 /**
- * Construction properties of {@link EcsDeployment}.
+ * Construction properties of EcsDeployment.
  */
 export interface EcsDeploymentProps {
   /**
@@ -16,7 +16,7 @@ export interface EcsDeploymentProps {
   /**
    * The AppSpec to use for the deployment.
    *
-   * {@link https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs}
+   * see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
    */
   readonly appspec: EcsAppSpec;
 
@@ -44,14 +44,16 @@ export interface EcsDeploymentProps {
 }
 
 /**
- * A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup.
+ * A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup. An `EcsDeploymentGroup`
+ * must only have 1 EcsDeployment. This limit is enforced by making the constructor protected
+ * and requiring the use of a static method such as `forDeploymentGroup` to initialize.
+ * The `scope` will always be set to the `EcsDeploymentGroup` and the `id` will always
+ * be set to the string 'Deployment' to force an error if mulitiple EcsDeployment constructs
+ * are created for a single EcsDeploymentGroup.
  */
 export class EcsDeployment extends Construct {
   /**
-   * An {@link EcsDeploymentGroup} must only have 1 EcsDeployment. This limit is enforced by not allowing
-   * the `scope` or `id` to be passed to the constructor. The `scope` will always be set to the
-   * `deploymentGroup` from `props` and the `id` will always be set to the string 'Deployment'
-   * to force an error if mulitiple EcsDeployment constructs are created for a single EcsDeploymentGrouop.
+   * Create a new deployment for a given `EcsDeploymentGroup`.
    */
   public static forDeploymentGroup(props: EcsDeploymentProps) {
     return new EcsDeployment(props.deploymentGroup, 'Deployment', props);
