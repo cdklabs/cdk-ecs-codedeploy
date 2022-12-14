@@ -6,6 +6,13 @@
 
 A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup.
 
+An `EcsDeploymentGroup`
+must only have 1 EcsDeployment. This limit is enforced by making the constructor protected
+and requiring the use of a static method such as `forDeploymentGroup` to initialize.
+The `scope` will always be set to the `EcsDeploymentGroup` and the `id` will always
+be set to the string 'Deployment' to force an error if mulitiple EcsDeployment constructs
+are created for a single EcsDeploymentGroup.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment.Initializer"></a>
 
 ```typescript
@@ -61,7 +68,7 @@ Returns a string representation of this construct.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeployment.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeployment.forDeploymentGroup">forDeploymentGroup</a></code> | An {@link EcsDeploymentGroup} must only have 1 EcsDeployment. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeployment.forDeploymentGroup">forDeploymentGroup</a></code> | Create a new deployment for a given `EcsDeploymentGroup`. |
 
 ---
 
@@ -91,12 +98,7 @@ import { EcsDeployment } from '@cdklabs/cdk-ecs-codedeploy'
 EcsDeployment.forDeploymentGroup(props: EcsDeploymentProps)
 ```
 
-An {@link EcsDeploymentGroup} must only have 1 EcsDeployment.
-
-This limit is enforced by not allowing
-the `scope` or `id` to be passed to the constructor. The `scope` will always be set to the
-`deploymentGroup` from `props` and the `id` will always be set to the string 'Deployment'
-to force an error if mulitiple EcsDeployment constructs are created for a single EcsDeploymentGrouop.
+Create a new deployment for a given `EcsDeploymentGroup`.
 
 ###### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment.forDeploymentGroup.parameter.props"></a>
 
@@ -213,7 +215,7 @@ The Subnets to use for the task.
 
 ### EcsDeploymentProps <a name="EcsDeploymentProps" id="@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps"></a>
 
-Construction properties of {@link EcsDeployment}.
+Construction properties of EcsDeployment.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.Initializer"></a>
 
@@ -245,7 +247,7 @@ public readonly appspec: EcsAppSpec;
 
 The AppSpec to use for the deployment.
 
-{@link https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs}
+see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
 
 ---
 
@@ -304,7 +306,7 @@ If the timeout is reached, it will trigger a rollback of the stack.
 
 ### TargetService <a name="TargetService" id="@cdklabs/cdk-ecs-codedeploy.TargetService"></a>
 
-Describe the target for CodeDeploy to use when creating a deployment for a {@link ecs.EcsDeploymentGroup}.
+Describe the target for CodeDeploy to use when creating a deployment for an ecs.EcsDeploymentGroup.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-ecs-codedeploy.TargetService.Initializer"></a>
 
@@ -402,7 +404,7 @@ public readonly platformVersion: FargatePlatformVersion;
 
 The platform version of the Fargate tasks in the deployed Amazon ECS service.
 
-{@link https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html}
+see: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html
 
 ---
 
@@ -412,7 +414,7 @@ The platform version of the Fargate tasks in the deployed Amazon ECS service.
 
 Represents an AppSpec to be used for ECS services.
 
-{@link https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs}
+see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-ecs-codedeploy.EcsAppSpec.Initializer"></a>
 
