@@ -44,10 +44,10 @@ export interface EcsDeploymentProps {
 }
 
 /**
- * A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup. An `EcsDeploymentGroup`
+ * A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup. An EcsDeploymentGroup
  * must only have 1 EcsDeployment. This limit is enforced by making the constructor protected
- * and requiring the use of a static method such as `forDeploymentGroup` to initialize.
- * The `scope` will always be set to the `EcsDeploymentGroup` and the `id` will always
+ * and requiring the use of a static method such as `EcsDeploymentGroup.forDeploymentGroup()` to initialize.
+ * The scope will always be set to the EcsDeploymentGroup and the id will always
  * be set to the string 'Deployment' to force an error if mulitiple EcsDeployment constructs
  * are created for a single EcsDeploymentGroup.
  */

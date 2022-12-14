@@ -93,7 +93,10 @@
     "aws-sdk"
   ],
   "keywords": [
-    "cdk"
+    "aws",
+    "cdk",
+    "codedeploy",
+    "ecs"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",

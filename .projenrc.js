@@ -49,5 +49,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   bundledDeps: ['aws-sdk'],
   deps: [],
+  keywords: [
+    'aws',
+    'cdk',
+    'ecs',
+    'codedeploy',
+  ],
 });
 project.synth();
