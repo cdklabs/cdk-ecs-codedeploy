@@ -46,6 +46,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-sdk-mock@5.6.0',
     '@types/lambda-tester',
     '@aws-cdk/integ-tests-alpha',
+    'cdk-nag',
   ],
   bundledDeps: ['aws-sdk'],
   deps: [],

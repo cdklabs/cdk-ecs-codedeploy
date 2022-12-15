@@ -61,6 +61,7 @@
     "aws-cdk": "^2",
     "aws-cdk-lib": "2.50.0",
     "aws-sdk-mock": "5.6.0",
+    "cdk-nag": "^2.21.32",
     "constructs": "10.0.5",
     "esbuild": "^0.16.7",
     "eslint": "^8",
