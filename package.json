@@ -51,7 +51,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@aws-cdk/integ-tests-alpha": "^2.55.0-alpha.0",
+    "@aws-cdk/integ-tests-alpha": "^2.55.1-alpha.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.1",
@@ -62,7 +62,7 @@
     "aws-cdk-lib": "2.50.0",
     "aws-sdk-mock": "5.6.0",
     "constructs": "10.0.5",
-    "esbuild": "^0.16.7",
+    "esbuild": "^0.16.8",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^3.5.2",
@@ -71,12 +71,12 @@
     "jest-junit": "^13",
     "jsii": "^1.72.0",
     "jsii-diff": "^1.72.0",
-    "jsii-docgen": "^7.0.174",
+    "jsii-docgen": "^7.0.176",
     "jsii-pacmak": "^1.72.0",
     "json-schema": "^0.4.0",
     "lambda-tester": "^4.0.1",
     "npm-check-updates": "^16",
-    "projen": "^0.65.62",
+    "projen": "^0.65.63",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
@@ -87,7 +87,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "aws-sdk": "^2.1276.0"
+    "aws-sdk": "^2.1277.0"
   },
   "bundledDependencies": [
     "aws-sdk"
