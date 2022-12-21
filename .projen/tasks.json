@@ -58,7 +58,7 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
         }
       ]
     },
@@ -67,7 +67,7 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
         }
       ]
     },
@@ -76,7 +76,7 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
         }
       ]
     },
@@ -85,7 +85,7 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
         }
       ]
     },
@@ -178,66 +178,192 @@
         }
       ]
     },
-    "integ:deployment:assert": {
-      "name": "integ:deployment:assert",
-      "description": "assert the snapshot of integration test 'deployment'",
+    "integ:api-canary:assert": {
+      "name": "integ:api-canary:assert",
+      "description": "assert the snapshot of integration test 'api-canary'",
       "steps": [
         {
-          "exec": "[ -d \"test/deployment.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'deployment'. Run 'projen integ:deployment:deploy' to capture.\" && exit 1)"
+          "exec": "[ -d \"test/api-canary.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'api-canary'. Run 'projen integ:api-canary:deploy' to capture.\" && exit 1)"
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/deployment.integ/assert.cdk.out > /dev/null"
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/api-canary.integ/assert.cdk.out > /dev/null"
         },
         {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/deployment.integ.snapshot/ test/.tmp/deployment.integ/assert.cdk.out/"
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/api-canary.integ.snapshot/ test/.tmp/api-canary.integ/assert.cdk.out/"
         }
       ]
     },
-    "integ:deployment:deploy": {
-      "name": "integ:deployment:deploy",
-      "description": "deploy integration test 'deployment' and capture snapshot",
+    "integ:api-canary:deploy": {
+      "name": "integ:api-canary:deploy",
+      "description": "deploy integration test 'api-canary' and capture snapshot",
       "steps": [
         {
-          "exec": "rm -fr test/.tmp/deployment.integ/deploy.cdk.out"
+          "exec": "rm -fr test/.tmp/api-canary.integ/deploy.cdk.out"
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/deployment.integ/deploy.cdk.out"
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/api-canary.integ/deploy.cdk.out"
         },
         {
-          "exec": "rm -fr test/deployment.integ.snapshot"
+          "exec": "rm -fr test/api-canary.integ.snapshot"
         },
         {
-          "exec": "mv test/.tmp/deployment.integ/deploy.cdk.out test/deployment.integ.snapshot"
+          "exec": "mv test/.tmp/api-canary.integ/deploy.cdk.out test/api-canary.integ.snapshot"
         },
         {
-          "spawn": "integ:deployment:destroy"
+          "spawn": "integ:api-canary:destroy"
         }
       ]
     },
-    "integ:deployment:destroy": {
-      "name": "integ:deployment:destroy",
-      "description": "destroy integration test 'deployment'",
+    "integ:api-canary:destroy": {
+      "name": "integ:api-canary:destroy",
+      "description": "destroy integration test 'api-canary'",
       "steps": [
         {
-          "exec": "cdk destroy --app test/deployment.integ.snapshot '**' --no-version-reporting"
+          "exec": "cdk destroy --app test/api-canary.integ.snapshot '**' --no-version-reporting"
         }
       ]
     },
-    "integ:deployment:snapshot": {
-      "name": "integ:deployment:snapshot",
-      "description": "update snapshot for integration test \"deployment\"",
+    "integ:api-canary:snapshot": {
+      "name": "integ:api-canary:snapshot",
+      "description": "update snapshot for integration test \"api-canary\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/deployment.integ.snapshot > /dev/null"
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/api-canary.integ.snapshot > /dev/null"
         }
       ]
     },
-    "integ:deployment:watch": {
-      "name": "integ:deployment:watch",
-      "description": "watch integration test 'deployment' (without updating snapshots)",
+    "integ:api-canary:watch": {
+      "name": "integ:api-canary:watch",
+      "description": "watch integration test 'api-canary' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/deployment.integ/deploy.cdk.out"
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/api-canary.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:application-load-balanced-codedeployed-fargate-service:assert": {
+      "name": "integ:application-load-balanced-codedeployed-fargate-service:assert",
+      "description": "assert the snapshot of integration test 'application-load-balanced-codedeployed-fargate-service'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/application-load-balanced-codedeployed-fargate-service.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'application-load-balanced-codedeployed-fargate-service'. Run 'projen integ:application-load-balanced-codedeployed-fargate-service:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/ test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:application-load-balanced-codedeployed-fargate-service:deploy": {
+      "name": "integ:application-load-balanced-codedeployed-fargate-service:deploy",
+      "description": "deploy integration test 'application-load-balanced-codedeployed-fargate-service' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+        },
+        {
+          "exec": "mv test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+        },
+        {
+          "spawn": "integ:application-load-balanced-codedeployed-fargate-service:destroy"
+        }
+      ]
+    },
+    "integ:application-load-balanced-codedeployed-fargate-service:destroy": {
+      "name": "integ:application-load-balanced-codedeployed-fargate-service:destroy",
+      "description": "destroy integration test 'application-load-balanced-codedeployed-fargate-service'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/application-load-balanced-codedeployed-fargate-service.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:application-load-balanced-codedeployed-fargate-service:snapshot": {
+      "name": "integ:application-load-balanced-codedeployed-fargate-service:snapshot",
+      "description": "update snapshot for integration test \"application-load-balanced-codedeployed-fargate-service\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/application-load-balanced-codedeployed-fargate-service.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:application-load-balanced-codedeployed-fargate-service:watch": {
+      "name": "integ:application-load-balanced-codedeployed-fargate-service:watch",
+      "description": "watch integration test 'application-load-balanced-codedeployed-fargate-service' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ecs-deployment:assert": {
+      "name": "integ:ecs-deployment:assert",
+      "description": "assert the snapshot of integration test 'ecs-deployment'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/ecs-deployment.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ecs-deployment'. Run 'projen integ:ecs-deployment:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/ecs-deployment.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/ecs-deployment.integ.snapshot/ test/.tmp/ecs-deployment.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ecs-deployment:deploy": {
+      "name": "integ:ecs-deployment:deploy",
+      "description": "deploy integration test 'ecs-deployment' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/ecs-deployment.integ.snapshot"
+        },
+        {
+          "exec": "mv test/.tmp/ecs-deployment.integ/deploy.cdk.out test/ecs-deployment.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ecs-deployment:destroy"
+        }
+      ]
+    },
+    "integ:ecs-deployment:destroy": {
+      "name": "integ:ecs-deployment:destroy",
+      "description": "destroy integration test 'ecs-deployment'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/ecs-deployment.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ecs-deployment:snapshot": {
+      "name": "integ:ecs-deployment:snapshot",
+      "description": "update snapshot for integration test \"ecs-deployment\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/ecs-deployment.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ecs-deployment:watch": {
+      "name": "integ:ecs-deployment:watch",
+      "description": "watch integration test 'ecs-deployment' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/ecs-deployment.integ/deploy.cdk.out"
         }
       ]
     },
@@ -246,7 +372,13 @@
       "description": "update snapshot for all integration tests",
       "steps": [
         {
-          "spawn": "integ:deployment:snapshot"
+          "spawn": "integ:api-canary:snapshot"
+        },
+        {
+          "spawn": "integ:application-load-balanced-codedeployed-fargate-service:snapshot"
+        },
+        {
+          "spawn": "integ:ecs-deployment:snapshot"
         }
       ]
     },
@@ -383,7 +515,13 @@
           "spawn": "eslint"
         },
         {
-          "spawn": "integ:deployment:assert"
+          "spawn": "integ:api-canary:assert"
+        },
+        {
+          "spawn": "integ:application-load-balanced-codedeployed-fargate-service:assert"
+        },
+        {
+          "spawn": "integ:ecs-deployment:assert"
         }
       ]
     },
@@ -433,19 +571,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,aws-sdk-mock,constructs'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,aws-sdk-mock,constructs'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,aws-sdk-mock,constructs'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,aws-sdk-mock,constructs'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,aws-sdk-mock,constructs'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
         },
         {
           "exec": "yarn install --check-files"

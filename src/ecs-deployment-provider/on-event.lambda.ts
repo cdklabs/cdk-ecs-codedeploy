@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+import { CodeDeploy } from '@aws-sdk/client-codedeploy';
 import { Logger } from './logger';
 
 /**
@@ -117,7 +117,7 @@ export interface OnEventResponse {
  */
 export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
   const logger = new Logger();
-  const codedeployClient = new AWS.CodeDeploy();
+  const codedeployClient = new CodeDeploy({});
   logger.appendKeys({
     stackEvent: event.RequestType,
   });
@@ -149,7 +149,7 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
             content: props.revisionAppSpecContent,
           },
         },
-      }).promise();
+      });
       if (!resp.deploymentId) {
         throw new Error('No deploymentId received from call to CreateDeployment');
       }
@@ -174,7 +174,7 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
         const resp = await codedeployClient.stopDeployment({
           deploymentId: event.PhysicalResourceId,
           autoRollbackEnabled: true,
-        }).promise();
+        });
         logger.info(`Stopped deployment: ${resp.status} ${resp.statusMessage}`);
       } catch (e) {
         logger.warn('Ignoring error', { error: e as Error });

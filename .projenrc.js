@@ -4,7 +4,7 @@ const { UpdateSnapshot } = require('projen/lib/javascript');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Casey Lee',
   authorAddress: 'caseypl@amazon.com',
-  cdkVersion: '2.50.0',
+  cdkVersion: '2.55.1',
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
@@ -18,7 +18,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   npmAccess: 'public',
   lambdaOptions: {
-    runtime: awscdk.LambdaRuntime.NODEJS_16_X,
+    runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   },
   jestOptions: {
     updateSnapshot: UpdateSnapshot.NEVER,
@@ -43,13 +43,20 @@ const project = new awscdk.AwsCdkConstructLibrary({
   devDeps: [
     '@types/aws-lambda',
     'lambda-tester',
-    'aws-sdk-mock@5.6.0',
+    'aws-sdk-client-mock',
+    'aws-sdk-client-mock-jest',
     '@types/lambda-tester',
     '@aws-cdk/integ-tests-alpha',
     'cdk-nag',
   ],
-  bundledDeps: ['aws-sdk'],
+  bundledDeps: [
+    '@aws-sdk/client-codedeploy',
+    'jmespath',
+  ],
   deps: [],
+  peerDeps: [
+    '@aws-cdk/aws-synthetics-alpha@2.55.1-alpha.0',
+  ],
   keywords: [
     'aws',
     'cdk',

@@ -20,11 +20,21 @@
     "docgen": "npx projen docgen",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
-    "integ:deployment:assert": "npx projen integ:deployment:assert",
-    "integ:deployment:deploy": "npx projen integ:deployment:deploy",
-    "integ:deployment:destroy": "npx projen integ:deployment:destroy",
-    "integ:deployment:snapshot": "npx projen integ:deployment:snapshot",
-    "integ:deployment:watch": "npx projen integ:deployment:watch",
+    "integ:api-canary:assert": "npx projen integ:api-canary:assert",
+    "integ:api-canary:deploy": "npx projen integ:api-canary:deploy",
+    "integ:api-canary:destroy": "npx projen integ:api-canary:destroy",
+    "integ:api-canary:snapshot": "npx projen integ:api-canary:snapshot",
+    "integ:api-canary:watch": "npx projen integ:api-canary:watch",
+    "integ:application-load-balanced-codedeployed-fargate-service:assert": "npx projen integ:application-load-balanced-codedeployed-fargate-service:assert",
+    "integ:application-load-balanced-codedeployed-fargate-service:deploy": "npx projen integ:application-load-balanced-codedeployed-fargate-service:deploy",
+    "integ:application-load-balanced-codedeployed-fargate-service:destroy": "npx projen integ:application-load-balanced-codedeployed-fargate-service:destroy",
+    "integ:application-load-balanced-codedeployed-fargate-service:snapshot": "npx projen integ:application-load-balanced-codedeployed-fargate-service:snapshot",
+    "integ:application-load-balanced-codedeployed-fargate-service:watch": "npx projen integ:application-load-balanced-codedeployed-fargate-service:watch",
+    "integ:ecs-deployment:assert": "npx projen integ:ecs-deployment:assert",
+    "integ:ecs-deployment:deploy": "npx projen integ:ecs-deployment:deploy",
+    "integ:ecs-deployment:destroy": "npx projen integ:ecs-deployment:destroy",
+    "integ:ecs-deployment:snapshot": "npx projen integ:ecs-deployment:snapshot",
+    "integ:ecs-deployment:watch": "npx projen integ:ecs-deployment:watch",
     "integ:snapshot-all": "npx projen integ:snapshot-all",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
@@ -51,6 +61,7 @@
     "organization": false
   },
   "devDependencies": {
+    "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",
     "@aws-cdk/integ-tests-alpha": "^2.55.0-alpha.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^27",
@@ -59,8 +70,9 @@
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.50.0",
-    "aws-sdk-mock": "5.6.0",
+    "aws-cdk-lib": "2.55.1",
+    "aws-sdk-client-mock": "^2.0.1",
+    "aws-sdk-client-mock-jest": "^2.0.1",
     "cdk-nag": "^2.21.32",
     "constructs": "10.0.5",
     "esbuild": "^0.16.7",
@@ -84,14 +96,17 @@
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.50.0",
+    "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",
+    "aws-cdk-lib": "^2.55.1",
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "aws-sdk": "^2.1275.0"
+    "@aws-sdk/client-codedeploy": "^3.236.0",
+    "jmespath": "^0.16.0"
   },
   "bundledDependencies": [
-    "aws-sdk"
+    "@aws-sdk/client-codedeploy",
+    "jmespath"
   ],
   "keywords": [
     "aws",

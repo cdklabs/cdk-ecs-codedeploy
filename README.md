@@ -36,7 +36,9 @@ See https://www.nuget.org/packages/Cdklabs.CdkEcsCodeDeploy/
 
 ## Getting Started
 
-You can browse the documentation at https://constructs.dev/packages/cdk-ecs-codedeploy/
+You can browse the documentation at the [Construct Hub](https://constructs.dev/packages/@cdklabs/cdk-ecs-codedeploy)
+
+### Deployments
 
 CodeDeploy for ECS can manage the deployment of new task definitions to ECS services.  Only 1 deployment construct can be defined for a given EcsDeploymentGroup.
 
@@ -44,7 +46,7 @@ CodeDeploy for ECS can manage the deployment of new task definitions to ECS serv
 declare const deploymentGroup: codeDeploy.IEcsDeploymentGroup;
 declare const taskDefinition: ecs.ITaskDefinition;
 
-EcsDeployment.forDeploymentGroup({
+new EcsDeployment({
   deploymentGroup,
   appspec: new codedeploy.EcsAppSpec({
     taskDefinition,
@@ -57,7 +59,7 @@ EcsDeployment.forDeploymentGroup({
 The deployment will use the AutoRollbackConfig for the EcsDeploymentGroup unless it is overridden in the deployment:
 
 ```ts
-EcsDeployment.forDeploymentGroup({
+new EcsDeployment({
   deploymentGroup,
   appspec: new codedeploy.EcsAppSpec({
     taskDefinition,
@@ -75,7 +77,7 @@ EcsDeployment.forDeploymentGroup({
 By default, the deployment will timeout after 30 minutes. The timeout value can be overridden:
 
 ```ts
-EcsDeployment.forDeploymentGroup({
+new EcsDeployment({
   deploymentGroup,
   appspec: new codedeploy.EcsAppSpec({
     taskDefinition,
@@ -83,6 +85,47 @@ EcsDeployment.forDeploymentGroup({
     containerPort: 80,
   }),
   timeout: Duration.minutes(60),
+});
+```
+
+### API Canaries
+
+CodeDeploy can leverage Cloudwatch Alarms to trigger automatic rollbacks. The `ApiCanary` construct simplifies the process for creating CloudWatch Synthetics Canaries to monitor APIs. The following code demonstrates a canary that monitors https://xkcd.com/908/info.0.json and checks the JSON response to assert that `safe_title` has the value of `'The Cloud'`.
+
+```ts
+const canary = new ApiCanary(stack, 'Canary', {
+  baseUrl: 'https://xkcd.com',
+  durationAlarmThreshold: Duration.seconds(5),
+  threadCount: 5,
+  steps: [
+    {
+      name: 'info',
+      path: '/908/info.0.json',
+      jmesPath: 'safe_title',
+      expectedValue: 'The Cloud',
+    },
+  ],
+});
+```
+
+### Application Load Balanced CodeDeployed Fargate Service
+
+An L3 construct named `ApplicationLoadBalancedCodeDeployedFargateService` extends [ApplicationLoadBalancedFargateService](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedFargateService.html) and adds support for deploying new versions of the service with AWS CodeDeploy. Additionally, an Amazon CloudWatch Synthetic canary is created via the `ApiCanary` construct and is monitored by the CodeDeploy deployment to trigger rollback if the canary begins to alarm.
+
+```ts
+declare const cluster: ecs.ICluster;
+declare const image: ecs.ContainerImage;
+const service = new ApplicationLoadBalancedCodeDeployedFargateService(stack, 'Service', {
+  cluster,
+  taskImageOptions: {
+    image,
+  },
+  apiTestSteps: [{
+    name: 'health',
+    path: '/health',
+    jmesPath: 'status',
+    expectedValue: 'ok',
+  }],
 });
 ```
 
@@ -97,7 +140,7 @@ yarn test
 To run an integration test and update the snapshot, run:
 
 ```bash
-yarn integ:deployment:deploy
+yarn integ:ecs-deployment:deploy
 ```
 
 To recreate snapshots for integration tests, run:

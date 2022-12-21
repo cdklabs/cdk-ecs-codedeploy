@@ -1,30 +1,14 @@
-import AWS from 'aws-sdk';
-import AWSMock from 'aws-sdk-mock';
+import { CodeDeployClient, CreateDeploymentCommand, StopDeploymentCommand } from '@aws-sdk/client-codedeploy';
+import { mockClient } from 'aws-sdk-client-mock';
 import lambdaTester from 'lambda-tester';
 import { handler, OnEventRequest, OnEventResponse } from '../src/ecs-deployment-provider/on-event.lambda';
+import 'aws-sdk-client-mock-jest';
 
-AWSMock.setSDKInstance(AWS);
-
-function awsMock<OutputType, C extends AWSMock.ClientName, M extends AWSMock.MethodName<C>>(service: C, method: M, result: OutputType | Error) {
-  const mock = jest.fn(
-    (
-      _params: {[key: string]: string},
-      callback: (error?: AWS.AWSError, response?: OutputType) => undefined,
-    ) => {
-      if (result instanceof Error) {
-        callback(result as AWS.AWSError);
-      } else {
-        callback(undefined, result);
-      }
-    },
-  );
-  AWSMock.mock(service, method, mock);
-  return mock;
-}
+const codeDeployMock = mockClient(CodeDeployClient);
 
 describe('onEvent', () => {
   afterEach(() => {
-    AWSMock.restore();
+    codeDeployMock.reset();
   });
 
   test('Empty event payload fails', () => {
@@ -36,7 +20,7 @@ describe('onEvent', () => {
   });
 
   test('Create deployment succeeds', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {
+    codeDeployMock.on(CreateDeploymentCommand).resolves({
       deploymentId: '1111111',
     });
 
@@ -54,8 +38,8 @@ describe('onEvent', () => {
         },
       } as OnEventRequest)
       .expectResolve((resp: OnEventResponse) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
-        expect(codeDeployMock).toHaveBeenCalledWith({
+        expect(codeDeployMock).toHaveReceivedCommandTimes(CreateDeploymentCommand, 1);
+        expect(codeDeployMock).toHaveReceivedCommandWith(CreateDeploymentCommand, {
           applicationName: 'testapp',
           deploymentConfigName: 'testdeployconfig',
           deploymentGroupName: 'testdeploygroup',
@@ -70,14 +54,14 @@ describe('onEvent', () => {
               content: 'appspec-goes-here',
             },
           },
-        }, expect.any(Function));
+        });
         expect(resp.PhysicalResourceId).toBe('1111111');
         expect(resp.Data?.deploymentId).toBe('1111111');
       });
   });
 
   test('Create deployment succeeds with autorolllback disabled', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {
+    codeDeployMock.on(CreateDeploymentCommand).resolves({
       deploymentId: '1111111',
     });
 
@@ -94,8 +78,8 @@ describe('onEvent', () => {
         },
       } as OnEventRequest)
       .expectResolve((resp: OnEventResponse) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
-        expect(codeDeployMock).toHaveBeenCalledWith({
+        expect(codeDeployMock).toHaveReceivedCommandTimes(CreateDeploymentCommand, 1);
+        expect(codeDeployMock).toHaveReceivedCommandWith(CreateDeploymentCommand, {
           applicationName: 'testapp',
           deploymentConfigName: 'testdeployconfig',
           deploymentGroupName: 'testdeploygroup',
@@ -110,14 +94,14 @@ describe('onEvent', () => {
               content: 'appspec-goes-here',
             },
           },
-        }, expect.any(Function));
+        });
         expect(resp.PhysicalResourceId).toBe('1111111');
         expect(resp.Data?.deploymentId).toBe('1111111');
       });
   });
 
   test('Create deployment fails', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {});
+    codeDeployMock.on(CreateDeploymentCommand).resolves({});
 
     return lambdaTester(handler)
       .event({
@@ -133,13 +117,13 @@ describe('onEvent', () => {
         },
       } as OnEventRequest)
       .expectReject((error: Error) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
+        expect(codeDeployMock).toHaveReceivedCommandTimes(CreateDeploymentCommand, 1);
         expect(error.message).toBe('No deploymentId received from call to CreateDeployment');
       });
   });
 
   test('Update deployment succeeds', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'createDeployment', {
+    codeDeployMock.on(CreateDeploymentCommand).resolves({
       deploymentId: '1111111',
     });
 
@@ -155,8 +139,8 @@ describe('onEvent', () => {
         },
       } as OnEventRequest)
       .expectResolve((resp: OnEventResponse) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
-        expect(codeDeployMock).toHaveBeenCalledWith({
+        expect(codeDeployMock).toHaveReceivedCommandTimes(CreateDeploymentCommand, 1);
+        expect(codeDeployMock).toHaveReceivedCommandWith(CreateDeploymentCommand, {
           applicationName: 'testapp',
           deploymentConfigName: 'testdeployconfig',
           deploymentGroupName: 'testdeploygroup',
@@ -168,14 +152,14 @@ describe('onEvent', () => {
               content: 'appspec-goes-here',
             },
           },
-        }, expect.any(Function));
+        });
         expect(resp.PhysicalResourceId).toBe('1111111');
         expect(resp.Data?.deploymentId).toBe('1111111');
       });
   });
 
   test('Delete deployment successfully stops', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'stopDeployment', {
+    codeDeployMock.on(StopDeploymentCommand).resolves({
       status: 'ok',
       statusMessage: 'successfully stopped',
     });
@@ -186,11 +170,11 @@ describe('onEvent', () => {
         PhysicalResourceId: '22222222',
       } as OnEventRequest)
       .expectResolve((resp: OnEventResponse) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
-        expect(codeDeployMock).toHaveBeenCalledWith({
+        expect(codeDeployMock).toHaveReceivedCommandTimes(StopDeploymentCommand, 1);
+        expect(codeDeployMock).toHaveReceivedCommandWith(StopDeploymentCommand, {
           deploymentId: '22222222',
           autoRollbackEnabled: true,
-        }, expect.any(Function));
+        });
         expect(resp).toEqual({
           PhysicalResourceId: '22222222',
           Data: {
@@ -201,7 +185,7 @@ describe('onEvent', () => {
   });
 
   test('Delete deployment fails to stop', () => {
-    const codeDeployMock = awsMock('CodeDeploy', 'stopDeployment', new Error('Unable to stop'));
+    codeDeployMock.on(StopDeploymentCommand).rejects(new Error('Unable to stop'));
 
     return lambdaTester(handler)
       .event({
@@ -209,11 +193,11 @@ describe('onEvent', () => {
         PhysicalResourceId: '22222222',
       } as OnEventRequest)
       .expectResolve((resp: OnEventResponse) => {
-        expect(codeDeployMock).toHaveBeenCalledTimes(1);
-        expect(codeDeployMock).toHaveBeenCalledWith({
+        expect(codeDeployMock).toHaveReceivedCommandTimes(StopDeploymentCommand, 1);
+        expect(codeDeployMock).toHaveReceivedCommandWith(StopDeploymentCommand, {
           deploymentId: '22222222',
           autoRollbackEnabled: true,
-        }, expect.any(Function));
+        });
         expect(resp).toEqual({
           PhysicalResourceId: '22222222',
           Data: {

@@ -1507,7 +1507,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "a29f9e80a9b9a21181a6f63710082658cc7ccfa3a9ab29c19c6233446268478d.zip"
+     "S3Key": "cb084b2fb7a65f35a64c800d6332ea0403b2a95734bffcfd5703758fafc98b68.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1521,24 +1521,8 @@
       "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
      }
     },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-onEvent"
-      ]
-     ]
-    },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs18.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -1677,7 +1661,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "a7648e405798941d2134fe62c51b97ba52bd035e994f087b07935172b37ed3b0.zip"
+     "S3Key": "e724e4e1a38b852a82a0d9454f3599434d9838bf5ff26951df6dee1424d92633.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1691,24 +1675,8 @@
       "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
      }
     },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-isComplete"
-      ]
-     ]
-    },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs18.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -1899,7 +1867,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1926,22 +1894,6 @@
        "Ref": "DGDeploymentDeploymentProviderwaiterstatemachine566875DD"
       }
      }
-    },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-provider"
-      ]
-     ]
     },
     "Handler": "framework.onEvent",
     "Runtime": "nodejs14.x",
@@ -2140,7 +2092,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2362,7 +2314,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2752,6 +2704,10 @@
     "codedeploy": "codedeploy.ap-south-1.amazonaws.com",
     "states": "states.ap-south-1.amazonaws.com"
    },
+   "ap-south-2": {
+    "codedeploy": "codedeploy.ap-south-2.amazonaws.com",
+    "states": "states.ap-south-2.amazonaws.com"
+   },
    "ap-southeast-1": {
     "codedeploy": "codedeploy.ap-southeast-1.amazonaws.com",
     "states": "states.ap-southeast-1.amazonaws.com"
@@ -2803,6 +2759,10 @@
    "eu-west-3": {
     "codedeploy": "codedeploy.eu-west-3.amazonaws.com",
     "states": "states.eu-west-3.amazonaws.com"
+   },
+   "me-central-1": {
+    "codedeploy": "codedeploy.me-central-1.amazonaws.com",
+    "states": "states.me-central-1.amazonaws.com"
    },
    "me-south-1": {
     "codedeploy": "codedeploy.me-south-1.amazonaws.com",

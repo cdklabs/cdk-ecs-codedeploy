@@ -5,8 +5,8 @@ import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import * as ecscodedeploy from '../src';
 import { AwsSolutionsChecks, NagSuppressions } from 'cdk-nag';
+import * as ecscodedeploy from '../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'cdk-ecs-codedeploy-ecs-deployment');
@@ -159,7 +159,7 @@ const dg = new codedeploy.EcsDeploymentGroup(stack, 'DG', {
   },
 });
 
-const deployment = ecscodedeploy.EcsDeployment.forDeploymentGroup({
+const deployment = new ecscodedeploy.EcsDeployment({
   deploymentGroup: dg,
   description: 'test deployment',
   autoRollback: {

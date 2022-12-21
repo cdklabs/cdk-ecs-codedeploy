@@ -45,27 +45,19 @@ export interface EcsDeploymentProps {
 
 /**
  * A CodeDeploy Deployment for a Amazon ECS service DeploymentGroup. An EcsDeploymentGroup
- * must only have 1 EcsDeployment. This limit is enforced by making the constructor protected
- * and requiring the use of a static method such as `EcsDeploymentGroup.forDeploymentGroup()` to initialize.
- * The scope will always be set to the EcsDeploymentGroup and the id will always
- * be set to the string 'Deployment' to force an error if mulitiple EcsDeployment constructs
- * are created for a single EcsDeploymentGroup.
+ * must only have 1 EcsDeployment. This limit is enforced by removing the scope and id
+ * from the constructor. The scope will always be set to the EcsDeploymentGroup
+ * and the id will always be set to the string 'Deployment' to force an error if mulitiple
+ * EcsDeployment constructs are created for a single EcsDeploymentGroup.
  */
 export class EcsDeployment extends Construct {
-  /**
-   * Create a new deployment for a given `EcsDeploymentGroup`.
-   */
-  public static forDeploymentGroup(props: EcsDeploymentProps) {
-    return new EcsDeployment(props.deploymentGroup, 'Deployment', props);
-  }
-
   /**
    * The id of the deployment that was created.
    */
   deploymentId: string;
 
-  protected constructor(scope: Construct, id: string, props: EcsDeploymentProps) {
-    super(scope, id);
+  public constructor(props: EcsDeploymentProps) {
+    super(props.deploymentGroup, 'Deployment');
 
     const ecsDeploymentProvider = new EcsDeploymentProvider(this, 'DeploymentProvider', {
       deploymentGroup: props.deploymentGroup,
