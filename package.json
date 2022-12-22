@@ -51,7 +51,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@aws-cdk/integ-tests-alpha": "^2.55.1-alpha.0",
+    "@aws-cdk/integ-tests-alpha": "^2.56.0-alpha.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.1",
@@ -71,12 +71,12 @@
     "jest-junit": "^13",
     "jsii": "^1.72.0",
     "jsii-diff": "^1.72.0",
-    "jsii-docgen": "^7.0.180",
+    "jsii-docgen": "^7.0.181",
     "jsii-pacmak": "^1.72.0",
     "json-schema": "^0.4.0",
     "lambda-tester": "^4.0.1",
     "npm-check-updates": "^16",
-    "projen": "^0.65.67",
+    "projen": "^0.65.69",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
@@ -87,7 +87,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "aws-sdk": "^2.1279.0"
+    "aws-sdk": "^2.1280.0"
   },
   "bundledDependencies": [
     "aws-sdk"
