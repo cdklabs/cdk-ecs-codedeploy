@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as httpStep from '../src/api-canary/code/http-step';
+import * as httpStep from '../canary-src/http-step';
 
 describe('http-step createRequestOptions', () => {
   test('GET request', async () => {
