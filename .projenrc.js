@@ -2,8 +2,9 @@ const { awscdk } = require('projen');
 const { Stability } = require('projen/lib/cdk');
 const { UpdateSnapshot } = require('projen/lib/javascript');
 const project = new awscdk.AwsCdkConstructLibrary({
-  author: 'Casey Lee',
-  authorAddress: 'caseypl@amazon.com',
+  author: 'Amazon Web Services',
+  authorAddress: 'https://aws.amazon.com',
+  authorOrganization: true,
   cdkVersion: '2.55.1',
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',

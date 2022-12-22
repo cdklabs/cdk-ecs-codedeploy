@@ -7,6 +7,7 @@ import { IRole } from 'aws-cdk-lib/aws-iam';
 import { BlockPublicAccess, Bucket, BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 import { Construct } from 'constructs';
+import { CanaryCodeBundler } from './code-bundling';
 
 export interface ApiTestStep {
   /**
@@ -199,21 +200,12 @@ export class ApiCanary extends Canary {
   _steps: ApiTestStep[];
 
   constructor(scope: Construct, id: string, props: ApiCanaryProps) {
+    const bundler = new CanaryCodeBundler(path.join(__dirname, 'code'));
     const canaryAsset = new Asset(scope, `${id}ApiCanaryAsset`, {
-      path: path.join(__dirname, 'code'),
+      path: bundler.codePath,
       bundling: {
         image: DockerImage.fromRegistry('node:14'),
-        user: 'root',
-        workingDirectory: '/asset-output',
-        command: [
-          'bash', '-c', [
-            'mkdir -p nodejs',
-            'cd nodejs',
-            'cp /asset-input/package*.json .',
-            'npm install',
-            'cp /asset-input/*.js node_modules/',
-          ].join(' && '),
-        ],
+        local: bundler,
       },
     });
     let artifactsBucket = props.artifactsBucketLocation?.bucket;

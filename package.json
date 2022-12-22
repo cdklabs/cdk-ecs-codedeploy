@@ -56,9 +56,9 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Casey Lee",
-    "email": "caseypl@amazon.com",
-    "organization": false
+    "name": "Amazon Web Services",
+    "url": "https://aws.amazon.com",
+    "organization": true
   },
   "devDependencies": {
     "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",

@@ -52,7 +52,14 @@
     "VpcId": {
      "Ref": "ClusterVpcFAA3CEDF"
     },
-    "AvailabilityZone": "us-west-2a",
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
     "CidrBlock": "10.0.0.0/18",
     "MapPublicIpOnLaunch": true,
     "Tags": [
@@ -237,7 +244,14 @@
     "VpcId": {
      "Ref": "ClusterVpcFAA3CEDF"
     },
-    "AvailabilityZone": "us-west-2b",
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
     "CidrBlock": "10.0.64.0/18",
     "MapPublicIpOnLaunch": true,
     "Tags": [
@@ -422,7 +436,14 @@
     "VpcId": {
      "Ref": "ClusterVpcFAA3CEDF"
     },
-    "AvailabilityZone": "us-west-2a",
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
     "CidrBlock": "10.0.128.0/18",
     "MapPublicIpOnLaunch": false,
     "Tags": [
@@ -540,7 +561,14 @@
     "VpcId": {
      "Ref": "ClusterVpcFAA3CEDF"
     },
-    "AvailabilityZone": "us-west-2b",
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
     "CidrBlock": "10.0.192.0/18",
     "MapPublicIpOnLaunch": false,
     "Tags": [
@@ -956,7 +984,7 @@
      {
       "Essential": true,
       "Image": {
-       "Fn::Sub": "464380571579.dkr.ecr.us-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-464380571579-us-west-2:fb6f3a82f782259a62c079110060120870e8dc8a8803c334a7d8b3fa92e03c79"
+       "Fn::Sub": "${AWS::AccountId}.dkr.ecr.us-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-us-west-2:fb6f3a82f782259a62c079110060120870e8dc8a8803c334a7d8b3fa92e03c79"
       },
       "LogConfiguration": {
        "LogDriver": "awslogs",
@@ -1050,7 +1078,14 @@
           {
            "Ref": "AWS::Partition"
           },
-          ":ecr:us-west-2:464380571579:repository/cdk-hnb659fds-container-assets-464380571579-us-west-2"
+          ":ecr:us-west-2:",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":repository/",
+          {
+           "Fn::Sub": "cdk-hnb659fds-container-assets-${AWS::AccountId}-us-west-2"
+          }
          ]
         ]
        }
@@ -1318,7 +1353,11 @@
             "Arn"
            ]
           },
-          "/AWSLogs/464380571579/*"
+          "/AWSLogs/",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          "/*"
          ]
         ]
        }
@@ -1344,7 +1383,11 @@
             "Arn"
            ]
           },
-          "/AWSLogs/464380571579/*"
+          "/AWSLogs/",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          "/*"
          ]
         ]
        }
@@ -1523,7 +1566,11 @@
             {
              "Ref": "AWS::Partition"
             },
-            ":logs:us-west-2:464380571579:log-group:/aws/lambda/cwsyn-*"
+            ":logs:us-west-2:",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":log-group:/aws/lambda/cwsyn-*"
            ]
           ]
          }
@@ -1567,8 +1614,10 @@
     },
     "Code": {
      "Handler": "index.handler",
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
-     "S3Key": "cced3469e6be2a7241a4019f3f994ff6b59046f82be005353eb33949ee3fbedd.zip"
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
+     "S3Key": "0b6d797cbca48a64cdc0ac1542502582b2c492e20ae2becc1e0f70d77dda7f6e.zip"
     },
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
@@ -1987,7 +2036,9 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
      "S3Key": "cb084b2fb7a65f35a64c800d6332ea0403b2a95734bffcfd5703758fafc98b68.zip"
     },
     "Role": {
@@ -2132,7 +2183,9 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
      "S3Key": "e724e4e1a38b852a82a0d9454f3599434d9838bf5ff26951df6dee1424d92633.zip"
     },
     "Role": {
@@ -2321,7 +2374,9 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
      "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
@@ -2525,7 +2580,9 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
      "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
@@ -2726,7 +2783,9 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-464380571579-us-west-2",
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
+     },
      "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
