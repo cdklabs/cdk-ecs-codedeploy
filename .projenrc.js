@@ -16,6 +16,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
+  workflowBootstrapSteps: [
+    {
+      // This step is required to allow the build workflow to build docker images.
+      name: 'Change permissions on /var/run/docker.sock',
+      run: 'sudo chown superchain /var/run/docker.sock',
+    },
+  ],
   npmAccess: 'public',
   lambdaOptions: {
     runtime: awscdk.LambdaRuntime.NODEJS_18_X,
