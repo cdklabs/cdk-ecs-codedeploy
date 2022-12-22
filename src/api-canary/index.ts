@@ -200,7 +200,7 @@ export class ApiCanary extends Canary {
   _steps: ApiTestStep[];
 
   constructor(scope: Construct, id: string, props: ApiCanaryProps) {
-    const bundler = new CanaryCodeBundler(path.join(__dirname, 'code'));
+    const bundler = new CanaryCodeBundler(path.join(__dirname, '..', '..', 'canary-src'));
     const canaryAsset = new Asset(scope, `${id}ApiCanaryAsset`, {
       path: bundler.codePath,
       bundling: {
