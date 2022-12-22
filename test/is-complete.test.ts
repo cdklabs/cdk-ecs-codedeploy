@@ -1,60 +1,17 @@
-import AWS from 'aws-sdk';
-import AWSMock from 'aws-sdk-mock';
-import { GetDeploymentInput, GetDeploymentOutput } from 'aws-sdk/clients/codedeploy';
+import { CodeDeployClient, GetDeploymentCommand } from '@aws-sdk/client-codedeploy';
+import { mockClient } from 'aws-sdk-client-mock';
 import lambdaTester from 'lambda-tester';
 import { handler, IsCompleteRequest, IsCompleteResponse, DeploymentStatus } from '../src/ecs-deployment-provider/is-complete.lambda';
+import 'aws-sdk-client-mock-jest';
 
-AWSMock.setSDKInstance(AWS);
-
-class GetDeploymentMockBuilder {
-  static alwaysError(error: Error) {
-    return new GetDeploymentMockBuilder(error).build();
-  }
-  static alwaysOutput(output: GetDeploymentOutput) {
-    return new GetDeploymentMockBuilder(output).build();
-  }
-  defaultResult: GetDeploymentOutput | Error;
-  results: { [id: string]: (GetDeploymentOutput | Error) };
-  constructor(defaultResult?: GetDeploymentOutput | Error) {
-    this.defaultResult = defaultResult || new Error('Undeclared mock condition');
-    this.results = {};
-  }
-  withResult(deploymentId: string, result: GetDeploymentOutput | Error) {
-    this.results[deploymentId] = result;
-    return this;
-  }
-  getResult(deploymentId: string): GetDeploymentOutput | Error {
-    if (deploymentId in this.results) {
-      return this.results[deploymentId];
-    }
-    return this.defaultResult;
-  }
-  build() {
-    const mock = jest.fn(
-      (
-        params: GetDeploymentInput,
-        callback: (error?: AWS.AWSError, response?: GetDeploymentOutput) => undefined,
-      ) => {
-        const result = this.getResult(params.deploymentId);
-        if (result instanceof Error) {
-          callback(result as AWS.AWSError);
-        } else {
-          callback(undefined, result);
-        }
-      },
-    );
-    AWSMock.mock('CodeDeploy', 'getDeployment', mock);
-    return mock;
-  }
-
-}
+const codeDeployMock = mockClient(CodeDeployClient);
 
 describe('isComplete', () => {
   afterEach(() => {
-    AWSMock.restore();
+    codeDeployMock.reset();
   });
   test('Empty event payload fails', () => {
-    GetDeploymentMockBuilder.alwaysError(new Error());
+    codeDeployMock.on(GetDeploymentCommand).rejects(new Error());
     return lambdaTester(handler)
       .event({} as IsCompleteRequest)
       .expectError((err: Error) => {
@@ -62,7 +19,7 @@ describe('isComplete', () => {
       });
   });
   test('Unknown event type fails', () => {
-    GetDeploymentMockBuilder.alwaysOutput({
+    codeDeployMock.on(GetDeploymentCommand).resolves({
       deploymentInfo: {
         status: DeploymentStatus.SUCCEEDED,
       },
@@ -78,7 +35,9 @@ describe('isComplete', () => {
   });
 
   test('Throws error finding deploymentId for Create', () => {
-    const getDeploymentMock = GetDeploymentMockBuilder.alwaysError(new Error('Unable to find deployment'));
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand)
+      .rejects(new Error('Unable to find deployment'));
 
     return lambdaTester(handler)
       .event({
@@ -86,16 +45,18 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
-        expect(getDeploymentMock).toHaveBeenCalledWith({
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
+        expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
-        }, expect.any(Function));
+        });
         expect(error.message).toEqual('Unable to find deployment');
       });
   });
 
   test('Ignores error finding deploymentId for Delete', () => {
-    const getDeploymentMock = GetDeploymentMockBuilder.alwaysError(new Error('Unable to find deployment'));
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand)
+      .rejects(new Error('Unable to find deployment'));
 
     return lambdaTester(handler)
       .event({
@@ -103,15 +64,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
-        expect(getDeploymentMock).toHaveBeenCalledWith({
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
+        expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
-        }, expect.any(Function));
+        });
         expect(resp).toEqual({ IsComplete: true });
       });
   });
   test('Is complete when create deployment succeeds', () => {
-    const getDeploymentMock = GetDeploymentMockBuilder.alwaysOutput({
+    const getDeploymentMock = codeDeployMock.on(GetDeploymentCommand).resolves({
       deploymentInfo: {
         status: DeploymentStatus.SUCCEEDED,
       },
@@ -123,15 +84,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
-        expect(getDeploymentMock).toHaveBeenCalledWith({
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
+        expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
-        }, expect.any(Function));
+        });
         expect(resp).toEqual({ IsComplete: true });
       });
   });
   test('Is not complete when create deployment in progress', () => {
-    const getDeploymentMock = GetDeploymentMockBuilder.alwaysOutput({
+    const getDeploymentMock = codeDeployMock.on(GetDeploymentCommand).resolves({
       deploymentInfo: {
         status: DeploymentStatus.IN_PROGRESS,
       },
@@ -143,16 +104,19 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
-        expect(getDeploymentMock).toHaveBeenCalledWith({
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
+        expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
-        }, expect.any(Function));
+        });
         expect(resp).toEqual({ IsComplete: false });
       });
   });
   test('Is not complete when create deployment failed and rollback in progress', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           rollbackInfo: {
@@ -163,11 +127,14 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).withResult('22222222', {
+      })
+      .on(GetDeploymentCommand, {
+        deploymentId: '22222222',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.IN_PROGRESS,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -175,13 +142,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(2);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
         expect(resp.IsComplete).toBe(false);
       });
   });
   test('Throws error when create deployment failed and rollback failed', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           rollbackInfo: {
@@ -192,11 +161,14 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).withResult('22222222', {
+      })
+      .on(GetDeploymentCommand, {
+        deploymentId: '22222222',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -204,13 +176,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(2);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
         expect(error.message).toEqual('Deployment Failed: [xxx] failure occurred');
       });
   });
   test('Throws error when create deployment failed and no rollback found', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           errorInformation: {
@@ -218,7 +192,7 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -226,17 +200,19 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
         expect(error.message).toEqual('Deployment Failed: [xxx] failure occurred');
       });
   });
   test('Is complete when delete deployment succeeds', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.SUCCEEDED,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -244,17 +220,19 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
         expect(resp).toEqual({ IsComplete: true });
       });
   });
   test('Is not complete when delete deployment in progress', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.IN_PROGRESS,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -262,13 +240,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
         expect(resp).toEqual({ IsComplete: false });
       });
   });
   test('Is complete when delete deployment failed with final rollback status', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           rollbackInfo: {
@@ -279,11 +259,14 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).withResult('22222222', {
+      })
+      .on(GetDeploymentCommand, {
+        deploymentId: '22222222',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -291,13 +274,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(2);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
         expect(resp).toEqual({ IsComplete: true });
       });
   });
   test('Is complete when delete deployment failed with no rollback', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           errorInformation: {
@@ -305,7 +290,7 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -313,13 +298,15 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(1);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
         expect(resp).toEqual({ IsComplete: true });
       });
   });
   test('Is not complete when delete deployment failed with rollback in progress', () => {
-    const getDeploymentMock = new GetDeploymentMockBuilder()
-      .withResult('11111111', {
+    const getDeploymentMock = codeDeployMock
+      .on(GetDeploymentCommand, {
+        deploymentId: '11111111',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           rollbackInfo: {
@@ -330,11 +317,14 @@ describe('isComplete', () => {
             message: 'failure occurred',
           },
         },
-      }).withResult('22222222', {
+      })
+      .on(GetDeploymentCommand, {
+        deploymentId: '22222222',
+      }).resolves({
         deploymentInfo: {
           status: DeploymentStatus.IN_PROGRESS,
         },
-      }).build();
+      });
 
     return lambdaTester(handler)
       .event({
@@ -342,7 +332,7 @@ describe('isComplete', () => {
         PhysicalResourceId: '11111111',
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
-        expect(getDeploymentMock).toHaveBeenCalledTimes(2);
+        expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
         expect(resp).toEqual({ IsComplete: false });
       });
   });

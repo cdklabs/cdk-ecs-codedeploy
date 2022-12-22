@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+import { CodeDeploy, GetDeploymentOutput } from '@aws-sdk/client-codedeploy';
 import { Logger } from './logger';
 
 export enum DeploymentStatus {
@@ -45,12 +45,12 @@ export interface IsCompleteResponse {
  */
 export async function handler(event: IsCompleteRequest): Promise<IsCompleteResponse> {
   const logger = new Logger();
-  const codedeployClient = new AWS.CodeDeploy();
+  const codedeployClient = new CodeDeploy({});
   try {
-    const resp = await codedeployClient.getDeployment({ deploymentId: event.PhysicalResourceId }).promise();
-    let rollbackResp: AWS.CodeDeploy.GetDeploymentOutput = {};
+    const resp = await codedeployClient.getDeployment({ deploymentId: event.PhysicalResourceId });
+    let rollbackResp: GetDeploymentOutput = {};
     if (resp.deploymentInfo?.rollbackInfo?.rollbackDeploymentId) {
-      rollbackResp = await codedeployClient.getDeployment({ deploymentId: resp.deploymentInfo?.rollbackInfo?.rollbackDeploymentId }).promise();
+      rollbackResp = await codedeployClient.getDeployment({ deploymentId: resp.deploymentInfo?.rollbackInfo?.rollbackDeploymentId });
     }
     logger.appendKeys({
       stackEvent: event.RequestType,

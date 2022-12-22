@@ -13,6 +13,16 @@
       "Value": "cdk-ecs-codedeploy-ecs-deployment/VPC"
      }
     ]
+   },
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-VPC7"
+      }
+     ]
+    }
    }
   },
   "VPCPublicSubnet1SubnetB4246D30": {
@@ -392,7 +402,17 @@
    }
   },
   "EcsCluster97242B84": {
-   "Type": "AWS::ECS::Cluster"
+   "Type": "AWS::ECS::Cluster",
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ECS4"
+      }
+     ]
+    }
+   }
   },
   "TaskDefTaskRole1EDB4A67": {
    "Type": "AWS::IAM::Role",
@@ -438,6 +458,16 @@
      "Fn::GetAtt": [
       "TaskDefTaskRole1EDB4A67",
       "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ECS7"
+      }
      ]
     }
    }
@@ -575,6 +605,20 @@
      }
     ],
     "Type": "application"
+   },
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
    }
   },
   "ServiceLBSecurityGroup2EA7EDA1": {
@@ -600,6 +644,20 @@
     "VpcId": {
      "Ref": "VPCB9E5F0B4"
     }
+   },
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
    }
   },
   "ServiceLBSecurityGrouptocdkecscodedeployecsdeploymentFargateServiceSecurityGroupF3FE9EA980C5221DA0": {
@@ -621,6 +679,20 @@
     },
     "FromPort": 80,
     "ToPort": 80
+   },
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
    }
   },
   "ServiceLBProdListener0E7627EE": {
@@ -642,7 +714,21 @@
    },
    "DependsOn": [
     "GreenTG71A27F2F"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
+   }
   },
   "ServiceLBProdListenerBlueTGGroupB47699CD": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
@@ -673,7 +759,21 @@
    },
    "DependsOn": [
     "GreenTG71A27F2F"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
+   }
   },
   "ServiceLBTestListener3EA49939": {
    "Type": "AWS::ElasticLoadBalancingV2::Listener",
@@ -694,7 +794,21 @@
    },
    "DependsOn": [
     "ServiceLBProdListenerBlueTGGroupB47699CD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-ELB2"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-EC23"
+      }
+     ]
+    }
+   }
   },
   "GreenTG71A27F2F": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
@@ -1084,7 +1198,17 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      }
+     ]
+    }
+   }
   },
   "DGEC40E9EF": {
    "Type": "AWS::CodeDeploy::DeploymentGroup",
@@ -1237,7 +1361,20 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderOnEventLambdaServiceRoleDefaultPolicyEF38149C": {
    "Type": "AWS::IAM::Policy",
@@ -1348,7 +1485,20 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderOnEventLambdaBFB24F49": {
    "Type": "AWS::Lambda::Function",
@@ -1357,7 +1507,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "a29f9e80a9b9a21181a6f63710082658cc7ccfa3a9ab29c19c6233446268478d.zip"
+     "S3Key": "cb084b2fb7a65f35a64c800d6332ea0403b2a95734bffcfd5703758fafc98b68.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1371,31 +1521,28 @@
       "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
      }
     },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-onEvent"
-      ]
-     ]
-    },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs18.x",
     "Timeout": 60
    },
    "DependsOn": [
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderOnEventLambdaServiceRoleDefaultPolicyEF38149C",
     "DGDeploymentDeploymentProviderOnEventLambdaServiceRole60156287"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderIsCompleteLambdaServiceRole1AC61641": {
    "Type": "AWS::IAM::Role",
@@ -1429,7 +1576,20 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderIsCompleteLambdaServiceRoleDefaultPolicyA5163F46": {
    "Type": "AWS::IAM::Policy",
@@ -1479,7 +1639,20 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderIsCompleteLambda07F9DC34": {
    "Type": "AWS::Lambda::Function",
@@ -1488,7 +1661,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "a7648e405798941d2134fe62c51b97ba52bd035e994f087b07935172b37ed3b0.zip"
+     "S3Key": "e724e4e1a38b852a82a0d9454f3599434d9838bf5ff26951df6dee1424d92633.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1502,31 +1675,28 @@
       "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
      }
     },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-isComplete"
-      ]
-     ]
-    },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs18.x",
     "Timeout": 60
    },
    "DependsOn": [
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderIsCompleteLambdaServiceRoleDefaultPolicyA5163F46",
     "DGDeploymentDeploymentProviderIsCompleteLambdaServiceRole1AC61641"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonEventServiceRoleC4DB5791": {
    "Type": "AWS::IAM::Role",
@@ -1560,7 +1730,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonEventServiceRoleDefaultPolicy1B65235C": {
    "Type": "AWS::IAM::Policy",
@@ -1638,7 +1833,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonEvent3D5E95D0": {
    "Type": "AWS::Lambda::Function",
@@ -1647,7 +1867,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1675,22 +1895,6 @@
       }
      }
     },
-    "FunctionName": {
-     "Fn::Join": [
-      "",
-      [
-       "EcsDeploymentProvider-",
-       {
-        "Ref": "AppF1B96344"
-       },
-       "-",
-       {
-        "Ref": "DGEC40E9EF"
-       },
-       "-provider"
-      ]
-     ]
-    },
     "Handler": "framework.onEvent",
     "Runtime": "nodejs14.x",
     "Timeout": 900
@@ -1699,7 +1903,32 @@
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderframeworkonEventServiceRoleDefaultPolicy1B65235C",
     "DGDeploymentDeploymentProviderframeworkonEventServiceRoleC4DB5791"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkisCompleteServiceRole06E09942": {
    "Type": "AWS::IAM::Role",
@@ -1733,7 +1962,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkisCompleteServiceRoleDefaultPolicy03E372CD": {
    "Type": "AWS::IAM::Policy",
@@ -1804,7 +2058,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkisCompleteB0CC33B1": {
    "Type": "AWS::Lambda::Function",
@@ -1813,7 +2092,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1846,7 +2125,32 @@
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderframeworkisCompleteServiceRoleDefaultPolicy03E372CD",
     "DGDeploymentDeploymentProviderframeworkisCompleteServiceRole06E09942"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonTimeoutServiceRole2B298F04": {
    "Type": "AWS::IAM::Role",
@@ -1880,7 +2184,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonTimeoutServiceRoleDefaultPolicy0229C11D": {
    "Type": "AWS::IAM::Policy",
@@ -1951,7 +2280,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderframeworkonTimeout1C8F1544": {
    "Type": "AWS::Lambda::Function",
@@ -1960,7 +2314,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip"
+     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -1993,7 +2347,32 @@
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderframeworkonTimeoutServiceRoleDefaultPolicy0229C11D",
     "DGDeploymentDeploymentProviderframeworkonTimeoutServiceRole2B298F04"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderwaiterstatemachineRole56202F5B": {
    "Type": "AWS::IAM::Role",
@@ -2021,7 +2400,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderwaiterstatemachineRoleDefaultPolicyDA934EB5": {
    "Type": "AWS::IAM::Policy",
@@ -2092,7 +2496,32 @@
    },
    "DependsOn": [
     "CanaryConfig039778DD"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeploymentDeploymentProviderwaiterstatemachine566875DD": {
    "Type": "AWS::StepFunctions::StateMachine",
@@ -2130,7 +2559,32 @@
     "CanaryConfig039778DD",
     "DGDeploymentDeploymentProviderwaiterstatemachineRoleDefaultPolicyDA934EB5",
     "DGDeploymentDeploymentProviderwaiterstatemachineRole56202F5B"
-   ]
+   ],
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   },
   "DGDeployment6F80FA0B": {
    "Type": "Custom::EcsDeployment",
@@ -2170,7 +2624,20 @@
     "CanaryConfig039778DD"
    ],
    "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete"
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Allow AWSLambdaBasicExecutionRole policy",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
   }
  },
  "Outputs": {
@@ -2237,6 +2704,10 @@
     "codedeploy": "codedeploy.ap-south-1.amazonaws.com",
     "states": "states.ap-south-1.amazonaws.com"
    },
+   "ap-south-2": {
+    "codedeploy": "codedeploy.ap-south-2.amazonaws.com",
+    "states": "states.ap-south-2.amazonaws.com"
+   },
    "ap-southeast-1": {
     "codedeploy": "codedeploy.ap-southeast-1.amazonaws.com",
     "states": "states.ap-southeast-1.amazonaws.com"
@@ -2288,6 +2759,10 @@
    "eu-west-3": {
     "codedeploy": "codedeploy.eu-west-3.amazonaws.com",
     "states": "states.eu-west-3.amazonaws.com"
+   },
+   "me-central-1": {
+    "codedeploy": "codedeploy.me-central-1.amazonaws.com",
+    "states": "states.me-central-1.amazonaws.com"
    },
    "me-south-1": {
     "codedeploy": "codedeploy.me-south-1.amazonaws.com",

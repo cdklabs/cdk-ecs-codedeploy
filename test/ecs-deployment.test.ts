@@ -18,7 +18,7 @@ describe('CodeDeploy ECS Deployment', () => {
       containerName: 'testContainer',
       containerPort: 80,
     });
-    EcsDeployment.forDeploymentGroup({
+    new EcsDeployment({
       deploymentGroup,
       appspec,
     });
@@ -36,25 +36,17 @@ describe('CodeDeploy ECS Deployment', () => {
 
     Template.fromStack(stack).hasResource('AWS::Lambda::Function', {
       Properties: {
-        FunctionName: 'EcsDeploymentProvider-TestApp-MyDG-onEvent',
         Timeout: 60,
-        Runtime: 'nodejs16.x',
+        Runtime: 'nodejs18.x',
         Handler: 'index.handler',
       },
     });
 
     Template.fromStack(stack).hasResource('AWS::Lambda::Function', {
       Properties: {
-        FunctionName: 'EcsDeploymentProvider-TestApp-MyDG-isComplete',
         Timeout: 60,
-        Runtime: 'nodejs16.x',
+        Runtime: 'nodejs18.x',
         Handler: 'index.handler',
-      },
-    });
-
-    Template.fromStack(stack).hasResource('AWS::Lambda::Function', {
-      Properties: {
-        FunctionName: 'EcsDeploymentProvider-TestApp-MyDG-provider',
       },
     });
 
@@ -73,7 +65,7 @@ describe('CodeDeploy ECS Deployment', () => {
       containerName: 'testContainer',
       containerPort: 80,
     });
-    EcsDeployment.forDeploymentGroup({
+    new EcsDeployment({
       deploymentGroup,
       appspec,
       description: 'test deployment',
@@ -110,7 +102,7 @@ describe('CodeDeploy ECS Deployment', () => {
       containerName: 'testContainer',
       containerPort: 80,
     });
-    EcsDeployment.forDeploymentGroup({
+    new EcsDeployment({
       deploymentGroup,
       appspec,
       description: 'test deployment',

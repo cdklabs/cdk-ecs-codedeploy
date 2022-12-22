@@ -34,13 +34,7 @@ interface EcsDeploymentProviderProps {
 export class EcsDeploymentProvider extends cr.Provider {
   constructor(scope: Construct, id: string, props: EcsDeploymentProviderProps) {
 
-    const functionNamePrefix = [
-      'EcsDeploymentProvider',
-      props.deploymentGroup.application.applicationName,
-      props.deploymentGroup.deploymentGroupName,
-    ].join('-');
     const eventLambda = new OnEventFunction(scope, `${id}OnEventLambda`, {
-      functionName: `${functionNamePrefix}-onEvent`,
       timeout: cdk.Duration.seconds(60),
     });
     eventLambda.addToRolePolicy(new iam.PolicyStatement({
@@ -72,7 +66,6 @@ export class EcsDeploymentProvider extends cr.Provider {
     }));
 
     const completeLambda = new IsCompleteFunction(scope, `${id}IsCompleteLambda`, {
-      functionName: `${functionNamePrefix}-isComplete`,
       timeout: cdk.Duration.seconds(60),
     });
     completeLambda.addToRolePolicy(new iam.PolicyStatement({
@@ -84,7 +77,6 @@ export class EcsDeploymentProvider extends cr.Provider {
       ],
     }));
     super(scope, id, {
-      providerFunctionName: `${functionNamePrefix}-provider`,
       onEventHandler: eventLambda,
       isCompleteHandler: completeLambda,
       queryInterval: props.queryInterval || cdk.Duration.seconds(15),

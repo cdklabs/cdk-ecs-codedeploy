@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@aws-cdk/aws-synthetics-alpha",
+      "version": "2.55.1-alpha.0",
+      "type": "build"
+    },
+    {
       "name": "@aws-cdk/integ-tests-alpha",
       "type": "build"
     },
@@ -34,7 +39,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.50.0",
+      "version": "2.55.1",
       "type": "build"
     },
     {
@@ -43,8 +48,15 @@
       "type": "build"
     },
     {
-      "name": "aws-sdk-mock",
-      "version": "5.6.0",
+      "name": "aws-sdk-client-mock",
+      "type": "build"
+    },
+    {
+      "name": "aws-sdk-client-mock-jest",
+      "type": "build"
+    },
+    {
+      "name": "cdk-nag",
       "type": "build"
     },
     {
@@ -135,7 +147,11 @@
       "type": "build"
     },
     {
-      "name": "aws-sdk",
+      "name": "@aws-sdk/client-codedeploy",
+      "type": "bundled"
+    },
+    {
+      "name": "jmespath",
       "type": "bundled"
     },
     {
@@ -149,8 +165,13 @@
       "type": "override"
     },
     {
+      "name": "@aws-cdk/aws-synthetics-alpha",
+      "version": "2.55.1-alpha.0",
+      "type": "peer"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.50.0",
+      "version": "^2.55.1",
       "type": "peer"
     },
     {

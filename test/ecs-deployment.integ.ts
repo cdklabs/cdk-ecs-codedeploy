@@ -1,9 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
+import { Aspects } from 'aws-cdk-lib';
 import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
 import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { AwsSolutionsChecks, NagSuppressions } from 'cdk-nag';
 import * as ecscodedeploy from '../src';
 
 const app = new cdk.App();
@@ -157,7 +159,7 @@ const dg = new codedeploy.EcsDeploymentGroup(stack, 'DG', {
   },
 });
 
-const deployment = ecscodedeploy.EcsDeployment.forDeploymentGroup({
+const deployment = new ecscodedeploy.EcsDeployment({
   deploymentGroup: dg,
   description: 'test deployment',
   autoRollback: {
@@ -178,5 +180,42 @@ new cdk.CfnOutput(stack, 'SecurityGroupId', { value: service.connections.securit
 new cdk.CfnOutput(stack, 'CodeDeployApplicationName', { value: dg.application.applicationName });
 new cdk.CfnOutput(stack, 'CodeDeployDeploymentGroupName', { value: dg.deploymentGroupName });
 new cdk.CfnOutput(stack, 'DeploymentId', { value: deployment.deploymentId });
+
+// Include cfn-nag
+Aspects.of(stack).add(new AwsSolutionsChecks());
+
+NagSuppressions.addResourceSuppressions(vpc, [
+  { id: 'AwsSolutions-VPC7', reason: 'Unrelated to construct under test' },
+]);
+NagSuppressions.addResourceSuppressions(cluster, [
+  { id: 'AwsSolutions-ECS4', reason: 'Unrelated to construct under test' },
+]);
+NagSuppressions.addResourceSuppressions(taskDefinition, [
+  { id: 'AwsSolutions-ECS7', reason: 'Unrelated to construct under test' },
+]);
+NagSuppressions.addResourceSuppressions(loadBalancer, [
+  { id: 'AwsSolutions-ELB2', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-EC23', reason: 'Unrelated to construct under test' },
+], true);
+NagSuppressions.addResourceSuppressions(dg.role, [
+  { id: 'AwsSolutions-IAM4', reason: 'Unrelated to construct under test' },
+]);
+NagSuppressions.addResourceSuppressionsByPath(stack, [
+  `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-onEvent`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-isComplete`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-onTimeout`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProvider/waiter-state-machine`,
+], [
+  { id: 'AwsSolutions-IAM4', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-IAM5', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-L1', reason: 'Unrelated to construct under test' },
+], true);
+NagSuppressions.addResourceSuppressions(deployment, [
+  {
+    id: 'AwsSolutions-IAM4',
+    reason: 'Allow AWSLambdaBasicExecutionRole policy',
+    appliesTo: ['Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'],
+  },
+], true);
 
 app.synth();
