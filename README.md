@@ -1,5 +1,6 @@
 # CDK ECS CodeDeploy
 
+[![cdk-constructs: Experimental](https://img.shields.io/badge/cdk--constructs-experimental-important.svg)](https://constructs.dev/packages/@cdklabs/cdk-ecs-codedeploy)
 [![npm version](https://badge.fury.io/js/@cdklabs%2Fcdk-ecs-codedeploy.svg)](https://badge.fury.io/js/@cdklabs%2Fcdk-ecs-codedeploy)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.cdklabs/cdk-ecs-codedeploy/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.cdklabs/cdk-ecs-codedeploy)
 [![PyPI version](https://badge.fury.io/py/cdklabs.ecs-codedeploy.svg)](https://badge.fury.io/py/cdklabs.ecs-codedeploy)
@@ -33,10 +34,6 @@ See https://pypi.org/project/cdklabs.ecs-codedeploy/
 
 See https://www.nuget.org/packages/Cdklabs.CdkEcsCodeDeploy/
 </details>
-
-## Getting Started
-
-You can browse the documentation at the [Construct Hub](https://constructs.dev/packages/@cdklabs/cdk-ecs-codedeploy)
 
 ### Deployments
 
