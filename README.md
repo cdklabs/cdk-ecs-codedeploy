@@ -45,11 +45,11 @@ declare const taskDefinition: ecs.ITaskDefinition;
 
 new EcsDeployment({
   deploymentGroup,
-  appspec: new EcsAppSpec({
+  targetService: {
     taskDefinition,
     containerName: 'mycontainer',
     containerPort: 80,
-  }),
+  },
 });
 ```
 
@@ -58,11 +58,11 @@ The deployment will use the AutoRollbackConfig for the EcsDeploymentGroup unless
 ```ts
 new EcsDeployment({
   deploymentGroup,
-  appspec: new EcsAppSpec({
+  targetService: { 
     taskDefinition,
     containerName: 'mycontainer',
     containerPort: 80,
-  }),
+  },
   autoRollback: {
     failedDeployment: true,
     deploymentInAlarm: true,
@@ -76,11 +76,11 @@ By default, the deployment will timeout after 30 minutes. The timeout value can 
 ```ts
 new EcsDeployment({
   deploymentGroup,
-  appspec: new EcsAppSpec({
+  targetService: {
     taskDefinition,
     containerName: 'mycontainer',
     containerPort: 80,
-  }),
+  },
   timeout: Duration.minutes(60),
 });
 ```

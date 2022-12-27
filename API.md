@@ -2072,25 +2072,11 @@ const ecsDeploymentProps: EcsDeploymentProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.appspec">appspec</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsAppSpec">EcsAppSpec</a></code> | The AppSpec to use for the deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.deploymentGroup">deploymentGroup</a></code> | <code>aws-cdk-lib.aws_codedeploy.IEcsDeploymentGroup</code> | The deployment group to target for this deployment. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.targetService">targetService</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.TargetService">TargetService</a></code> | The ECS service to target for the deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.autoRollback">autoRollback</a></code> | <code>aws-cdk-lib.aws_codedeploy.AutoRollbackConfig</code> | The configuration for rollback in the event that a deployment fails. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.description">description</a></code> | <code>string</code> | The description for the deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.timeout">timeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for the deployment. |
-
----
-
-##### `appspec`<sup>Required</sup> <a name="appspec" id="@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.appspec"></a>
-
-```typescript
-public readonly appspec: EcsAppSpec;
-```
-
-- *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.EcsAppSpec">EcsAppSpec</a>
-
-The AppSpec to use for the deployment.
-
-see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
 
 ---
 
@@ -2103,6 +2089,20 @@ public readonly deploymentGroup: IEcsDeploymentGroup;
 - *Type:* aws-cdk-lib.aws_codedeploy.IEcsDeploymentGroup
 
 The deployment group to target for this deployment.
+
+---
+
+##### `targetService`<sup>Required</sup> <a name="targetService" id="@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.targetService"></a>
+
+```typescript
+public readonly targetService: TargetService;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.TargetService">TargetService</a>
+
+The ECS service to target for the deployment.
+
+see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
 
 ---
 
