@@ -13,16 +13,17 @@ describe('CodeDeploy ECS Deployment', () => {
       application: codedeploy.EcsApplication.fromEcsApplicationName(stack, 'MyApp', 'TestApp'),
       deploymentGroupName: 'MyDG',
     });
-    const appspec = new EcsAppSpec({
+    const targetService = {
       taskDefinition,
       containerName: 'testContainer',
       containerPort: 80,
-    });
+    };
     new EcsDeployment({
       deploymentGroup,
-      appspec,
+      targetService,
     });
 
+    const appspec = new EcsAppSpec(targetService);
     Template.fromStack(stack).hasResource('Custom::EcsDeployment', {
       Properties: {
         applicationName: 'TestApp',
@@ -60,14 +61,14 @@ describe('CodeDeploy ECS Deployment', () => {
       application: codedeploy.EcsApplication.fromEcsApplicationName(stack, 'MyApp', 'TestApp'),
       deploymentGroupName: 'MyDG',
     });
-    const appspec = new EcsAppSpec({
+    const targetService = {
       taskDefinition,
       containerName: 'testContainer',
       containerPort: 80,
-    });
+    };
     new EcsDeployment({
       deploymentGroup,
-      appspec,
+      targetService,
       description: 'test deployment',
       autoRollback: {
         deploymentInAlarm: true,
@@ -76,6 +77,7 @@ describe('CodeDeploy ECS Deployment', () => {
       },
     });
 
+    const appspec = new EcsAppSpec(targetService);
     Template.fromStack(stack).hasResource('Custom::EcsDeployment', {
       Properties: {
         applicationName: 'TestApp',
@@ -97,19 +99,20 @@ describe('CodeDeploy ECS Deployment', () => {
       application: codedeploy.EcsApplication.fromEcsApplicationName(stack, 'MyApp', 'TestApp'),
       deploymentGroupName: 'MyDG',
     });
-    const appspec = new EcsAppSpec({
+    const targetService = {
       taskDefinition,
       containerName: 'testContainer',
       containerPort: 80,
-    });
+    };
     new EcsDeployment({
       deploymentGroup,
-      appspec,
+      targetService,
       description: 'test deployment',
       autoRollback: {
       },
     });
 
+    const appspec = new EcsAppSpec(targetService);
     Template.fromStack(stack).hasResource('Custom::EcsDeployment', {
       Properties: {
         applicationName: 'TestApp',

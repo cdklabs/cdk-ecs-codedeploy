@@ -8,7 +8,6 @@ import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, Healt
 import { BlockPublicAccess, Bucket, BucketEncryption, IBucket } from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 import { ApiTestStep, ApiCanary } from '../api-canary';
-import { EcsAppSpec } from '../ecs-appspec';
 import { EcsDeployment } from '../ecs-deployment';
 
 /**
@@ -259,11 +258,11 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
     this.deployment = new EcsDeployment({
       deploymentGroup: this.deploymentGroup,
       timeout: props.deploymentTimeout ?? Duration.minutes(60),
-      appspec: new EcsAppSpec({
+      targetService: {
         taskDefinition: this.taskDefinition,
         containerName: this.taskDefinition.defaultContainer!.containerName,
         containerPort: this.taskDefinition.defaultContainer!.containerPort,
-      }),
+      },
     });
   }
 

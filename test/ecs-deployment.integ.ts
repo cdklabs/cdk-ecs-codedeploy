@@ -166,11 +166,11 @@ const deployment = new ecscodedeploy.EcsDeployment({
     stoppedDeployment: true,
   },
   timeout: cdk.Duration.minutes(60),
-  appspec: new ecscodedeploy.EcsAppSpec({
+  targetService: {
     taskDefinition,
     containerName: 'Container',
     containerPort: 80,
-  }),
+  },
 });
 
 // Outputs to use for manual testing

@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
 import { Construct } from 'constructs';
-import { EcsAppSpec } from '../ecs-appspec';
+import { EcsAppSpec, TargetService } from '../ecs-appspec';
 import { EcsDeploymentProvider } from '../ecs-deployment-provider';
 
 /**
@@ -14,11 +14,11 @@ export interface EcsDeploymentProps {
   readonly deploymentGroup: codedeploy.IEcsDeploymentGroup;
 
   /**
-   * The AppSpec to use for the deployment.
+   * The ECS service to target for the deployment.
    *
    * see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-resources.html#reference-appspec-file-structure-resources-ecs
    */
-  readonly appspec: EcsAppSpec;
+  readonly targetService: TargetService;
 
   /**
    * The configuration for rollback in the event that a deployment fails.
@@ -85,7 +85,7 @@ export class EcsDeployment extends Construct {
       }
     }
 
-
+    const appspec = new EcsAppSpec(props.targetService);
     const deployment = new cdk.CustomResource(this, 'Resource', {
       serviceToken: ecsDeploymentProvider.serviceToken,
       resourceType: 'Custom::EcsDeployment',
@@ -96,7 +96,7 @@ export class EcsDeployment extends Construct {
         autoRollbackConfigurationEnabled,
         autoRollbackConfigurationEvents,
         description: props.description,
-        revisionAppSpecContent: props.appspec.toString(),
+        revisionAppSpecContent: appspec.toString(),
       },
     });
     this.deploymentId = deployment.getAttString('deploymentId');
