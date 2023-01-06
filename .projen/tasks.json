@@ -471,6 +471,9 @@
       "description": "Runs after upgrading dependencies",
       "steps": [
         {
+          "spawn": "bundle"
+        },
+        {
           "spawn": "integ:snapshot-all"
         }
       ]
