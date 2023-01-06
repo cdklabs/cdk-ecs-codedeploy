@@ -72,4 +72,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'codedeploy',
   ],
 });
+
+project.upgradeWorkflow.postUpgradeTask.spawn(
+  project.tasks.tryFind('integ:snapshot-all'),
+);
+
 project.synth();
