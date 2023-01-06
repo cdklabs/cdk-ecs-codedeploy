@@ -93,6 +93,8 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
@@ -130,6 +132,8 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
@@ -169,6 +173,8 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
@@ -204,6 +210,8 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
@@ -238,6 +246,8 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
