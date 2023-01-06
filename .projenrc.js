@@ -75,10 +75,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
 
 project.upgradeWorkflow.postUpgradeTask.spawn(
-  project.tasks.tryFind('bundle')
+  project.tasks.tryFind('bundle'),
 );
 project.upgradeWorkflow.postUpgradeTask.spawn(
-  project.tasks.tryFind('integ:snapshot-all')
+  project.tasks.tryFind('integ:snapshot-all'),
 );
 
 project.synth();
