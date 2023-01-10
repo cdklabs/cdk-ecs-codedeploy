@@ -579,25 +579,25 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs,projen'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs,projen'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs,projen'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs,projen'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs,projen'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade"
+          "exec": "yarn upgrade @aws-cdk/aws-synthetics-alpha @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag constructs esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii jsii-diff jsii-docgen jsii-pacmak json-schema lambda-tester npm-check-updates standard-version ts-jest ts-node typescript @aws-sdk/client-codedeploy jmespath @aws-cdk/aws-synthetics-alpha aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"

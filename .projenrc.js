@@ -17,6 +17,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
+  depsUpgradeOptions: {
+    exclude: ['projen'],
+  },
   workflowBootstrapSteps: [
     {
       // This step is required to allow the build workflow to build docker images.
@@ -72,7 +75,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'codedeploy',
   ],
 });
-
 
 project.upgradeWorkflow.postUpgradeTask.spawn(
   project.tasks.tryFind('bundle'),
