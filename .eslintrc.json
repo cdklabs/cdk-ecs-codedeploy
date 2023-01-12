@@ -35,11 +35,13 @@
   },
   "ignorePatterns": [
     "*.js",
-    "!.projenrc.js",
+    "!.projenrc.ts",
     "*.d.ts",
     "node_modules/",
     "*.generated.ts",
-    "coverage"
+    "coverage",
+    "!.projenrc.ts",
+    "!projenrc/**/*.ts"
   ],
   "rules": {
     "indent": [
@@ -147,6 +149,9 @@
         "devDependencies": [
           "**/test/**",
           "**/build-tools/**",
+          "**/projenrc/**",
+          ".projenrc.ts",
+          "projenrc/**/*.ts",
           "src/ecs-deployment-provider/is-complete.lambda.ts",
           "src/ecs-deployment-provider/on-event.lambda.ts"
         ],
@@ -223,7 +228,7 @@
   "overrides": [
     {
       "files": [
-        ".projenrc.js"
+        ".projenrc.ts"
       ],
       "rules": {
         "@typescript-eslint/no-require-imports": "off",
