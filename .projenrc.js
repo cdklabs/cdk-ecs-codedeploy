@@ -13,6 +13,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   stability: Stability.EXPERIMENTAL,
   docgen: true,
   autoApproveUpgrades: true,
+  projenrcTs: true,
   autoApproveOptions: {
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
