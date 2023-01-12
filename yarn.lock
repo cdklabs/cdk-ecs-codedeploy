@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-synthetics-alpha/-/aws-synthetics-alpha-2.55.1-alpha.0.tgz#9468361ffbdcf7f4d7aa16c5cdec62e3d7b53811"
   integrity sha512-GfwQOmeQGQw817teUMr2/m7k8gr4he1oorj5LGBoiZkYbsWBhK1UjNXBa8xYsLdvQM/FUZDClPpz6LBIdtwAFg==
 
-"@aws-cdk/integ-tests-alpha@^2.59.0-alpha.0":
-  version "2.59.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/integ-tests-alpha/-/integ-tests-alpha-2.59.0-alpha.0.tgz#c91d2bda219f705d65dfd29dba5c8f69220f213e"
-  integrity sha512-5VLVCOBB0W10AzsLf3z37H35oYiyiFT8BVcicrTJDFaOfAVo32WtaEXWQwrzGpmtt0+nsuHYF3FsDVRe861LzQ==
+"@aws-cdk/integ-tests-alpha@^2.60.0-alpha.0":
+  version "2.60.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/integ-tests-alpha/-/integ-tests-alpha-2.60.0-alpha.0.tgz#14665e3be6a827ffcd2e6b6289f24ea3997da929"
+  integrity sha512-sj36vc+zWAC8P5dmpgJcNf5lVtI8P4AW/ToxZePfMmMKW33wO229iFru4KAG1GvQnwuriRjDFgph/v7tRKfIBg==
 
 "@aws-crypto/ie11-detection@^2.0.0":
   version "2.0.2"
@@ -3434,7 +3434,7 @@ eslint-module-utils@^2.7.4:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-import@^2.27.0:
+eslint-plugin-import@^2.27.2:
   version "2.27.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.27.2.tgz#4619f1952566a3cc1471ee07716322d4b0254526"
   integrity sha512-/S1QaM52PzKy1C4c5Sw7hB6glROSUpMZ8RVREVC4se7z4AlyDxv0kU7uWkHc8aIVNb19oz86z7c6vdtuKUwLvw==

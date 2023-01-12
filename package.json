@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",
-    "@aws-cdk/integ-tests-alpha": "^2.59.0-alpha.0",
+    "@aws-cdk/integ-tests-alpha": "^2.60.0-alpha.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.2",
@@ -79,7 +79,7 @@
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.3",
-    "eslint-plugin-import": "^2.27.0",
+    "eslint-plugin-import": "^2.27.2",
     "jest": "^27",
     "jest-junit": "^13",
     "jsii": "^1.73.0",
