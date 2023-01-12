@@ -16,6 +16,10 @@ jobs:
     env:
       CI: "true"
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -24,8 +28,6 @@ jobs:
         run: |-
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-      - name: Change permissions on /var/run/docker.sock
-        run: sudo chown superchain /var/run/docker.sock
       - name: Install dependencies
         run: yarn install --check-files --frozen-lockfile
       - name: release
@@ -43,8 +45,6 @@ jobs:
         with:
           name: build-artifact
           path: dist
-    container:
-      image: jsii/superchain:1-buster-slim-node14
   release_github:
     name: Publish to GitHub Releases
     needs: release
