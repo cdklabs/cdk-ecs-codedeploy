@@ -221,7 +221,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
 
     let certificates;
     if (props.certificate) {
-      certificates = [props.certificate]
+      certificates = [props.certificate];
     }
 
     this.testListener = this.loadBalancer.addListener('TestListener', {
