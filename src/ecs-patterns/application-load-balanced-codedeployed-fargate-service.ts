@@ -186,7 +186,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
 
     const protocol = props.protocol ?? (props.certificate ? ApplicationProtocol.HTTPS : ApplicationProtocol.HTTP);
 
-    const testHostName = props.domainName ?  props.domainName : this.loadBalancer.loadBalancerDnsName;
+    const testHostName = props.domainName ? props.domainName : this.loadBalancer.loadBalancerDnsName;
 
     if (props.apiTestSteps?.length) {
       this.apiCanary = new ApiCanary(this, 'Canary', {
@@ -208,7 +208,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       alarmRule: AlarmRule.anyOf(...alarms),
     });
 
-    let testPort : number;
+    let testPort: number;
     if (props.listenerPort) {
       testPort = props.listenerPort + 1;
     } else if (protocol === ApplicationProtocol.HTTP) {
@@ -219,9 +219,9 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       throw new Error('Unable to determine port for test listener');
     }
 
-    let certificates; 
-    if( props.certificate ) {
-        certificates = [ props.certificate ]
+    let certificates;
+    if (props.certificate) {
+      certificates = [props.certificate]
     }
 
     this.testListener = this.loadBalancer.addListener('TestListener', {
@@ -229,7 +229,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       port: testPort,
       open: props.openListener ?? true,
       sslPolicy: props.sslPolicy,
-      certificates: certificates, 
+      certificates: certificates,
     });
 
     this.greenTargetGroup = new ApplicationTargetGroup(this, 'GreenTargetGroup', {
