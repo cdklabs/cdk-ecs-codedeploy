@@ -11,9 +11,9 @@
     "@jridgewell/trace-mapping" "^0.3.9"
 
 "@aws-cdk/asset-awscli-v1@^2.2.30":
-  version "2.2.70"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.70.tgz#23c39879ca5c66ffd97f5990e6a8493c9488b7f7"
-  integrity sha512-Ni6z15ucIoTiAZEZCCs7EuvdVFza8q0kfnLb42X1fSmGORUVOiWiuO9VUgJpURe9VfC16sozg4fhiZKnLClCKg==
+  version "2.2.72"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.72.tgz#06f50a190f698390dad0be9787b3d406564945b8"
+  integrity sha512-7Qo7fkvodB8TUncfYPH+XLVFybt7AWKzLg7HWLT/GBrv9mZ3Iwf9Zq1YNoVqHEaNnqd9rnTrWjoAoDIOB0pZeg==
 
 "@aws-cdk/asset-kubectl-v20@^2.1.1":
   version "2.1.1"
@@ -21,9 +21,9 @@
   integrity sha512-U1ntiX8XiMRRRH5J1IdC+1t5CE89015cwyt5U63Cpk0GnMlN5+h9WsWMlKlPXZR4rdq/m806JRlBMRpBUB2Dhw==
 
 "@aws-cdk/asset-node-proxy-agent-v5@^2.0.38":
-  version "2.0.59"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.59.tgz#9c00a212ccdd64507aee985acc5e574ea533d166"
-  integrity sha512-SbHIZsDe+Ore64tkJjlaSvyWdlq/NTOhIvZ0KnhsRPLaKV6c3SeWsK6l5w3l6YSzsOcw8COSrruVsE8X0WhUBA==
+  version "2.0.61"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.61.tgz#023a631d2b441e0cf819388d8772cdb3bde1de9d"
+  integrity sha512-SZZk/NtuAGHnPZV1egzrBu90zNrwvERfAOB1P6WxLkK8vbbi7pyumBpUXQ5Gxz4WhYHrmixSO/i7eBUZ2FAM8Q==
 
 "@aws-cdk/aws-synthetics-alpha@2.55.1-alpha.0":
   version "2.55.1-alpha.0"
@@ -2547,10 +2547,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.22.9:
-  version "2.22.9"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.22.9.tgz#b2d52ef41cdc9e851e8cb0a19438b3d5466e8ab1"
-  integrity sha512-CiavvebyeFO4ndkRlxxesK5oAnVfsUIB1Z+0vqKn7ENm7EOp1K6yNFsbVhFjqunWYGbM/CEuXVR0uDUjMvsuqg==
+cdk-nag@^2.22.11:
+  version "2.22.11"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.22.11.tgz#8cd183025e37f826e38c206821d02912368254ac"
+  integrity sha512-1BSbRaoTrleRP73cgcDwtEZE24kXdAp36/Vtac5Y6iS4WCumNHGq4b1LS2hOBTm5t88T7YLA0vnoHtTLAcncOw==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -5186,10 +5186,10 @@ jsii-diff@^1.75.0:
     log4js "^6.7.1"
     yargs "^16.2.0"
 
-jsii-docgen@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-7.1.0.tgz#335c44f270dc0bfd7ea634ef30a7c06ba25e986e"
-  integrity sha512-7k90mHani3yNr2U/Gx2JBrgke3p2pp0qnNesb9gwoVj7mNgzUmWdssDy9dz+4GA+JqzAV0eI4mIJcEOvwzzN8w==
+jsii-docgen@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-7.1.1.tgz#9a3b4511c61756b1e852b65d9987cee1f30209b7"
+  integrity sha512-62g0/atGJllFeJRBo/limdSsmPzxJOZiQZ9Ki5djarzvtK0AeJmnCiKpnn6qTJJkkPTTp6sVQPx56ihMwKVtYA==
   dependencies:
     "@jsii/spec" "^1.75.0"
     case "^1.6.3"
@@ -6386,10 +6386,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.67.58:
-  version "0.67.58"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.58.tgz#1cd76a385825f8b0e3fdeab5f499c154fa77b8ce"
-  integrity sha512-Y7+pd7wv/G/Wn2rS0IJbVZTmUqIegvmUDF8HNoIWIx9Xem1+KBXLaYePdbmH31ovjNDLIFr5MyvVp27FHSVDoA==
+projen@0.67.59:
+  version "0.67.59"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.59.tgz#1980bf85b1abc802f09c63642afbd8fc8837cf59"
+  integrity sha512-cBn/1sNKefHODxWyd7L6BB8vHlPd7CQTcAPD1c3w4zFPxL2+jMdXAqLxB+soJ1B3L7bxbJeBJgiV+OXudY/J2A==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
