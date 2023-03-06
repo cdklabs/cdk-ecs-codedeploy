@@ -88,7 +88,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   deps: [],
   peerDeps: [
-    '@aws-cdk/aws-synthetics-alpha@2.55.1-alpha.0',
+    '@aws-cdk/aws-synthetics-alpha',
   ],
   keywords: [
     'aws',

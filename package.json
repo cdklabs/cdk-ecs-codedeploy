@@ -61,7 +61,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",
+    "@aws-cdk/aws-synthetics-alpha": "2.67.0-alpha.0",
     "@aws-cdk/integ-tests-alpha": "^2.67.0-alpha.0",
     "@types/aws-lambda": "^8.10.111",
     "@types/jest": "^27",
@@ -95,7 +95,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-synthetics-alpha": "2.55.1-alpha.0",
+    "@aws-cdk/aws-synthetics-alpha": "2.67.0-alpha.0",
     "aws-cdk-lib": "^2.55.1",
     "constructs": "^10.0.5"
   },
