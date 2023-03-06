@@ -135,6 +135,6 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 new WorkflowNoDockerPatch(project, { workflow: 'build' });
 new WorkflowNoDockerPatch(project, { workflow: 'release' });
 
-new WorkflowDotNetVersionPatch(project, { workflow: 'release', dotNetVersion: '6.x'});
+new WorkflowDotNetVersionPatch(project, { workflow: 'release', dotNetVersion: '6.x' });
 
 project.synth();
