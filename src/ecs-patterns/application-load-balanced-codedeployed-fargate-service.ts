@@ -173,7 +173,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
     const alarms: IAlarm[] = [];
     if (props.responseTimeAlarmThreshold) {
       const responseTimeAlarm = new Alarm(this, 'ResponseTimeAlarm', {
-        metric: this.loadBalancer.metricTargetResponseTime({
+        metric: this.loadBalancer.metrics.targetResponseTime({
           period: Duration.minutes(1),
           statistic: 'p95',
         }),
