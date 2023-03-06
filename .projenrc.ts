@@ -38,9 +38,8 @@ export interface WorkflowDotNetVersionPatchOptions {
   workflow: string;
   /**
    * Name of the job.
-   * @default - release_nuget
    */
-  jobName?: string;
+  jobName: string;
   /**
    * dotNet Version
    */
@@ -48,13 +47,8 @@ export interface WorkflowDotNetVersionPatchOptions {
 }
 export class WorkflowDotNetVersionPatch {
   public constructor(project: NodeProject, options: WorkflowDotNetVersionPatchOptions) {
-    const {
-      workflow,
-      jobName = 'release_nuget',
-    } = options;
-
-    project.tryFindObjectFile(`.github/workflows/${workflow}.yml`)?.patch(
-      JsonPatch.replace(`/jobs/${jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
+    project.tryFindObjectFile(`.github/workflows/${options.workflow}.yml`)?.patch(
+      JsonPatch.replace(`/jobs/${options.jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
     );
   }
 }
@@ -135,6 +129,7 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 new WorkflowNoDockerPatch(project, { workflow: 'build' });
 new WorkflowNoDockerPatch(project, { workflow: 'release' });
 
-new WorkflowDotNetVersionPatch(project, { workflow: 'release', dotNetVersion: '6.x' });
+new WorkflowDotNetVersionPatch(project, { workflow: 'build', jobName: 'package-dotnet', dotNetVersion: '6.x' });
+new WorkflowDotNetVersionPatch(project, { workflow: 'release', jobName: 'release_nuget', dotNetVersion: '6.x' });
 
 project.synth();
