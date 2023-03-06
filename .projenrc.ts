@@ -31,6 +31,33 @@ export class WorkflowNoDockerPatch {
     );
   }
 }
+export interface WorkflowDotNetVersionPatchOptions {
+  /**
+   * The workflow to patch.
+   */
+  workflow: string;
+  /**
+   * Name of the job.
+   * @default - release_nuget
+   */
+  jobName?: string;
+  /**
+   * dotNet Version
+   */
+  dotNetVersion: string;
+}
+export class WorkflowDotNetVersionPatch {
+  public constructor(project: NodeProject, options: WorkflowDotNetVersionPatchOptions) {
+    const {
+      workflow,
+      jobName = 'release_nuget',
+    } = options;
+
+    project.tryFindObjectFile(`.github/workflows/${workflow}.yml`)?.patch(
+      JsonPatch.replace(`/jobs/${jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
+    );
+  }
+}
 
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
@@ -107,5 +134,7 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 
 new WorkflowNoDockerPatch(project, { workflow: 'build' });
 new WorkflowNoDockerPatch(project, { workflow: 'release' });
+
+new WorkflowDotNetVersionPatch(project, { workflow: 'release', dotNetVersion: '6.x'});
 
 project.synth();
