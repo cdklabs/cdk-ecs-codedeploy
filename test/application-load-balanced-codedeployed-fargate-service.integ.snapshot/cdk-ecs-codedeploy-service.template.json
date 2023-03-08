@@ -1933,11 +1933,7 @@
           {
            "Ref": "AWS::Partition"
           },
-          ":codedeploy:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
+          ":codedeploy:us-west-2:",
           {
            "Ref": "AWS::AccountId"
           },
@@ -1964,11 +1960,7 @@
           {
            "Ref": "AWS::Partition"
           },
-          ":codedeploy:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
+          ":codedeploy:us-west-2:",
           {
            "Ref": "AWS::AccountId"
           },
@@ -1995,11 +1987,7 @@
           {
            "Ref": "AWS::Partition"
           },
-          ":codedeploy:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
+          ":codedeploy:us-west-2:",
           {
            "Ref": "AWS::AccountId"
           },
@@ -2135,11 +2123,7 @@
           {
            "Ref": "AWS::Partition"
           },
-          ":codedeploy:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
+          ":codedeploy:us-west-2:",
           {
            "Ref": "AWS::AccountId"
           },
@@ -2377,7 +2361,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
+     "S3Key": "53c95d71cfd280747d971a38505aea07f812fdba75874a090358a2fc4f58f79b.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2583,7 +2567,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
+     "S3Key": "53c95d71cfd280747d971a38505aea07f812fdba75874a090358a2fc4f58f79b.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2786,7 +2770,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "2157f4ab8972014e220d70707296b292b3b7301f163f7cd641ccda0ee663530f.zip"
+     "S3Key": "53c95d71cfd280747d971a38505aea07f812fdba75874a090358a2fc4f58f79b.zip"
     },
     "Role": {
      "Fn::GetAtt": [

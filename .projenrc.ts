@@ -31,12 +31,33 @@ export class WorkflowNoDockerPatch {
     );
   }
 }
+export interface WorkflowDotNetVersionPatchOptions {
+  /**
+   * The workflow to patch.
+   */
+  workflow: string;
+  /**
+   * Name of the job.
+   */
+  jobName: string;
+  /**
+   * dotNet Version
+   */
+  dotNetVersion: string;
+}
+export class WorkflowDotNetVersionPatch {
+  public constructor(project: NodeProject, options: WorkflowDotNetVersionPatchOptions) {
+    project.tryFindObjectFile(`.github/workflows/${options.workflow}.yml`)?.patch(
+      JsonPatch.replace(`/jobs/${options.jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
+    );
+  }
+}
 
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.55.1',
+  cdkVersion: '2.68.0',
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
@@ -88,7 +109,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   deps: [],
   peerDeps: [
-    '@aws-cdk/aws-synthetics-alpha@2.55.1-alpha.0',
+    '@aws-cdk/aws-synthetics-alpha',
   ],
   keywords: [
     'aws',
@@ -107,5 +128,8 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 
 new WorkflowNoDockerPatch(project, { workflow: 'build' });
 new WorkflowNoDockerPatch(project, { workflow: 'release' });
+
+new WorkflowDotNetVersionPatch(project, { workflow: 'build', jobName: 'package-dotnet', dotNetVersion: '6.x' });
+new WorkflowDotNetVersionPatch(project, { workflow: 'release', jobName: 'release_nuget', dotNetVersion: '6.x' });
 
 project.synth();

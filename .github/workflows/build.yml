@@ -174,7 +174,7 @@ jobs:
           node-version: 14.x
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.x
+          dotnet-version: 6.x
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
