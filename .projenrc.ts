@@ -57,7 +57,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.68.0',
+  cdkVersion: '2.69.0',
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
