@@ -242,6 +242,8 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       targetType: TargetType.IP,
     });
 
+    this.listener.node.addDependency(this.greenTargetGroup);
+
     this.testListener.addTargetGroups('ECS', {
       targetGroups: [this.greenTargetGroup],
     });

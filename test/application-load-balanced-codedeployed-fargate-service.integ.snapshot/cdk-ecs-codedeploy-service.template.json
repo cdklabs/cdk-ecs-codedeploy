@@ -884,7 +884,8 @@
    },
    "DependsOn": [
     "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
+    "ServiceAccessLogBucket010FE97D",
+    "ServiceGreenTargetGroup3BE32266"
    ],
    "Metadata": {
     "cdk_nag": {
@@ -915,7 +916,8 @@
    },
    "DependsOn": [
     "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
+    "ServiceAccessLogBucket010FE97D",
+    "ServiceGreenTargetGroup3BE32266"
    ],
    "Metadata": {
     "cdk_nag": {
