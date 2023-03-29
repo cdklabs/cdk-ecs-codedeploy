@@ -107,7 +107,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
   /**
    * Composite alarm for monitoring health of service.
    */
-  healthAlarm: IAlarm;
+  healthAlarm?: IAlarm;
 
   /**
    * API Canary for the service.
@@ -204,9 +204,13 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
         alarms.push(this.apiCanary.durationAlarm);
       }
     }
-    this.healthAlarm = new CompositeAlarm(this, 'HealthAlarm', {
-      alarmRule: AlarmRule.anyOf(...alarms),
-    });
+    if (alarms.length > 0) {
+      this.healthAlarm = new CompositeAlarm(this, 'HealthAlarm', {
+        alarmRule: AlarmRule.anyOf(...alarms),
+      });
+    } else {
+      this.healthAlarm = undefined;
+    }
 
     let testPort: number;
     if (props.listenerPort) {
@@ -251,7 +255,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
     this.application = new EcsApplication(this, 'Application');
     this.deploymentGroup = new EcsDeploymentGroup(this, 'DeploymentGroup', {
       application: this.application,
-      alarms: [this.healthAlarm],
+      alarms: this.healthAlarm?[this.healthAlarm]:undefined,
       service: this.service,
       blueGreenDeploymentConfig: {
         blueTargetGroup: this.targetGroup,
