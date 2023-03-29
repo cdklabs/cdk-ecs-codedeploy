@@ -28,13 +28,43 @@ describe('Fargate Service', () => {
       }],
     });
 
-    Template.fromStack(stack).hasResource('Custom::EcsDeployment', {
+    const template = Template.fromStack(stack);
+    template.hasResource('Custom::EcsDeployment', {
       Properties: {
         deploymentConfigName: 'CodeDeployDefault.ECSAllAtOnce',
         autoRollbackConfigurationEnabled: Match.absent(),
         autoRollbackConfigurationEvents: Match.absent(),
       },
     });
+    template.resourceCountIs('AWS::CloudWatch::CompositeAlarm', 1);
+
+  });
+  test('can create without alarms', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', {
+      env: {
+        account: 'dummy',
+        region: 'us-east-1',
+      },
+    });
+    const cluster = new ecs.Cluster(stack, 'Cluster');
+    const image = new AssetImage('test/nginx');
+    new ApplicationLoadBalancedCodeDeployedFargateService(stack, 'Service', {
+      cluster,
+      taskImageOptions: {
+        image,
+      },
+    });
+
+    const template = Template.fromStack(stack);
+    template.hasResource('Custom::EcsDeployment', {
+      Properties: {
+        deploymentConfigName: 'CodeDeployDefault.ECSAllAtOnce',
+        autoRollbackConfigurationEnabled: Match.absent(),
+        autoRollbackConfigurationEvents: Match.absent(),
+      },
+    });
+    template.resourceCountIs('AWS::CloudWatch::CompositeAlarm', 0);
 
   });
 });
