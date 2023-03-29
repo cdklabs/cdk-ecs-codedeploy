@@ -67,4 +67,41 @@ describe('Fargate Service', () => {
     template.resourceCountIs('AWS::CloudWatch::CompositeAlarm', 0);
 
   });
+  test('can with custom testPort', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', {
+      env: {
+        account: 'dummy',
+        region: 'us-east-1',
+      },
+    });
+    const cluster = new ecs.Cluster(stack, 'Cluster');
+    const image = new AssetImage('test/nginx');
+    new ApplicationLoadBalancedCodeDeployedFargateService(stack, 'Service', {
+      cluster,
+      taskImageOptions: {
+        image,
+      },
+      testPort: 9999,
+      apiTestSteps: [{
+        name: 'health',
+        path: '/health',
+        jmesPath: 'status',
+        expectedValue: 'ok',
+      }],
+    });
+
+    const template = Template.fromStack(stack);
+    template.hasResource('AWS::ElasticLoadBalancingV2::Listener', {
+      Properties: {
+        Port: 9999,
+      },
+    });
+    template.hasResource('AWS::ElasticLoadBalancingV2::TargetGroup', {
+      Properties: {
+        Port: 9999,
+      },
+    });
+
+  });
 });

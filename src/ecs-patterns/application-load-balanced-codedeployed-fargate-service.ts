@@ -98,6 +98,13 @@ export interface ApplicationLoadBalancedCodeDeployedFargateServiceProps extends 
    * @default - no synthetic test will be created
    */
   readonly apiTestSteps?: ApiTestStep[];
+
+  /**
+   * The port to use for test traffic on the listener
+   *
+   * @default - listenerPort + 1
+   */
+  readonly testPort?: number;
 }
 
 /**
@@ -213,7 +220,9 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
     }
 
     let testPort: number;
-    if (props.listenerPort) {
+    if (props.testPort) {
+      testPort = props.testPort;
+    } else if (props.listenerPort) {
       testPort = props.listenerPort + 1;
     } else if (protocol === ApplicationProtocol.HTTP) {
       testPort = 8080;
