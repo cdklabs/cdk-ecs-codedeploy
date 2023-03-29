@@ -1250,6 +1250,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.responseTimeAlarmThreshold">responseTimeAlarmThreshold</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for response time alarm. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.terminationWaitTime">terminationWaitTime</a></code> | <code>aws-cdk-lib.Duration</code> | The time to wait before terminating the original (blue) task set. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.testPort">testPort</a></code> | <code>number</code> | The port to use for test traffic on the listener. |
 
 ---
 
@@ -1982,6 +1983,19 @@ public readonly terminationWaitTime: Duration;
 - *Default:* 10 minutes
 
 The time to wait before terminating the original (blue) task set.
+
+---
+
+##### `testPort`<sup>Optional</sup> <a name="testPort" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.testPort"></a>
+
+```typescript
+public readonly testPort: number;
+```
+
+- *Type:* number
+- *Default:* listenerPort + 1
+
+The port to use for test traffic on the listener.
 
 ---
 
