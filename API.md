@@ -471,9 +471,9 @@ Any object.
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.deployment">deployment</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeployment">EcsDeployment</a></code> | CodeDeploy deployment for this service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.deploymentGroup">deploymentGroup</a></code> | <code>aws-cdk-lib.aws_codedeploy.EcsDeploymentGroup</code> | CodeDeploy deployment group for this service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.greenTargetGroup">greenTargetGroup</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup</code> | Test target group to use for CodeDeploy deployments. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.healthAlarm">healthAlarm</a></code> | <code>aws-cdk-lib.aws_cloudwatch.IAlarm</code> | Composite alarm for monitoring health of service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.testListener">testListener</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListener</code> | Test listener to use for CodeDeploy deployments. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.apiCanary">apiCanary</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary">ApiCanary</a></code> | API Canary for the service. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.healthAlarm">healthAlarm</a></code> | <code>aws-cdk-lib.aws_cloudwatch.IAlarm</code> | Composite alarm for monitoring health of service. |
 
 ---
 
@@ -672,18 +672,6 @@ Test target group to use for CodeDeploy deployments.
 
 ---
 
-##### `healthAlarm`<sup>Required</sup> <a name="healthAlarm" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.healthAlarm"></a>
-
-```typescript
-public readonly healthAlarm: IAlarm;
-```
-
-- *Type:* aws-cdk-lib.aws_cloudwatch.IAlarm
-
-Composite alarm for monitoring health of service.
-
----
-
 ##### `testListener`<sup>Required</sup> <a name="testListener" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.testListener"></a>
 
 ```typescript
@@ -705,6 +693,18 @@ public readonly apiCanary: ApiCanary;
 - *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary">ApiCanary</a>
 
 API Canary for the service.
+
+---
+
+##### `healthAlarm`<sup>Optional</sup> <a name="healthAlarm" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.healthAlarm"></a>
+
+```typescript
+public readonly healthAlarm: IAlarm;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.IAlarm
+
+Composite alarm for monitoring health of service.
 
 ---
 
