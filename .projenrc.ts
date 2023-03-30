@@ -57,7 +57,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.72.0',
+  cdkVersion: '2.71.0',
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
@@ -100,7 +100,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-sdk-client-mock',
     'aws-sdk-client-mock-jest',
     '@types/lambda-tester',
-    '@aws-cdk/integ-tests-alpha',
+    '@aws-cdk/integ-tests-alpha@2.71.0-alpha.0',
     'cdk-nag',
   ],
   bundledDeps: [
@@ -109,7 +109,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   deps: [],
   peerDeps: [
-    '@aws-cdk/aws-synthetics-alpha',
+    '@aws-cdk/aws-synthetics-alpha@2.71.0-alpha.0',
   ],
   keywords: [
     'aws',
