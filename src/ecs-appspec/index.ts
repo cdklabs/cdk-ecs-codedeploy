@@ -72,10 +72,10 @@ export class EcsAppSpec {
     }
     const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
     const hook = (name: keyof AppSpecHooks) => {
-      if (hooks[name] == undefined) {
+      const hookValue = hooks[name];
+      if (hookValue == undefined) {
         return {};
       } else {
-        const hookValue = hooks[name];
         return {
           [capitalize(name)]:
             typeof hookValue === 'string'
@@ -190,21 +190,21 @@ export interface AppSpecHooks {
   /**
    * Lambda or ARN of a lambda to run tasks before the replacement task set is created.
    */
-  readonly beforeInstall: string | lambda.IFunction;
+  readonly beforeInstall?: string | lambda.IFunction;
   /**
    * Lambda or ARN of a lambda to run tasks after the replacement task set is created and one of the target groups is associated with it.
    */
-  readonly afterInstall: string | lambda.IFunction;
+  readonly afterInstall?: string | lambda.IFunction;
   /**
    * Lambda or ARN of a lambda to run tasks after the test listener serves traffic to the replacement task set.
    */
-  readonly afterAllowTestTraffic: string | lambda.IFunction;
+  readonly afterAllowTestTraffic?: string | lambda.IFunction;
   /**
    * Lambda or ARN of a lambda to run tasks after the second target group is associated with the replacement task set, but before traffic is shifted to the replacement task set.
    */
-  readonly beforeAllowTraffic: string | lambda.IFunction;
+  readonly beforeAllowTraffic?: string | lambda.IFunction;
   /**
    * Lambda or ARN of a lambda to run tasks after the second target group serves traffic to the replacement task set.
    */
-  readonly afterAllowTraffic: string | lambda.IFunction;
+  readonly afterAllowTraffic?: string | lambda.IFunction;
 }
