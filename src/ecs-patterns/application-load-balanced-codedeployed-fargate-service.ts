@@ -294,6 +294,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
         containerName: this.taskDefinition.defaultContainer!.containerName,
         containerPort: this.taskDefinition.defaultContainer!.containerPort,
       },
+      hooks: props.hooks,
     });
   }
 
