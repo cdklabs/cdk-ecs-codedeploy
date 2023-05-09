@@ -91,14 +91,13 @@ describe('CodeDeploy ECS AppSpec', () => {
     const appspecJson = JSON.parse(appspec.toString());
     expect(appspecJson).toEqual({
       version: '0.0',
-      Hooks: {
-        AfterAllowTestTraffic: '123abc',
-        AfterAllowTraffic:
-          'arn:aws:lambda:us-east-1:123:function:lambda',
-        AfterInstall: 'def456',
-        BeforeAllowTraffic: '456def',
-        BeforeInstall: 'abc123',
-      },
+      Hooks: [
+        { BeforeInstall: 'abc123' },
+        { AfterInstall: 'def456' },
+        { AfterAllowTestTraffic: '123abc' },
+        { BeforeAllowTraffic: '456def' },
+        { AfterAllowTraffic: 'arn:aws:lambda:us-east-1:123:function:lambda' },
+      ],
       Resources: [{
         TargetService: {
           Type: 'AWS::ECS::Service',

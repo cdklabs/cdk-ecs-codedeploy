@@ -74,14 +74,14 @@ export class EcsAppSpec {
     const hook = (name: keyof AppSpecHooks) => {
       const hookValue = hooks[name];
       if (hookValue == undefined) {
-        return {};
+        return [];
       } else {
-        return {
+        return [{
           [capitalize(name)]:
             typeof hookValue === 'string'
               ? hookValue
               : hookValue.functionArn,
-        };
+        }];
       }
     };
     const beforeInstall = hook('beforeInstall');
@@ -91,13 +91,13 @@ export class EcsAppSpec {
     const afterAllowTraffic = hook('afterAllowTraffic');
 
     return {
-      Hooks: {
+      Hooks: [
         ...beforeInstall,
         ...afterInstall,
         ...afterAllowTestTraffic,
         ...beforeAllowTraffic,
         ...afterAllowTraffic,
-      },
+      ],
     };
   }
 
