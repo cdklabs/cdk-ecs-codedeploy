@@ -8,6 +8,7 @@ import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, Healt
 import { BlockPublicAccess, Bucket, BucketEncryption, IBucket } from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 import { ApiTestStep, ApiCanary } from '../api-canary';
+import { AppSpecHooks } from '../ecs-appspec';
 import { EcsDeployment } from '../ecs-deployment';
 
 /**
@@ -105,6 +106,13 @@ export interface ApplicationLoadBalancedCodeDeployedFargateServiceProps extends 
    * @default - listenerPort + 1
    */
   readonly testPort?: number;
+
+  /**
+   * Optional lifecycle hooks
+   *
+   * @default - no lifecycle hooks
+   */
+  readonly hooks?: AppSpecHooks;
 }
 
 /**

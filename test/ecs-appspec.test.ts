@@ -1,5 +1,6 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as cdk from 'aws-cdk-lib/core';
 import { EcsAppSpec } from '../src';
 
@@ -44,6 +45,11 @@ describe('CodeDeploy ECS AppSpec', () => {
     });
     const sg = ec2.SecurityGroup.fromSecurityGroupId(stack, 'sg', 'sg-00000000');
     const taskDefinition = ecs.FargateTaskDefinition.fromFargateTaskDefinitionArn(stack, 'taskdef', arn);
+    const testLambda = lambda.Function.fromFunctionArn(
+      stack,
+      'lambda',
+      'arn:aws:lambda:us-east-1:123:function:lambda',
+    );
     const appspec = new EcsAppSpec({
       taskDefinition: taskDefinition,
       containerName: 'foo',
@@ -74,10 +80,25 @@ describe('CodeDeploy ECS AppSpec', () => {
           weight: 5,
         },
       ],
+    },
+    {
+      beforeInstall: 'abc123',
+      afterInstall: 'def456',
+      afterAllowTestTraffic: '123abc',
+      beforeAllowTraffic: '456def',
+      afterAllowTraffic: testLambda,
     });
     const appspecJson = JSON.parse(appspec.toString());
     expect(appspecJson).toEqual({
       version: '0.0',
+      Hooks: {
+        AfterAllowTestTraffic: '123abc',
+        AfterAllowTraffic:
+          'arn:aws:lambda:us-east-1:123:function:lambda',
+        AfterInstall: 'def456',
+        BeforeAllowTraffic: '456def',
+        BeforeInstall: 'abc123',
+      },
       Resources: [{
         TargetService: {
           Type: 'AWS::ECS::Service',

@@ -1404,6 +1404,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentTimeout">deploymentTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for a CodeDeploy deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deregistrationDelay">deregistrationDelay</a></code> | <code>aws-cdk-lib.Duration</code> | The amount of time for ELB to wait before changing the state of a deregistering target from 'draining' to 'unused'. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | Optional lifecycle hooks. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.responseTimeAlarmThreshold">responseTimeAlarmThreshold</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for response time alarm. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.terminationWaitTime">terminationWaitTime</a></code> | <code>aws-cdk-lib.Duration</code> | The time to wait before terminating the original (blue) task set. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.testPort">testPort</a></code> | <code>number</code> | The port to use for test traffic on the listener. |
@@ -2116,6 +2117,19 @@ The healthcheck to configure on the Application Load Balancer target groups.
 
 ---
 
+##### `hooks`<sup>Optional</sup> <a name="hooks" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks"></a>
+
+```typescript
+public readonly hooks: AppSpecHooks;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a>
+- *Default:* no lifecycle hooks
+
+Optional lifecycle hooks.
+
+---
+
 ##### `responseTimeAlarmThreshold`<sup>Optional</sup> <a name="responseTimeAlarmThreshold" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.responseTimeAlarmThreshold"></a>
 
 ```typescript
@@ -2152,6 +2166,90 @@ public readonly testPort: number;
 - *Default:* listenerPort + 1
 
 The port to use for test traffic on the listener.
+
+---
+
+### AppSpecHooks <a name="AppSpecHooks" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks"></a>
+
+Lifecycle hooks configuration.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.Initializer"></a>
+
+```typescript
+import { AppSpecHooks } from '@cdklabs/cdk-ecs-codedeploy'
+
+const appSpecHooks: AppSpecHooks = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTestTraffic">afterAllowTestTraffic</a></code> | <code>string \| aws-cdk-lib.aws_lambda.IFunction</code> | Lambda or ARN of a lambda to run tasks after the test listener serves traffic to the replacement task set. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTraffic">afterAllowTraffic</a></code> | <code>string \| aws-cdk-lib.aws_lambda.IFunction</code> | Lambda or ARN of a lambda to run tasks after the second target group serves traffic to the replacement task set. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterInstall">afterInstall</a></code> | <code>string \| aws-cdk-lib.aws_lambda.IFunction</code> | Lambda or ARN of a lambda to run tasks after the replacement task set is created and one of the target groups is associated with it. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeAllowTraffic">beforeAllowTraffic</a></code> | <code>string \| aws-cdk-lib.aws_lambda.IFunction</code> | Lambda or ARN of a lambda to run tasks after the second target group is associated with the replacement task set, but before traffic is shifted to the replacement task set. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeInstall">beforeInstall</a></code> | <code>string \| aws-cdk-lib.aws_lambda.IFunction</code> | Lambda or ARN of a lambda to run tasks before the replacement task set is created. |
+
+---
+
+##### `afterAllowTestTraffic`<sup>Required</sup> <a name="afterAllowTestTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTestTraffic"></a>
+
+```typescript
+public readonly afterAllowTestTraffic: string | IFunction;
+```
+
+- *Type:* string | aws-cdk-lib.aws_lambda.IFunction
+
+Lambda or ARN of a lambda to run tasks after the test listener serves traffic to the replacement task set.
+
+---
+
+##### `afterAllowTraffic`<sup>Required</sup> <a name="afterAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTraffic"></a>
+
+```typescript
+public readonly afterAllowTraffic: string | IFunction;
+```
+
+- *Type:* string | aws-cdk-lib.aws_lambda.IFunction
+
+Lambda or ARN of a lambda to run tasks after the second target group serves traffic to the replacement task set.
+
+---
+
+##### `afterInstall`<sup>Required</sup> <a name="afterInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterInstall"></a>
+
+```typescript
+public readonly afterInstall: string | IFunction;
+```
+
+- *Type:* string | aws-cdk-lib.aws_lambda.IFunction
+
+Lambda or ARN of a lambda to run tasks after the replacement task set is created and one of the target groups is associated with it.
+
+---
+
+##### `beforeAllowTraffic`<sup>Required</sup> <a name="beforeAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeAllowTraffic"></a>
+
+```typescript
+public readonly beforeAllowTraffic: string | IFunction;
+```
+
+- *Type:* string | aws-cdk-lib.aws_lambda.IFunction
+
+Lambda or ARN of a lambda to run tasks after the second target group is associated with the replacement task set, but before traffic is shifted to the replacement task set.
+
+---
+
+##### `beforeInstall`<sup>Required</sup> <a name="beforeInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeInstall"></a>
+
+```typescript
+public readonly beforeInstall: string | IFunction;
+```
+
+- *Type:* string | aws-cdk-lib.aws_lambda.IFunction
+
+Lambda or ARN of a lambda to run tasks before the replacement task set is created.
 
 ---
 
@@ -2246,6 +2344,7 @@ const ecsDeploymentProps: EcsDeploymentProps = { ... }
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.targetService">targetService</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.TargetService">TargetService</a></code> | The ECS service to target for the deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.autoRollback">autoRollback</a></code> | <code>aws-cdk-lib.aws_codedeploy.AutoRollbackConfig</code> | The configuration for rollback in the event that a deployment fails. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.description">description</a></code> | <code>string</code> | The description for the deployment. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | Optional lifecycle hooks. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.timeout">timeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for the deployment. |
 
 ---
@@ -2299,6 +2398,19 @@ public readonly description: string;
 - *Default:* no description
 
 The description for the deployment.
+
+---
+
+##### `hooks`<sup>Optional</sup> <a name="hooks" id="@cdklabs/cdk-ecs-codedeploy.EcsDeploymentProps.property.hooks"></a>
+
+```typescript
+public readonly hooks: AppSpecHooks;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a>
+- *Default:* no lifecycle hooks
+
+Optional lifecycle hooks.
 
 ---
 
@@ -2434,18 +2546,25 @@ see: https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-f
 ```typescript
 import { EcsAppSpec } from '@cdklabs/cdk-ecs-codedeploy'
 
-new EcsAppSpec(targetService: TargetService)
+new EcsAppSpec(targetService: TargetService, hooks?: AppSpecHooks)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsAppSpec.Initializer.parameter.targetService">targetService</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.TargetService">TargetService</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.EcsAppSpec.Initializer.parameter.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | *No description.* |
 
 ---
 
 ##### `targetService`<sup>Required</sup> <a name="targetService" id="@cdklabs/cdk-ecs-codedeploy.EcsAppSpec.Initializer.parameter.targetService"></a>
 
 - *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.TargetService">TargetService</a>
+
+---
+
+##### `hooks`<sup>Optional</sup> <a name="hooks" id="@cdklabs/cdk-ecs-codedeploy.EcsAppSpec.Initializer.parameter.hooks"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a>
 
 ---
 
