@@ -2193,7 +2193,7 @@ const appSpecHooks: AppSpecHooks = { ... }
 
 ---
 
-##### `afterAllowTestTraffic`<sup>Required</sup> <a name="afterAllowTestTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTestTraffic"></a>
+##### `afterAllowTestTraffic`<sup>Optional</sup> <a name="afterAllowTestTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTestTraffic"></a>
 
 ```typescript
 public readonly afterAllowTestTraffic: string | IFunction;
@@ -2205,7 +2205,7 @@ Lambda or ARN of a lambda to run tasks after the test listener serves traffic to
 
 ---
 
-##### `afterAllowTraffic`<sup>Required</sup> <a name="afterAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTraffic"></a>
+##### `afterAllowTraffic`<sup>Optional</sup> <a name="afterAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterAllowTraffic"></a>
 
 ```typescript
 public readonly afterAllowTraffic: string | IFunction;
@@ -2217,7 +2217,7 @@ Lambda or ARN of a lambda to run tasks after the second target group serves traf
 
 ---
 
-##### `afterInstall`<sup>Required</sup> <a name="afterInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterInstall"></a>
+##### `afterInstall`<sup>Optional</sup> <a name="afterInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.afterInstall"></a>
 
 ```typescript
 public readonly afterInstall: string | IFunction;
@@ -2229,7 +2229,7 @@ Lambda or ARN of a lambda to run tasks after the replacement task set is created
 
 ---
 
-##### `beforeAllowTraffic`<sup>Required</sup> <a name="beforeAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeAllowTraffic"></a>
+##### `beforeAllowTraffic`<sup>Optional</sup> <a name="beforeAllowTraffic" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeAllowTraffic"></a>
 
 ```typescript
 public readonly beforeAllowTraffic: string | IFunction;
@@ -2241,7 +2241,7 @@ Lambda or ARN of a lambda to run tasks after the second target group is associat
 
 ---
 
-##### `beforeInstall`<sup>Required</sup> <a name="beforeInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeInstall"></a>
+##### `beforeInstall`<sup>Optional</sup> <a name="beforeInstall" id="@cdklabs/cdk-ecs-codedeploy.AppSpecHooks.property.beforeInstall"></a>
 
 ```typescript
 public readonly beforeInstall: string | IFunction;
