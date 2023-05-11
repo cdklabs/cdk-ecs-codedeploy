@@ -71,6 +71,14 @@ test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/manif
 test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/**/manifest.json
 test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/tree.json
 test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/**/tree.json
+test/ecs-deployment-hooks.integ.snapshot/asset.*
+test/ecs-deployment-hooks.integ.snapshot/**/asset.*
+test/ecs-deployment-hooks.integ.snapshot/cdk.out
+test/ecs-deployment-hooks.integ.snapshot/**/cdk.out
+test/ecs-deployment-hooks.integ.snapshot/manifest.json
+test/ecs-deployment-hooks.integ.snapshot/**/manifest.json
+test/ecs-deployment-hooks.integ.snapshot/tree.json
+test/ecs-deployment-hooks.integ.snapshot/**/tree.json
 test/.tmp
 test/ecs-deployment.integ.snapshot/asset.*
 test/ecs-deployment.integ.snapshot/**/asset.*

@@ -45,11 +45,6 @@ describe('CodeDeploy ECS AppSpec', () => {
     });
     const sg = ec2.SecurityGroup.fromSecurityGroupId(stack, 'sg', 'sg-00000000');
     const taskDefinition = ecs.FargateTaskDefinition.fromFargateTaskDefinitionArn(stack, 'taskdef', arn);
-    const testLambda = lambda.Function.fromFunctionArn(
-      stack,
-      'lambda',
-      'arn:aws:lambda:us-east-1:123:function:lambda',
-    );
     const appspec = new EcsAppSpec({
       taskDefinition: taskDefinition,
       containerName: 'foo',
@@ -80,24 +75,10 @@ describe('CodeDeploy ECS AppSpec', () => {
           weight: 5,
         },
       ],
-    },
-    {
-      beforeInstall: 'abc123',
-      afterInstall: 'def456',
-      afterAllowTestTraffic: '123abc',
-      beforeAllowTraffic: '456def',
-      afterAllowTraffic: testLambda,
     });
     const appspecJson = JSON.parse(appspec.toString());
     expect(appspecJson).toEqual({
       version: '0.0',
-      Hooks: [
-        { BeforeInstall: 'abc123' },
-        { AfterInstall: 'def456' },
-        { AfterAllowTestTraffic: '123abc' },
-        { BeforeAllowTraffic: '456def' },
-        { AfterAllowTraffic: 'arn:aws:lambda:us-east-1:123:function:lambda' },
-      ],
       Resources: [{
         TargetService: {
           Type: 'AWS::ECS::Service',
@@ -130,6 +111,38 @@ describe('CodeDeploy ECS AppSpec', () => {
           },
         },
       }],
+    });
+  });
+
+  test('can create with hooks', () => {
+    const arn = 'taskdefarn';
+    const taskDefinition = ecs.FargateTaskDefinition.fromFargateTaskDefinitionArn(stack, 'taskdef', arn);
+    const testLambda = lambda.Function.fromFunctionArn(
+      stack,
+      'lambda',
+      'arn:aws:lambda:us-east-1:123:function:lambda',
+    );
+    const appspec = new EcsAppSpec({
+      taskDefinition: taskDefinition,
+      containerName: 'foo',
+      containerPort: 80,
+    },
+    {
+      beforeInstall: 'abc123',
+      afterInstall: 'def456',
+      afterAllowTestTraffic: '123abc',
+      beforeAllowTraffic: '456def',
+      afterAllowTraffic: testLambda,
+    });
+    const appspecJson = JSON.parse(appspec.toString());
+    expect(appspecJson).toMatchObject({
+      Hooks: [
+        { BeforeInstall: 'abc123' },
+        { AfterInstall: 'def456' },
+        { AfterAllowTestTraffic: '123abc' },
+        { BeforeAllowTraffic: '456def' },
+        { AfterAllowTraffic: 'arn:aws:lambda:us-east-1:123:function:lambda' },
+      ],
     });
   });
 });
