@@ -1,5 +1,6 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 
 /**
  * Represents an AppSpec to be used for ECS services.
@@ -11,9 +12,14 @@ export class EcsAppSpec {
    * Service to target for the deployment
    */
   private readonly targetService: TargetService;
+  /**
+   * Optional lifecycle hooks
+   */
+  private readonly hooks?: AppSpecHooks;
 
-  constructor(targetService: TargetService) {
+  constructor(targetService: TargetService, hooks?: AppSpecHooks) {
     this.targetService = targetService;
+    this.hooks = hooks;
   }
 
   /**
@@ -45,8 +51,54 @@ export class EcsAppSpec {
           },
         },
       }],
+      ...this.hooksSection(),
     };
     return JSON.stringify(appSpec);
+  }
+
+  private hooksSection() {
+    if (this.hooks == undefined) {
+      return {};
+    }
+    const hooks = this.hooks;
+    if (
+      this.hooks.beforeInstall == undefined &&
+      this.hooks.afterInstall == undefined &&
+      this.hooks.afterAllowTestTraffic == undefined &&
+      this.hooks.beforeAllowTraffic == undefined &&
+      this.hooks.afterAllowTraffic == undefined
+    ) {
+      return {};
+    }
+    const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
+    const hook = (name: keyof AppSpecHooks) => {
+      const hookValue = hooks[name];
+      if (hookValue == undefined) {
+        return [];
+      } else {
+        return [{
+          [capitalize(name)]:
+            typeof hookValue === 'string'
+              ? hookValue
+              : hookValue.functionArn,
+        }];
+      }
+    };
+    const beforeInstall = hook('beforeInstall');
+    const afterInstall = hook('afterInstall');
+    const afterAllowTestTraffic = hook('afterAllowTestTraffic');
+    const beforeAllowTraffic = hook('beforeAllowTraffic');
+    const afterAllowTraffic = hook('afterAllowTraffic');
+
+    return {
+      Hooks: [
+        ...beforeInstall,
+        ...afterInstall,
+        ...afterAllowTestTraffic,
+        ...beforeAllowTraffic,
+        ...afterAllowTraffic,
+      ],
+    };
   }
 
   private configureAwsVpcNetworkingWithSecurityGroups(awsvpcConfiguration?: AwsvpcConfiguration) {
@@ -129,4 +181,30 @@ export interface AwsvpcConfiguration {
    * Assign a public IP address to the task.
    */
   readonly assignPublicIp: boolean;
+}
+
+/**
+ * Lifecycle hooks configuration
+ */
+export interface AppSpecHooks {
+  /**
+   * Lambda or ARN of a lambda to run tasks before the replacement task set is created.
+   */
+  readonly beforeInstall?: string | lambda.IFunction;
+  /**
+   * Lambda or ARN of a lambda to run tasks after the replacement task set is created and one of the target groups is associated with it.
+   */
+  readonly afterInstall?: string | lambda.IFunction;
+  /**
+   * Lambda or ARN of a lambda to run tasks after the test listener serves traffic to the replacement task set.
+   */
+  readonly afterAllowTestTraffic?: string | lambda.IFunction;
+  /**
+   * Lambda or ARN of a lambda to run tasks after the second target group is associated with the replacement task set, but before traffic is shifted to the replacement task set.
+   */
+  readonly beforeAllowTraffic?: string | lambda.IFunction;
+  /**
+   * Lambda or ARN of a lambda to run tasks after the second target group serves traffic to the replacement task set.
+   */
+  readonly afterAllowTraffic?: string | lambda.IFunction;
 }

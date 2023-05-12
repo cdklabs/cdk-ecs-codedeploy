@@ -322,6 +322,69 @@
         }
       ]
     },
+    "integ:ecs-deployment-hooks:assert": {
+      "name": "integ:ecs-deployment-hooks:assert",
+      "description": "assert the snapshot of integration test 'ecs-deployment-hooks'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/ecs-deployment-hooks.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ecs-deployment-hooks'. Run 'projen integ:ecs-deployment-hooks:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/ecs-deployment-hooks.integ.snapshot/ test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ecs-deployment-hooks:deploy": {
+      "name": "integ:ecs-deployment-hooks:deploy",
+      "description": "deploy integration test 'ecs-deployment-hooks' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/ecs-deployment-hooks.integ.snapshot"
+        },
+        {
+          "exec": "mv test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out test/ecs-deployment-hooks.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ecs-deployment-hooks:destroy"
+        }
+      ]
+    },
+    "integ:ecs-deployment-hooks:destroy": {
+      "name": "integ:ecs-deployment-hooks:destroy",
+      "description": "destroy integration test 'ecs-deployment-hooks'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/ecs-deployment-hooks.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ecs-deployment-hooks:snapshot": {
+      "name": "integ:ecs-deployment-hooks:snapshot",
+      "description": "update snapshot for integration test \"ecs-deployment-hooks\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/ecs-deployment-hooks.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ecs-deployment-hooks:watch": {
+      "name": "integ:ecs-deployment-hooks:watch",
+      "description": "watch integration test 'ecs-deployment-hooks' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ecs-deployment:assert": {
       "name": "integ:ecs-deployment:assert",
       "description": "assert the snapshot of integration test 'ecs-deployment'",
@@ -394,6 +457,9 @@
         },
         {
           "spawn": "integ:application-load-balanced-codedeployed-fargate-service:snapshot"
+        },
+        {
+          "spawn": "integ:ecs-deployment-hooks:snapshot"
         },
         {
           "spawn": "integ:ecs-deployment:snapshot"
@@ -545,6 +611,9 @@
         },
         {
           "spawn": "integ:application-load-balanced-codedeployed-fargate-service:assert"
+        },
+        {
+          "spawn": "integ:ecs-deployment-hooks:assert"
         },
         {
           "spawn": "integ:ecs-deployment:assert"

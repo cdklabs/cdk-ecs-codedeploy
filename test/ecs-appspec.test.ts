@@ -1,5 +1,6 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as cdk from 'aws-cdk-lib/core';
 import { EcsAppSpec } from '../src';
 
@@ -110,6 +111,38 @@ describe('CodeDeploy ECS AppSpec', () => {
           },
         },
       }],
+    });
+  });
+
+  test('can create with hooks', () => {
+    const arn = 'taskdefarn';
+    const taskDefinition = ecs.FargateTaskDefinition.fromFargateTaskDefinitionArn(stack, 'taskdef', arn);
+    const testLambda = lambda.Function.fromFunctionArn(
+      stack,
+      'lambda',
+      'arn:aws:lambda:us-east-1:123:function:lambda',
+    );
+    const appspec = new EcsAppSpec({
+      taskDefinition: taskDefinition,
+      containerName: 'foo',
+      containerPort: 80,
+    },
+    {
+      beforeInstall: 'abc123',
+      afterInstall: 'def456',
+      afterAllowTestTraffic: '123abc',
+      beforeAllowTraffic: '456def',
+      afterAllowTraffic: testLambda,
+    });
+    const appspecJson = JSON.parse(appspec.toString());
+    expect(appspecJson).toMatchObject({
+      Hooks: [
+        { BeforeInstall: 'abc123' },
+        { AfterInstall: 'def456' },
+        { AfterAllowTestTraffic: '123abc' },
+        { BeforeAllowTraffic: '456def' },
+        { AfterAllowTraffic: 'arn:aws:lambda:us-east-1:123:function:lambda' },
+      ],
     });
   });
 });

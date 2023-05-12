@@ -25,5 +25,6 @@ tsconfig.tsbuildinfo
 !/assets/
 test/api-canary.integ.snapshot
 test/application-load-balanced-codedeployed-fargate-service.integ.snapshot
+test/ecs-deployment-hooks.integ.snapshot
 test/.tmp
 test/ecs-deployment.integ.snapshot

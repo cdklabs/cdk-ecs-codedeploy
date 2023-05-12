@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
 import { Construct } from 'constructs';
-import { EcsAppSpec, TargetService } from '../ecs-appspec';
+import { AppSpecHooks, EcsAppSpec, TargetService } from '../ecs-appspec';
 import { EcsDeploymentProvider } from '../ecs-deployment-provider';
 
 /**
@@ -40,6 +40,13 @@ export interface EcsDeploymentProps {
    * @default 30 minutes
    */
   readonly timeout?: cdk.Duration;
+
+  /**
+   * Optional lifecycle hooks
+   *
+   * @default - no lifecycle hooks
+   */
+  readonly hooks?: AppSpecHooks;
 
 }
 
@@ -85,7 +92,7 @@ export class EcsDeployment extends Construct {
       }
     }
 
-    const appspec = new EcsAppSpec(props.targetService);
+    const appspec = new EcsAppSpec(props.targetService, props.hooks);
     const deployment = new cdk.CustomResource(this, 'Resource', {
       serviceToken: ecsDeploymentProvider.serviceToken,
       resourceType: 'Custom::EcsDeployment',
