@@ -54,6 +54,16 @@ export class WorkflowDotNetVersionPatch {
 }
 
 const project = new awscdk.AwsCdkConstructLibrary({
+  versionrcOptions: {
+    types: [
+      {type:"feat", section:"Features"},
+      {type:"fix", section:"Bug Fixes"},
+      {type:"chore", section:"Chores"},
+      {type:"test", hidden: true},
+      {type:"build", hidden: true},
+      {type:"ci","hidden":true},
+    ],
+  },
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
