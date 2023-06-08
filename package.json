@@ -105,7 +105,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-codedeploy": "^3.347.1",
+    "@aws-sdk/client-codedeploy": "^3.348.0",
     "jmespath": "^0.16.0"
   },
   "bundledDependencies": [
