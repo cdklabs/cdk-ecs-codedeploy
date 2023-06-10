@@ -78,9 +78,9 @@
     "aws-cdk-lib": "2.71.0",
     "aws-sdk-client-mock": "^2.1.1",
     "aws-sdk-client-mock-jest": "^2.1.1",
-    "cdk-nag": "^2.27.31",
+    "cdk-nag": "^2.27.32",
     "constructs": "10.0.5",
-    "esbuild": "^0.17.19",
+    "esbuild": "^0.18.0",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.5",
@@ -93,7 +93,7 @@
     "jsii-pacmak": "^1.83.0",
     "lambda-tester": "^4.0.1",
     "npm-check-updates": "^16",
-    "projen": "0.71.87",
+    "projen": "0.71.88",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
@@ -105,7 +105,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-codedeploy": "^3.348.0",
+    "@aws-sdk/client-codedeploy": "^3.350.0",
     "jmespath": "^0.16.0"
   },
   "bundledDependencies": [
