@@ -88,3 +88,6 @@ test/ecs-deployment.integ.snapshot/manifest.json
 test/ecs-deployment.integ.snapshot/**/manifest.json
 test/ecs-deployment.integ.snapshot/tree.json
 test/ecs-deployment.integ.snapshot/**/tree.json
+.jsii.tabl.json
+!/rosetta/default.ts-fixture
+!/.github/workflows/upgrade-cdklabs-projen-project-types-main.yml

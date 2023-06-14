@@ -197,6 +197,16 @@
         }
       ]
     },
+    "integ": {
+      "name": "integ",
+      "description": "Run integration snapshot tests",
+      "steps": [
+        {
+          "exec": "yarn integ-runner --language typescript",
+          "receiveArgs": true
+        }
+      ]
+    },
     "integ:api-canary:assert": {
       "name": "integ:api-canary:assert",
       "description": "assert the snapshot of integration test 'api-canary'",
@@ -467,6 +477,16 @@
         }
       ]
     },
+    "integ:update": {
+      "name": "integ:update",
+      "description": "Run and update integration snapshot tests",
+      "steps": [
+        {
+          "exec": "yarn integ-runner --language typescript --update-on-failed",
+          "receiveArgs": true
+        }
+      ]
+    },
     "package": {
       "name": "package",
       "description": "Creates the distribution package",
@@ -548,6 +568,9 @@
       "steps": [
         {
           "spawn": "docgen"
+        },
+        {
+          "spawn": "rosetta:extract"
         }
       ]
     },
@@ -596,12 +619,21 @@
         }
       ]
     },
+    "rosetta:extract": {
+      "name": "rosetta:extract",
+      "description": "Test rosetta extract",
+      "steps": [
+        {
+          "exec": "yarn --silent jsii-rosetta extract --strict"
+        }
+      ]
+    },
     "test": {
       "name": "test",
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --ci",
+          "exec": "jest --passWithNoTests --coverageProvider=v8 --ci",
           "receiveArgs": true
         },
         {
@@ -618,6 +650,9 @@
         },
         {
           "spawn": "integ:ecs-deployment:assert"
+        },
+        {
+          "spawn": "integ"
         }
       ]
     },
@@ -626,7 +661,7 @@
       "description": "Update jest snapshots",
       "steps": [
         {
-          "exec": "jest --updateSnapshot --passWithNoTests --ci",
+          "exec": "jest --updateSnapshot --passWithNoTests --coverageProvider=v8 --ci",
           "receiveArgs": true
         }
       ]
@@ -668,19 +703,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-synthetics-alpha,@aws-cdk/integ-tests-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner'"
         },
         {
           "exec": "yarn install --check-files"
@@ -693,6 +728,30 @@
         },
         {
           "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-cdklabs-projen-project-types": {
+      "name": "upgrade-cdklabs-projen-project-types",
+      "description": "upgrade cdklabs-projen-project-types",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "yarn upgrade npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --filter=cdklabs-projen-project-types,projen --upgrade"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade cdklabs-projen-project-types projen"
+        },
+        {
+          "exec": "npx projen"
         }
       ]
     },

@@ -61,6 +61,10 @@
       "type": "build"
     },
     {
+      "name": "cdklabs-projen-project-types",
+      "type": "build"
+    },
+    {
       "name": "constructs",
       "version": "10.0.5",
       "type": "build"
@@ -151,6 +155,16 @@
     {
       "name": "jmespath",
       "type": "bundled"
+    },
+    {
+      "name": "@aws-cdk/integ-runner",
+      "version": "latest",
+      "type": "devenv"
+    },
+    {
+      "name": "@aws-cdk/integ-tests-alpha",
+      "version": "latest",
+      "type": "devenv"
     },
     {
       "name": "@types/babel__traverse",
