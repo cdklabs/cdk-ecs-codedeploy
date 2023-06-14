@@ -1,12 +1,22 @@
 // Fixture with packages imported, but nothing else
 import { Construct } from 'constructs';
 import {
+  Duration,
   Stack,
+  aws_ecs as ecs,
+  aws_codedeploy as codeDeploy,
 } from 'aws-cdk-lib';
+import {
+  ApiCanary,
+  ApplicationLoadBalancedCodeDeployedFargateService, 
+  EcsDeployment,
+} from '.';
 
 class Fixture extends Stack {
   constructor(scope: Construct, id: string) {
     super(scope, id);
+
+    const stack = this;
 
     /// here
   }
