@@ -1,36 +1,7 @@
-import { awscdk, JsonPatch } from 'projen';
+import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
+import { awscdk, javascript, JsonPatch } from 'projen';
 import { Stability } from 'projen/lib/cdk';
-import { NodeProject, NpmAccess, UpdateSnapshot } from 'projen/lib/javascript';
 
-export interface WorkflowDockerPatchOptions {
-  /**
-   * The workflow to patch.
-   */
-  workflow: 'build' | 'release';
-  /**
-   * Name of the workflow.
-   * @default - same as `workflow`
-   */
-  workflowName?: string;
-}
-
-export class WorkflowNoDockerPatch {
-  public constructor(project: NodeProject, options: WorkflowDockerPatchOptions) {
-    const {
-      workflow,
-      workflowName = options.workflow,
-    } = options;
-
-    project.tryFindObjectFile(`.github/workflows/${workflow}.yml`)?.patch(
-      JsonPatch.add(`/jobs/${workflowName}/steps/`, {
-        name: 'Setup Node.js',
-        uses: 'actions/setup-node@v3',
-        with: { 'node-version': project.minNodeVersion ?? '14.x' },
-      }),
-      JsonPatch.remove(`/jobs/${workflowName}/container`),
-    );
-  }
-}
 export interface WorkflowDotNetVersionPatchOptions {
   /**
    * The workflow to patch.
@@ -46,14 +17,16 @@ export interface WorkflowDotNetVersionPatchOptions {
   dotNetVersion: string;
 }
 export class WorkflowDotNetVersionPatch {
-  public constructor(project: NodeProject, options: WorkflowDotNetVersionPatchOptions) {
+  public constructor(project: javascript.NodeProject, options: WorkflowDotNetVersionPatchOptions) {
     project.tryFindObjectFile(`.github/workflows/${options.workflow}.yml`)?.patch(
       JsonPatch.replace(`/jobs/${options.jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
     );
   }
 }
 
-const project = new awscdk.AwsCdkConstructLibrary({
+const project = new CdklabsConstructLibrary({
+  setNodeEngineVersion: false,
+  private: false,
   versionrcOptions: {
     types: [
       { type: 'feat', section: 'Features' },
@@ -80,12 +53,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
-  npmAccess: NpmAccess.PUBLIC,
   lambdaOptions: {
     runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   },
   jestOptions: {
-    updateSnapshot: UpdateSnapshot.NEVER,
+    updateSnapshot: javascript.UpdateSnapshot.NEVER,
   },
   publishToMaven: {
     javaPackage: 'io.github.cdklabs.cdk.ecs.codedeploy',
@@ -135,9 +107,6 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 project.upgradeWorkflow?.postUpgradeTask.spawn(
   project.tasks.tryFind('integ:snapshot-all')!,
 );
-
-new WorkflowNoDockerPatch(project, { workflow: 'build' });
-new WorkflowNoDockerPatch(project, { workflow: 'release' });
 
 new WorkflowDotNetVersionPatch(project, { workflow: 'build', jobName: 'package-dotnet', dotNetVersion: '6.x' });
 new WorkflowDotNetVersionPatch(project, { workflow: 'release', jobName: 'release_nuget', dotNetVersion: '6.x' });

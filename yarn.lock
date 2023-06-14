@@ -30,10 +30,17 @@
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-synthetics-alpha/-/aws-synthetics-alpha-2.71.0-alpha.0.tgz#8c9b30acdfd2439d7c8f18493c087adce6158c96"
   integrity sha512-Q9gf/rKVDFWJsBffewo3NV51fv6wYDi/oHWwStTyGnIVoMj+hHDwhJYea/tYj7qvMaip/7kCE6BtaF3bdtqoXg==
 
-"@aws-cdk/integ-tests-alpha@2.71.0-alpha.0":
-  version "2.71.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/integ-tests-alpha/-/integ-tests-alpha-2.71.0-alpha.0.tgz#42acd12e19a2b396a2028d70873f8b68cacf2a0d"
-  integrity sha512-4tTpKnUFtbzON0C2QpXxi3/uKVIC+C+geB0yKT7hI3et3PQPU+pa6umuWS/lAgKPoGW6XXUl1s3Nm6aI1Rjf3A==
+"@aws-cdk/integ-runner@latest":
+  version "2.83.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/integ-runner/-/integ-runner-2.83.1-alpha.0.tgz#e1d3caf2be219ba003269a7910f44d0a51cb9f75"
+  integrity sha512-74vbmF7fIC7jhEZ/tQ2wKkQdEk1WFzKpEmcWXoPE/2iXmLMRsSVwmYcGn6T32Od8rKrseDHbs1iQeBsRDBj1xw==
+  dependencies:
+    aws-cdk "2.83.1"
+
+"@aws-cdk/integ-tests-alpha@latest":
+  version "2.83.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/integ-tests-alpha/-/integ-tests-alpha-2.83.1-alpha.0.tgz#69b01362dd197aa3b7d6d8f8a693c621f683a057"
+  integrity sha512-a07S3JWnHjp4DIkWwTO3ri4NbdOXWBcNUZjJg5+q8l8dFkzA+ImA4j21UFXCbLNS1HMPrQvXAsXdx/Lalc2Wqg==
 
 "@aws-crypto/crc32@3.0.0":
   version "3.0.0"
@@ -2374,7 +2381,7 @@ aws-cdk-lib@2.71.0:
     table "^6.8.1"
     yaml "1.10.2"
 
-aws-cdk@^2:
+aws-cdk@2.83.1, aws-cdk@^2:
   version "2.83.1"
   resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.83.1.tgz#a71c226f806b2e2ccfff0a5b3c1037759b1c15ee"
   integrity sha512-hM2fsHl2TXk3B0MTq7zRU/KqJiVrnTQ3SXbAfleQCfCf/Jpy6yD6nGqrEADFAYNLSPoA9iC3SLnO73SPqqjjRQ==
@@ -2652,6 +2659,14 @@ cdk-nag@^2.27.36:
   version "2.27.36"
   resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.36.tgz#da39d93af24fcaedccffb98dbd85b3049b1aa671"
   integrity sha512-8EXTbTdsdZph5IkHxHsPlPEHD06/b6E31QMZJ3bqUwRn1qMb16Rc6pCk8H/ALn3HyEG4rF5yvbO/de+X7pHTLg==
+
+cdklabs-projen-project-types@^0.1.138:
+  version "0.1.138"
+  resolved "https://registry.yarnpkg.com/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.1.138.tgz#428f252383825c2f99587b17b6022f07b6257d95"
+  integrity sha512-l04PeDpu/P3TI1ahXDlr3qqvv7sqrdaxFYc/ssJrW5cUR+W4ZHHnHxiJwE5aGT7o49rBsRrLh1nbrKduftGn1Q==
+  dependencies:
+    projen "^0.71.91"
+    yaml "^2.3.1"
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -6578,10 +6593,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.71.94:
-  version "0.71.94"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.94.tgz#c730a1511cdf415d508543196d7d0d54f04ae854"
-  integrity sha512-zedd04Y1DDdqWVcgJ+RSBjE5ubkPjUm0Ln9ER0BnWRtdq/zUfhPeBNMRB7HtpgZFmWSmW4jKrySv/OwNtceLzA==
+projen@0.71.96, projen@^0.71.91:
+  version "0.71.96"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.96.tgz#caecb076692ba21ce4a01ef00f523f1ce4134f51"
+  integrity sha512-txStVpOb+ppD9bDHAVGwpmKHswxWfteBSR09LzcdptNlWNvT+4OHPg8TVrNfz8dOLMTzKTGKHDtS6hOg2HvvSw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -8099,7 +8114,7 @@ yaml@1.10.2:
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
 
-yaml@^2.2.2:
+yaml@^2.2.2, yaml@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.1.tgz#02fe0975d23cd441242aa7204e09fc28ac2ac33b"
   integrity sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==

@@ -56,6 +56,9 @@ new EcsDeployment({
 The deployment will use the AutoRollbackConfig for the EcsDeploymentGroup unless it is overridden in the deployment:
 
 ```ts
+declare const deploymentGroup: codeDeploy.IEcsDeploymentGroup;
+declare const taskDefinition: ecs.ITaskDefinition;
+
 new EcsDeployment({
   deploymentGroup,
   targetService: {
@@ -74,6 +77,9 @@ new EcsDeployment({
 By default, the deployment will timeout after 30 minutes. The timeout value can be overridden:
 
 ```ts
+declare const deploymentGroup: codeDeploy.IEcsDeploymentGroup;
+declare const taskDefinition: ecs.ITaskDefinition;
+
 new EcsDeployment({
   deploymentGroup,
   targetService: {
