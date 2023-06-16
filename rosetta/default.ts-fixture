@@ -10,7 +10,7 @@ import {
   ApiCanary,
   ApplicationLoadBalancedCodeDeployedFargateService, 
   EcsDeployment,
-} from '.';
+} from '@cdklabs/cdk-ecs-codedeploy';
 
 class Fixture extends Stack {
   constructor(scope: Construct, id: string) {
