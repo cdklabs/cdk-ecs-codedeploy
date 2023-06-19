@@ -2655,12 +2655,12 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.27.41:
+cdk-nag@^2.27.42:
   version "2.27.42"
   resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.42.tgz#bd5d608882f89e46ff04dc97528f485eeae38eb7"
   integrity sha512-F9j6pFjYY9HdMTMGs4ulNrJ/jYKX/CL+PMPQMJOr74XSy/20rrQa+kqXe1aszwrl+8dVVfgD4SWlgfzNtWXxKA==
 
-cdklabs-projen-project-types@^0.1.145:
+cdklabs-projen-project-types@^0.1.146:
   version "0.1.146"
   resolved "https://registry.yarnpkg.com/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.1.146.tgz#f1c0e05ee7bbc82ee857203e7e10dcdb68bc737d"
   integrity sha512-yR9/FgY83nPKr0KFUhlaQVtZ4BxYLbsrHk4G7hlbDylDWi0eXI5IUfq0xFR80YXhr089PzBO79rKneZqxlmu+w==
@@ -5444,7 +5444,7 @@ jsii-rosetta@^1.80.0, jsii-rosetta@^1.84.0:
     workerpool "^6.4.0"
     yargs "^16.2.0"
 
-jsii-rosetta@^5.1.1:
+jsii-rosetta@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.1.2.tgz#991bb521c16721b01f3f8bd25f3d774a41fe2f3e"
   integrity sha512-EiR5VHE8cytg8QMZQ+Jz2tyK6v9EExlb5/ICyJIuXG4G1rIyyG9P3HeturPXePfplbmJmR/JRrkIttQ4oniuRQ==
@@ -6640,26 +6640,7 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.71.100:
-  version "0.71.100"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.100.tgz#25d74df66eb9ac1d9f6d55d1a56b31c7215e4e01"
-  integrity sha512-UWig1B/6L4FJmzpnzyErUaCLwyr1z/CezvRsO2TmgABgAugMQAjqTzW9R9QyBAen3VYt8uHGl9B+4CrkoFxHSw==
-  dependencies:
-    "@iarna/toml" "^2.2.5"
-    case "^1.6.3"
-    chalk "^4.1.2"
-    comment-json "4.2.2"
-    conventional-changelog-config-spec "^2.1.0"
-    fast-json-patch "^3.1.1"
-    glob "^8"
-    ini "^2.0.0"
-    semver "^7.5.2"
-    shx "^0.3.4"
-    xmlbuilder2 "^3.1.1"
-    yaml "^2.2.2"
-    yargs "^17.7.2"
-
-projen@^0.71.100:
+projen@0.71.101, projen@^0.71.100:
   version "0.71.101"
   resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.101.tgz#f6afb2d9e8114bdf927e2718d888d0f592c40ebc"
   integrity sha512-auUdvNeaxvYxTBZMuGMtzcZNwiK/+S0Hlbj94vbGWE8AMTcFfdOhaoZKsRLNUtk3P7hi4PNbfn/7qiUZmx6JOQ==
