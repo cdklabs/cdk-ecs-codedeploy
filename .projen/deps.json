@@ -7,7 +7,7 @@
     },
     {
       "name": "@aws-cdk/integ-tests-alpha",
-      "version": "2.71.0-alpha.0",
+      "version": "^2.71.0-alpha.0",
       "type": "build"
     },
     {
@@ -182,7 +182,7 @@
     },
     {
       "name": "@aws-cdk/aws-synthetics-alpha",
-      "version": "2.71.0-alpha.0",
+      "version": "^2.71.0-alpha.0",
       "type": "peer"
     },
     {

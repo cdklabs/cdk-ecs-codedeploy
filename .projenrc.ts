@@ -82,7 +82,7 @@ const project = new CdklabsConstructLibrary({
     'aws-sdk-client-mock',
     'aws-sdk-client-mock-jest',
     '@types/lambda-tester',
-    '@aws-cdk/integ-tests-alpha@2.71.0-alpha.0',
+    '@aws-cdk/integ-tests-alpha@^2.71.0-alpha.0',
     'cdk-nag',
   ],
   bundledDeps: [
@@ -91,7 +91,7 @@ const project = new CdklabsConstructLibrary({
   ],
   deps: [],
   peerDeps: [
-    '@aws-cdk/aws-synthetics-alpha@2.71.0-alpha.0',
+    '@aws-cdk/aws-synthetics-alpha@^2.71.0-alpha.0',
   ],
   keywords: [
     'aws',
