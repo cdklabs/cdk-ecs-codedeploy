@@ -11,9 +11,9 @@
     "@jridgewell/trace-mapping" "^0.3.9"
 
 "@aws-cdk/asset-awscli-v1@^2.2.97":
-  version "2.2.193"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.193.tgz#e98f973273a5f5cc7ffff8e7f69b33d4d2135ffe"
-  integrity sha512-liDhF15WsW2/w7q20o4WQtuxOTkIk+XYKhQ9E4g6A59sJQi56x1Lo4pHLepm3lMAY3Hu43Uz/rQ6FjQt4wsuiw==
+  version "2.2.194"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.194.tgz#d46358da37ed01b9fd2dcab51668e81a76bb17c9"
+  integrity sha512-6u6VZ/KoMQQeX5jK/aNMtZM0TM5SkaNBt8JFdlzGf2cDxddWpJYsvsN2ClFAmvgYg/HPl57vp9kxI57Af2CBIw==
 
 "@aws-cdk/asset-kubectl-v20@^2.1.1":
   version "2.1.2"
@@ -2671,17 +2671,17 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.27.40:
-  version "2.27.40"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.40.tgz#7d5fd75eaa655c238ccbd2cbd46a01ad940e0a25"
-  integrity sha512-BsXVvy5yzstulBdENHI42Im3qL+emkrgoiGwH9mDnlqkiUcOV5lZsEQV6vF0uqzBliI7WF4+8/PH34rQVrMkXg==
+cdk-nag@^2.27.41:
+  version "2.27.41"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.41.tgz#0a5551659b94ed2289a28c719d2a2441aac467b0"
+  integrity sha512-QVlOPc6WuKlAei36hVdOOJIy4EkJuYOB1stW+8UNwDwV0VEPooVTqtax6XJ/3RrkNBkH23Cf1zi70elGYF2QUg==
 
-cdklabs-projen-project-types@^0.1.144:
-  version "0.1.144"
-  resolved "https://registry.yarnpkg.com/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.1.144.tgz#ca8510cbab9c372ca478d474c0dc53db340f9787"
-  integrity sha512-i3yYNpGJ5DO/XqGvk6eLAnRlTHWKEQP61VVQ8tO3nk8XBGZH3WfQJqQa/U40az90eKrAO+YDgFBcjfqmXBJm2w==
+cdklabs-projen-project-types@^0.1.145:
+  version "0.1.145"
+  resolved "https://registry.yarnpkg.com/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.1.145.tgz#5604bcf2dd29708fa13b9e1a4c11f1fdf4dffd82"
+  integrity sha512-5D3tRWeC4xEjUzRjkqRu+ki1HtsZ8/TjVEtZ/5NF7Jm7mHfCrwWyS69kQgEXJMM1/yAseEgFn9SioiKfoiIIuA==
   dependencies:
-    projen "^0.71.99"
+    projen "^0.71.100"
     yaml "^2.3.1"
 
 chalk@^2.0.0, chalk@^2.4.2:
@@ -4211,9 +4211,9 @@ globby@^11.0.4, globby@^11.1.0:
     slash "^3.0.0"
 
 globby@^13.1.3:
-  version "13.1.4"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-13.1.4.tgz#2f91c116066bcec152465ba36e5caa4a13c01317"
-  integrity sha512-iui/IiiW+QrJ1X1hKH5qwlMQyv34wJAYwH1vrf8b9kBA4sNiif3gKsMHa+BrdnOpEudWjpotfa7LrTzB1ERS/g==
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-13.2.0.tgz#7dd5678d765c4680c2e6d106230d86cb727cb1af"
+  integrity sha512-jWsQfayf13NvqKUIL3Ta+CIqMnvlaIDFveWE/dpOZ9+3AMEJozsxDvKA02zync9UuvOM8rOXzsD5GqKP4OnWPQ==
   dependencies:
     dir-glob "^3.0.1"
     fast-glob "^3.2.11"
@@ -6656,10 +6656,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.71.99, projen@^0.71.99:
-  version "0.71.99"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.99.tgz#b3d1b9ed98f1f8e437d9e430b1031b226877d1e3"
-  integrity sha512-yt3zlMMz+BZizXpwFGoEia/JmI6bsO4yypxW8zhxWsqnjJPm4HpZcNgQp8YKrPiAlvT3ovUTI7G2lk9R6RnZ8g==
+projen@0.71.100, projen@^0.71.100:
+  version "0.71.100"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.100.tgz#25d74df66eb9ac1d9f6d55d1a56b31c7215e4e01"
+  integrity sha512-UWig1B/6L4FJmzpnzyErUaCLwyr1z/CezvRsO2TmgABgAugMQAjqTzW9R9QyBAen3VYt8uHGl9B+4CrkoFxHSw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -7804,9 +7804,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.2.0-dev.20230617"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.0-dev.20230617.tgz#c14319c78654e4fc6b192e8097a7fa395039de90"
-  integrity sha512-+h4AOo0iCEIvT4MHNeTlZD+pmv7CW3/0zz1eZgY6AnatF/jvkBRaHa6ow+xHNHnRE7VJcBYDPdJQTOBqBkjVjw==
+  version "5.2.0-dev.20230618"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.0-dev.20230618.tgz#a36af5915d38d85c677f3120fd5234a09f64e1de"
+  integrity sha512-u/mYXRLwUDy5mtjZAipCNDIyt2PmzbePMB6yy9LFhbZz50EMDR3vhp4qEym3KWXVOfqgp1ZOfpndU0TZefE79A==
 
 typescript@~3.9.10:
   version "3.9.10"
