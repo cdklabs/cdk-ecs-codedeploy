@@ -84,7 +84,7 @@
     "aws-sdk-client-mock": "^2.1.1",
     "aws-sdk-client-mock-jest": "^2.1.1",
     "cdk-nag": "^2.27.42",
-    "cdklabs-projen-project-types": "^0.1.146",
+    "cdklabs-projen-project-types": "^0.1.147",
     "constructs": "10.0.5",
     "esbuild": "^0.18.4",
     "eslint": "^8",
