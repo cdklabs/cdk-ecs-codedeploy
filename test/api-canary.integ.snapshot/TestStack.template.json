@@ -227,14 +227,14 @@
      "DurationInSeconds": "0",
      "Expression": "rate(5 minutes)"
     },
-    "StartCanaryAfterCreation": true,
     "RunConfig": {
      "EnvironmentVariables": {
       "baseUrl": "https://xkcd.com",
       "threadCount": "5",
       "testSteps": "[{\"name\":\"info\",\"path\":\"/614/info.0.json\",\"jmesPath\":\"safe_title\",\"expectedValue\":\"Woodpecker\"}]"
      }
-    }
+    },
+    "StartCanaryAfterCreation": true
    }
   },
   "SyntheticTestSuccessAlarm4480389E": {

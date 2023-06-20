@@ -1322,14 +1322,7 @@
        ]
       },
       {
-       "Action": [
-        "s3:PutObject",
-        "s3:PutObjectLegalHold",
-        "s3:PutObjectRetention",
-        "s3:PutObjectTagging",
-        "s3:PutObjectVersionTagging",
-        "s3:Abort*"
-       ],
+       "Action": "s3:PutObject",
        "Effect": "Allow",
        "Principal": {
         "AWS": {
@@ -1633,7 +1626,6 @@
      "DurationInSeconds": "0",
      "Expression": "rate(5 minutes)"
     },
-    "StartCanaryAfterCreation": true,
     "RunConfig": {
      "EnvironmentVariables": {
       "baseUrl": {
@@ -1653,7 +1645,8 @@
       "threadCount": "20",
       "testSteps": "[{\"name\":\"health\",\"path\":\"/health\",\"jmesPath\":\"status\",\"expectedValue\":\"ok\"}]"
      }
-    }
+    },
+    "StartCanaryAfterCreation": true
    },
    "DependsOn": [
     "ServiceSecurityGroupfromcdkecscodedeployserviceServiceLBSecurityGroupD78B8ED9801A3479E0",
@@ -2363,7 +2356,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "e8fea7e029780f03a78580d41b7ffbc4551d6e7d6caa190a451880191c166189.zip"
+     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2569,7 +2562,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "e8fea7e029780f03a78580d41b7ffbc4551d6e7d6caa190a451880191c166189.zip"
+     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -2772,7 +2765,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "e8fea7e029780f03a78580d41b7ffbc4551d6e7d6caa190a451880191c166189.zip"
+     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
     },
     "Role": {
      "Fn::GetAtt": [
