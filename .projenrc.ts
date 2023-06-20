@@ -23,7 +23,7 @@ export class WorkflowDotNetVersionPatch {
     );
   }
 }
-
+const cdkVersion = '2.84.0';
 const project = new CdklabsConstructLibrary({
   setNodeEngineVersion: false,
   private: false,
@@ -40,7 +40,7 @@ const project = new CdklabsConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.71.0',
+  cdkVersion,
   defaultReleaseBranch: 'main',
   name: '@cdklabs/cdk-ecs-codedeploy',
   description: 'CDK Constructs for performing ECS Deployments with CodeDeploy',
@@ -82,7 +82,7 @@ const project = new CdklabsConstructLibrary({
     'aws-sdk-client-mock',
     'aws-sdk-client-mock-jest',
     '@types/lambda-tester',
-    '@aws-cdk/integ-tests-alpha@^2.71.0-alpha.0',
+    `@aws-cdk/integ-tests-alpha@^${cdkVersion}-alpha.0`,
     'cdk-nag',
   ],
   bundledDeps: [
@@ -91,7 +91,7 @@ const project = new CdklabsConstructLibrary({
   ],
   deps: [],
   peerDeps: [
-    '@aws-cdk/aws-synthetics-alpha@^2.71.0-alpha.0',
+    `@aws-cdk/aws-synthetics-alpha@^${cdkVersion}-alpha.0`,
   ],
   keywords: [
     'aws',
