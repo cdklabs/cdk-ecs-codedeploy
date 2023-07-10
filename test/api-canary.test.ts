@@ -27,7 +27,7 @@ describe('SyntheticTest', () => {
             threadCount: '5',
           },
         },
-        RuntimeVersion: 'syn-nodejs-puppeteer-3.8',
+        RuntimeVersion: 'syn-nodejs-puppeteer-4.0',
         Schedule: {
           DurationInSeconds: '0',
           Expression: 'rate(5 minutes)',
