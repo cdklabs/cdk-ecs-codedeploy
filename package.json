@@ -73,7 +73,7 @@
     "@aws-cdk/aws-synthetics-alpha": "2.84.0-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
-    "@types/aws-lambda": "^8.10.119",
+    "@types/aws-lambda": "^8.10.120",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.2",
     "@types/node": "^16",
@@ -97,7 +97,7 @@
     "jsii-diff": "^1.88.0",
     "jsii-docgen": "^7.2.9",
     "jsii-pacmak": "^1.88.0",
-    "jsii-rosetta": "^5.1.12",
+    "jsii-rosetta": "^5.1.13",
     "lambda-tester": "^4.0.1",
     "npm-check-updates": "^16",
     "projen": "0.73.15",
@@ -112,7 +112,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-codedeploy": "^3.409.0",
+    "@aws-sdk/client-codedeploy": "^3.410.0",
     "jmespath": "^0.16.0"
   },
   "bundledDependencies": [
