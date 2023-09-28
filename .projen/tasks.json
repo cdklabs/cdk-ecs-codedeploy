@@ -705,13 +705,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws-cdk/integ-tests-alpha,@types/aws-lambda,@types/jest,@types/lambda-tester,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,aws-cdk,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,lambda-tester,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-codedeploy,jmespath,@aws-cdk/aws-synthetics-alpha,aws-cdk-lib,constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws-cdk/integ-tests-alpha,@types/aws-lambda,@types/jest,@types/lambda-tester,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,aws-cdk,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,lambda-tester,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-codedeploy,jmespath,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag cdklabs-projen-project-types esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta lambda-tester npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-codedeploy jmespath @aws-cdk/aws-synthetics-alpha aws-cdk-lib constructs"
+          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag cdklabs-projen-project-types esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta lambda-tester npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-codedeploy jmespath aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"

@@ -1,13 +1,8 @@
 {
   "dependencies": [
     {
-      "name": "@aws-cdk/aws-synthetics-alpha",
-      "version": "2.84.0-alpha.0",
-      "type": "build"
-    },
-    {
       "name": "@aws-cdk/integ-tests-alpha",
-      "version": "^2.84.0-alpha.0",
+      "version": "^2.99.0-alpha.0",
       "type": "build"
     },
     {
@@ -40,7 +35,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.84.0",
+      "version": "2.99.0",
       "type": "build"
     },
     {
@@ -181,13 +176,8 @@
       "type": "override"
     },
     {
-      "name": "@aws-cdk/aws-synthetics-alpha",
-      "version": "^2.84.0-alpha.0",
-      "type": "peer"
-    },
-    {
       "name": "aws-cdk-lib",
-      "version": "^2.84.0",
+      "version": "^2.99.0",
       "type": "peer"
     },
     {

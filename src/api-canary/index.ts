@@ -1,11 +1,11 @@
 import * as path from 'path';
-import { Canary, ArtifactsBucketLocation, Schedule, Test, Code, Runtime } from '@aws-cdk/aws-synthetics-alpha';
 import { Duration, DockerImage, Lazy } from 'aws-cdk-lib';
 import { Alarm, ComparisonOperator } from 'aws-cdk-lib/aws-cloudwatch';
 import { IVpc, SubnetSelection, ISecurityGroup } from 'aws-cdk-lib/aws-ec2';
 import { IRole } from 'aws-cdk-lib/aws-iam';
 import { BlockPublicAccess, Bucket, BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import { Asset } from 'aws-cdk-lib/aws-s3-assets';
+import { Canary, ArtifactsBucketLocation, Schedule, Test, Code, Runtime } from 'aws-cdk-lib/aws-synthetics';
 import { Construct } from 'constructs';
 import { CanaryCodeBundler } from './code-bundling';
 

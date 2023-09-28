@@ -23,7 +23,7 @@ export class WorkflowDotNetVersionPatch {
     );
   }
 }
-const cdkVersion = '2.84.0';
+const cdkVersion = '2.99.0';
 const project = new CdklabsConstructLibrary({
   setNodeEngineVersion: false,
   private: false,
@@ -90,9 +90,7 @@ const project = new CdklabsConstructLibrary({
     'jmespath',
   ],
   deps: [],
-  peerDeps: [
-    `@aws-cdk/aws-synthetics-alpha@^${cdkVersion}-alpha.0`,
-  ],
+  peerDeps: [],
   keywords: [
     'aws',
     'cdk',
