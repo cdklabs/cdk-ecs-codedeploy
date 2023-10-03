@@ -49,9 +49,6 @@
   "ClusterVpcPublicSubnet1SubnetA9F7E0A5": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "AvailabilityZone": {
      "Fn::Select": [
       0,
@@ -75,7 +72,10 @@
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PublicSubnet1"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -95,15 +95,15 @@
   "ClusterVpcPublicSubnet1RouteTable5594A636": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "Tags": [
      {
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PublicSubnet1"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -148,12 +148,12 @@
   "ClusterVpcPublicSubnet1DefaultRoute62DA4B4B": {
    "Type": "AWS::EC2::Route",
    "Properties": {
-    "RouteTableId": {
-     "Ref": "ClusterVpcPublicSubnet1RouteTable5594A636"
-    },
     "DestinationCidrBlock": "0.0.0.0/0",
     "GatewayId": {
      "Ref": "ClusterVpcIGW1E358A6E"
+    },
+    "RouteTableId": {
+     "Ref": "ClusterVpcPublicSubnet1RouteTable5594A636"
     }
    },
    "DependsOn": [
@@ -203,14 +203,14 @@
   "ClusterVpcPublicSubnet1NATGateway0693C346": {
    "Type": "AWS::EC2::NatGateway",
    "Properties": {
-    "SubnetId": {
-     "Ref": "ClusterVpcPublicSubnet1SubnetA9F7E0A5"
-    },
     "AllocationId": {
      "Fn::GetAtt": [
       "ClusterVpcPublicSubnet1EIP433C56EE",
       "AllocationId"
      ]
+    },
+    "SubnetId": {
+     "Ref": "ClusterVpcPublicSubnet1SubnetA9F7E0A5"
     },
     "Tags": [
      {
@@ -241,9 +241,6 @@
   "ClusterVpcPublicSubnet2Subnet059113C4": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "AvailabilityZone": {
      "Fn::Select": [
       1,
@@ -267,7 +264,10 @@
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PublicSubnet2"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -287,15 +287,15 @@
   "ClusterVpcPublicSubnet2RouteTable7B43F18C": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "Tags": [
      {
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PublicSubnet2"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -340,12 +340,12 @@
   "ClusterVpcPublicSubnet2DefaultRoute97446C8A": {
    "Type": "AWS::EC2::Route",
    "Properties": {
-    "RouteTableId": {
-     "Ref": "ClusterVpcPublicSubnet2RouteTable7B43F18C"
-    },
     "DestinationCidrBlock": "0.0.0.0/0",
     "GatewayId": {
      "Ref": "ClusterVpcIGW1E358A6E"
+    },
+    "RouteTableId": {
+     "Ref": "ClusterVpcPublicSubnet2RouteTable7B43F18C"
     }
    },
    "DependsOn": [
@@ -395,14 +395,14 @@
   "ClusterVpcPublicSubnet2NATGateway00B24686": {
    "Type": "AWS::EC2::NatGateway",
    "Properties": {
-    "SubnetId": {
-     "Ref": "ClusterVpcPublicSubnet2Subnet059113C4"
-    },
     "AllocationId": {
      "Fn::GetAtt": [
       "ClusterVpcPublicSubnet2EIP203DF3E5",
       "AllocationId"
      ]
+    },
+    "SubnetId": {
+     "Ref": "ClusterVpcPublicSubnet2Subnet059113C4"
     },
     "Tags": [
      {
@@ -433,9 +433,6 @@
   "ClusterVpcPrivateSubnet1SubnetA4EB481A": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "AvailabilityZone": {
      "Fn::Select": [
       0,
@@ -459,7 +456,10 @@
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PrivateSubnet1"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -479,15 +479,15 @@
   "ClusterVpcPrivateSubnet1RouteTable5AAEDA3F": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "Tags": [
      {
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PrivateSubnet1"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -532,12 +532,12 @@
   "ClusterVpcPrivateSubnet1DefaultRoute3B4D40DD": {
    "Type": "AWS::EC2::Route",
    "Properties": {
-    "RouteTableId": {
-     "Ref": "ClusterVpcPrivateSubnet1RouteTable5AAEDA3F"
-    },
     "DestinationCidrBlock": "0.0.0.0/0",
     "NatGatewayId": {
      "Ref": "ClusterVpcPublicSubnet1NATGateway0693C346"
+    },
+    "RouteTableId": {
+     "Ref": "ClusterVpcPrivateSubnet1RouteTable5AAEDA3F"
     }
    },
    "Metadata": {
@@ -558,9 +558,6 @@
   "ClusterVpcPrivateSubnet2SubnetBD1ECB6E": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "AvailabilityZone": {
      "Fn::Select": [
       1,
@@ -584,7 +581,10 @@
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PrivateSubnet2"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -604,15 +604,15 @@
   "ClusterVpcPrivateSubnet2RouteTable73064A66": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "Tags": [
      {
       "Key": "Name",
       "Value": "cdk-ecs-codedeploy-service/Cluster/Vpc/PrivateSubnet2"
      }
-    ]
+    ],
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
+    }
    },
    "Metadata": {
     "cdk_nag": {
@@ -657,12 +657,12 @@
   "ClusterVpcPrivateSubnet2DefaultRoute011666AF": {
    "Type": "AWS::EC2::Route",
    "Properties": {
-    "RouteTableId": {
-     "Ref": "ClusterVpcPrivateSubnet2RouteTable73064A66"
-    },
     "DestinationCidrBlock": "0.0.0.0/0",
     "NatGatewayId": {
      "Ref": "ClusterVpcPublicSubnet2NATGateway00B24686"
+    },
+    "RouteTableId": {
+     "Ref": "ClusterVpcPrivateSubnet2RouteTable73064A66"
     }
    },
    "Metadata": {
@@ -708,11 +708,11 @@
   "ClusterVpcVPCGW47AC17E9": {
    "Type": "AWS::EC2::VPCGatewayAttachment",
    "Properties": {
-    "VpcId": {
-     "Ref": "ClusterVpcFAA3CEDF"
-    },
     "InternetGatewayId": {
      "Ref": "ClusterVpcIGW1E358A6E"
+    },
+    "VpcId": {
+     "Ref": "ClusterVpcFAA3CEDF"
     }
    },
    "Metadata": {
@@ -833,13 +833,6 @@
   "ServiceLBSecurityGrouptocdkecscodedeployserviceServiceSecurityGroup9DF0F5D5801750432E": {
    "Type": "AWS::EC2::SecurityGroupEgress",
    "Properties": {
-    "GroupId": {
-     "Fn::GetAtt": [
-      "ServiceLBSecurityGroupF7435A5C",
-      "GroupId"
-     ]
-    },
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "DestinationSecurityGroupId": {
      "Fn::GetAtt": [
@@ -848,6 +841,13 @@
      ]
     },
     "FromPort": 80,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "ServiceLBSecurityGroupF7435A5C",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
     "ToPort": 80
    },
    "DependsOn": [
@@ -1215,7 +1215,6 @@
   "ServiceSecurityGroupfromcdkecscodedeployserviceServiceLBSecurityGroupD78B8ED9801A3479E0": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "FromPort": 80,
     "GroupId": {
@@ -1224,6 +1223,7 @@
       "GroupId"
      ]
     },
+    "IpProtocol": "tcp",
     "SourceSecurityGroupId": {
      "Fn::GetAtt": [
       "ServiceLBSecurityGroupF7435A5C",
@@ -1621,11 +1621,6 @@
      ]
     },
     "Name": "cdkecscodedeplob4f38c",
-    "RuntimeVersion": "syn-nodejs-puppeteer-4.0",
-    "Schedule": {
-     "DurationInSeconds": "0",
-     "Expression": "rate(5 minutes)"
-    },
     "RunConfig": {
      "EnvironmentVariables": {
       "baseUrl": {
@@ -1646,6 +1641,11 @@
       "testSteps": "[{\"name\":\"health\",\"path\":\"/health\",\"jmesPath\":\"status\",\"expectedValue\":\"ok\"}]"
      }
     },
+    "RuntimeVersion": "syn-nodejs-puppeteer-4.0",
+    "Schedule": {
+     "DurationInSeconds": "0",
+     "Expression": "rate(5 minutes)"
+    },
     "StartCanaryAfterCreation": true
    },
    "DependsOn": [
@@ -1658,7 +1658,6 @@
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
     "ComparisonOperator": "LessThanThreshold",
-    "EvaluationPeriods": 2,
     "Dimensions": [
      {
       "Name": "CanaryName",
@@ -1667,6 +1666,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 2,
     "MetricName": "SuccessPercent",
     "Namespace": "CloudWatchSynthetics",
     "Period": 300,
@@ -1682,6 +1682,7 @@
   "ServiceHealthAlarmDAB0EF53": {
    "Type": "AWS::CloudWatch::CompositeAlarm",
    "Properties": {
+    "AlarmName": "cdkecscodedeployserviceServiceHealthAlarm93201C59",
     "AlarmRule": {
      "Fn::Join": [
       "",
@@ -1696,8 +1697,7 @@
        "\"))"
       ]
      ]
-    },
-    "AlarmName": "cdkecscodedeployserviceServiceHealthAlarm93201C59"
+    }
    }
   },
   "ServiceGreenTargetGroup3BE32266": {
@@ -1770,15 +1770,6 @@
   "ServiceDeploymentGroupE338BE38": {
    "Type": "AWS::CodeDeploy::DeploymentGroup",
    "Properties": {
-    "ApplicationName": {
-     "Ref": "ServiceApplication92776FC3"
-    },
-    "ServiceRoleArn": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupServiceRole2FF13484",
-      "Arn"
-     ]
-    },
     "AlarmConfiguration": {
      "Alarms": [
       {
@@ -1788,6 +1779,9 @@
       }
      ],
      "Enabled": true
+    },
+    "ApplicationName": {
+     "Ref": "ServiceApplication92776FC3"
     },
     "AutoRollbackConfiguration": {
      "Enabled": true,
@@ -1861,6 +1855,12 @@
         ]
        }
       }
+     ]
+    },
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupServiceRole2FF13484",
+      "Arn"
      ]
     }
    }
@@ -2024,12 +2024,6 @@
      },
      "S3Key": "dd70c9291f90686877dd7eb18ea62ac7d87af05bff8571f92ef962cc9026fa2c.zip"
     },
-    "Role": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupDeploymentDeploymentProviderOnEventLambdaServiceRole6EA4E767",
-      "Arn"
-     ]
-    },
     "Description": "src/ecs-deployment-provider/on-event.lambda.ts",
     "Environment": {
      "Variables": {
@@ -2037,6 +2031,12 @@
      }
     },
     "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupDeploymentDeploymentProviderOnEventLambdaServiceRole6EA4E767",
+      "Arn"
+     ]
+    },
     "Runtime": "nodejs18.x",
     "Timeout": 60
    },
@@ -2167,12 +2167,6 @@
      },
      "S3Key": "65cf9f712727efa44fdfcabd0c3af10a91fab1a4cc79fa5408f9226165d29ec8.zip"
     },
-    "Role": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupDeploymentDeploymentProviderIsCompleteLambdaServiceRoleC7357CFE",
-      "Arn"
-     ]
-    },
     "Description": "src/ecs-deployment-provider/is-complete.lambda.ts",
     "Environment": {
      "Variables": {
@@ -2180,6 +2174,12 @@
      }
     },
     "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupDeploymentDeploymentProviderIsCompleteLambdaServiceRoleC7357CFE",
+      "Arn"
+     ]
+    },
     "Runtime": "nodejs18.x",
     "Timeout": 60
    },
@@ -2356,13 +2356,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonEventServiceRole4597B89C",
-      "Arn"
-     ]
+     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2385,7 +2379,13 @@
      }
     },
     "Handler": "framework.onEvent",
-    "Runtime": "nodejs14.x",
+    "Role": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonEventServiceRole4597B89C",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2562,13 +2562,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkisCompleteServiceRole36179A24",
-      "Arn"
-     ]
+     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
     },
     "Description": "AWS CDK resource provider framework - isComplete (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2588,7 +2582,13 @@
      }
     },
     "Handler": "framework.isComplete",
-    "Runtime": "nodejs14.x",
+    "Role": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkisCompleteServiceRole36179A24",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2765,13 +2765,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonTimeoutServiceRole92068547",
-      "Arn"
-     ]
+     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
     },
     "Description": "AWS CDK resource provider framework - onTimeout (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2791,7 +2785,13 @@
      }
     },
     "Handler": "framework.onTimeout",
-    "Runtime": "nodejs14.x",
+    "Role": {
+     "Fn::GetAtt": [
+      "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonTimeoutServiceRole92068547",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
     "Timeout": 900
    },
    "DependsOn": [

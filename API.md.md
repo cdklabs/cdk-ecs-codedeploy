@@ -832,12 +832,12 @@ const apiCanaryProps: ApiCanaryProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.baseUrl">baseUrl</a></code> | <code>string</code> | The base URL to use for tests. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.artifactsBucketLocation">artifactsBucketLocation</a></code> | <code>@aws-cdk/aws-synthetics-alpha.ArtifactsBucketLocation</code> | The s3 location that stores the data of the canary runs. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.artifactsBucketLocation">artifactsBucketLocation</a></code> | <code>aws-cdk-lib.aws-synthetics.ArtifactsBucketLocation</code> | The s3 location that stores the data of the canary runs. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.canaryName">canaryName</a></code> | <code>string</code> | The name of the canary. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.durationAlarmThreshold">durationAlarmThreshold</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for triggering an alarm on the test duration. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.failureRetentionPeriod">failureRetentionPeriod</a></code> | <code>aws-cdk-lib.Duration</code> | How many days should failed runs be retained. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | Canary execution role. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.schedule">schedule</a></code> | <code>@aws-cdk/aws-synthetics-alpha.Schedule</code> | Specify the schedule for how often the canary runs. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws-synthetics.Schedule</code> | Specify the schedule for how often the canary runs. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.securityGroups">securityGroups</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup[]</code> | The list of security groups to associate with the canary's network interfaces. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.startAfterCreation">startAfterCreation</a></code> | <code>boolean</code> | Whether or not the canary should start after creation. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanaryProps.property.steps">steps</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiTestStep">ApiTestStep</a>[]</code> | The steps to perform in the synthetic test. |
@@ -867,7 +867,7 @@ The base URL to use for tests.
 public readonly artifactsBucketLocation: ArtifactsBucketLocation;
 ```
 
-- *Type:* @aws-cdk/aws-synthetics-alpha.ArtifactsBucketLocation
+- *Type:* aws-cdk-lib.aws-synthetics.ArtifactsBucketLocation
 - *Default:* A new s3 bucket will be created without a prefix.
 
 The s3 location that stores the data of the canary runs.
@@ -949,7 +949,7 @@ If you provide a Role, you must add the required permissions.
 public readonly schedule: Schedule;
 ```
 
-- *Type:* @aws-cdk/aws-synthetics-alpha.Schedule
+- *Type:* aws-cdk-lib.aws-synthetics.Schedule
 - *Default:* 'rate(5 minutes)'
 
 Specify the schedule for how often the canary runs.
@@ -2294,8 +2294,3 @@ public toString(): string
 ```
 
 Render JSON string for this AppSpec to be used.
-
-
-
-
-
