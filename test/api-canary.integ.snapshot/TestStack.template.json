@@ -222,17 +222,17 @@
      ]
     },
     "Name": "teststacksynthe589c28",
-    "RuntimeVersion": "syn-nodejs-puppeteer-4.0",
-    "Schedule": {
-     "DurationInSeconds": "0",
-     "Expression": "rate(5 minutes)"
-    },
     "RunConfig": {
      "EnvironmentVariables": {
       "baseUrl": "https://xkcd.com",
       "threadCount": "5",
       "testSteps": "[{\"name\":\"info\",\"path\":\"/614/info.0.json\",\"jmesPath\":\"safe_title\",\"expectedValue\":\"Woodpecker\"}]"
      }
+    },
+    "RuntimeVersion": "syn-nodejs-puppeteer-4.0",
+    "Schedule": {
+     "DurationInSeconds": "0",
+     "Expression": "rate(5 minutes)"
     },
     "StartCanaryAfterCreation": true
    }
@@ -241,7 +241,6 @@
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
     "ComparisonOperator": "LessThanThreshold",
-    "EvaluationPeriods": 2,
     "Dimensions": [
      {
       "Name": "CanaryName",
@@ -250,6 +249,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 2,
     "MetricName": "SuccessPercent",
     "Namespace": "CloudWatchSynthetics",
     "Period": 300,
@@ -261,7 +261,6 @@
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
     "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 2,
     "Dimensions": [
      {
       "Name": "CanaryName",
@@ -270,6 +269,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 2,
     "MetricName": "Duration",
     "Namespace": "CloudWatchSynthetics",
     "Period": 300,
