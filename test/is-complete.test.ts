@@ -1,4 +1,4 @@
-import { CodeDeployClient, GetDeploymentCommand } from '@aws-sdk/client-codedeploy';
+import { CodeDeployClient, ErrorCode, GetDeploymentCommand } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 import lambdaTester from 'lambda-tester';
 import { handler, IsCompleteRequest, IsCompleteResponse, DeploymentStatus } from '../src/ecs-deployment-provider/is-complete.lambda';
@@ -123,7 +123,7 @@ describe('isComplete', () => {
             rollbackDeploymentId: '22222222',
           },
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },
@@ -157,7 +157,7 @@ describe('isComplete', () => {
             rollbackDeploymentId: '22222222',
           },
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },
@@ -177,7 +177,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
-        expect(error.message).toEqual('Deployment Failed: [xxx] failure occurred');
+        expect(error.message).toEqual('Deployment Failed: [ALARM_ACTIVE] failure occurred');
       });
   });
   test('Throws error when create deployment failed and no rollback found', () => {
@@ -188,7 +188,7 @@ describe('isComplete', () => {
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },
@@ -201,7 +201,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
-        expect(error.message).toEqual('Deployment Failed: [xxx] failure occurred');
+        expect(error.message).toEqual('Deployment Failed: [ALARM_ACTIVE] failure occurred');
       });
   });
   test('Is complete when delete deployment succeeds', () => {
@@ -255,7 +255,7 @@ describe('isComplete', () => {
             rollbackDeploymentId: '22222222',
           },
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },
@@ -286,7 +286,7 @@ describe('isComplete', () => {
         deploymentInfo: {
           status: DeploymentStatus.FAILED,
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },
@@ -313,7 +313,7 @@ describe('isComplete', () => {
             rollbackDeploymentId: '22222222',
           },
           errorInformation: {
-            code: 'xxx',
+            code: ErrorCode.ALARM_ACTIVE,
             message: 'failure occurred',
           },
         },

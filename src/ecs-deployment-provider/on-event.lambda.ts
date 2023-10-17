@@ -1,4 +1,4 @@
-import { CodeDeploy } from '@aws-sdk/client-codedeploy';
+import { AutoRollbackConfiguration, AutoRollbackEvent, CodeDeploy } from '@aws-sdk/client-codedeploy';
 import { Logger } from './logger';
 
 /**
@@ -126,11 +126,11 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
     case 'Update': {
       // create deployment
       const props = event.ResourceProperties;
-      let autoRollbackConfiguration;
+      let autoRollbackConfiguration : AutoRollbackConfiguration | undefined;
       if (props.autoRollbackConfigurationEnabled === 'true') {
         autoRollbackConfiguration = {
           enabled: true,
-          events: props.autoRollbackConfigurationEvents.split(','),
+          events: props.autoRollbackConfigurationEvents.split(',') as AutoRollbackEvent[],
         };
       } else if (props.autoRollbackConfigurationEnabled === 'false') {
         autoRollbackConfiguration = {
