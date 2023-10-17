@@ -1,4 +1,4 @@
-import { CodeDeployClient, CreateDeploymentCommand, StopDeploymentCommand } from '@aws-sdk/client-codedeploy';
+import { AutoRollbackEvent, CodeDeployClient, CreateDeploymentCommand, StopDeploymentCommand, StopStatus } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 import lambdaTester from 'lambda-tester';
 import { handler, OnEventRequest, OnEventResponse } from '../src/ecs-deployment-provider/on-event.lambda';
@@ -32,7 +32,7 @@ describe('onEvent', () => {
           deploymentConfigName: 'testdeployconfig',
           deploymentGroupName: 'testdeploygroup',
           autoRollbackConfigurationEnabled: 'true',
-          autoRollbackConfigurationEvents: 'event1,event2',
+          autoRollbackConfigurationEvents: 'DEPLOYMENT_STOP_ON_ALARM,DEPLOYMENT_FAILURE',
           description: 'testing',
           revisionAppSpecContent: 'appspec-goes-here',
         },
@@ -45,7 +45,7 @@ describe('onEvent', () => {
           deploymentGroupName: 'testdeploygroup',
           autoRollbackConfiguration: {
             enabled: true,
-            events: ['event1', 'event2'],
+            events: [AutoRollbackEvent.DEPLOYMENT_STOP_ON_ALARM, AutoRollbackEvent.DEPLOYMENT_FAILURE],
           },
           description: 'testing',
           revision: {
@@ -160,7 +160,7 @@ describe('onEvent', () => {
 
   test('Delete deployment successfully stops', () => {
     codeDeployMock.on(StopDeploymentCommand).resolves({
-      status: 'ok',
+      status: StopStatus.SUCCEEDED,
       statusMessage: 'successfully stopped',
     });
 
