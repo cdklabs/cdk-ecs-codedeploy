@@ -1,28 +1,7 @@
 import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
-import { awscdk, javascript, JsonPatch } from 'projen';
+import { awscdk, javascript } from 'projen';
 import { Stability } from 'projen/lib/cdk';
 
-export interface WorkflowDotNetVersionPatchOptions {
-  /**
-   * The workflow to patch.
-   */
-  workflow: string;
-  /**
-   * Name of the job.
-   */
-  jobName: string;
-  /**
-   * dotNet Version
-   */
-  dotNetVersion: string;
-}
-export class WorkflowDotNetVersionPatch {
-  public constructor(project: javascript.NodeProject, options: WorkflowDotNetVersionPatchOptions) {
-    project.tryFindObjectFile(`.github/workflows/${options.workflow}.yml`)?.patch(
-      JsonPatch.replace(`/jobs/${options.jobName}/steps/1/with/dotnet-version`, options.dotNetVersion),
-    );
-  }
-}
 const cdkVersion = '2.99.0';
 const project = new CdklabsConstructLibrary({
   setNodeEngineVersion: false,
@@ -105,8 +84,5 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 project.upgradeWorkflow?.postUpgradeTask.spawn(
   project.tasks.tryFind('integ:snapshot-all')!,
 );
-
-new WorkflowDotNetVersionPatch(project, { workflow: 'build', jobName: 'package-dotnet', dotNetVersion: '6.x' });
-new WorkflowDotNetVersionPatch(project, { workflow: 'release', jobName: 'release_nuget', dotNetVersion: '6.x' });
 
 project.synth();
