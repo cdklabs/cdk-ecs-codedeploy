@@ -577,15 +577,7 @@
     },
     "post-upgrade": {
       "name": "post-upgrade",
-      "description": "Runs after upgrading dependencies",
-      "steps": [
-        {
-          "spawn": "bundle"
-        },
-        {
-          "spawn": "integ:snapshot-all"
-        }
-      ]
+      "description": "Runs after upgrading dependencies"
     },
     "pre-compile": {
       "name": "pre-compile",
@@ -702,16 +694,13 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws-cdk/integ-tests-alpha,@types/aws-lambda,@types/jest,@types/lambda-tester,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,aws-cdk,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,lambda-tester,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-codedeploy,jmespath,aws-cdk-lib,constructs"
+          "exec": "npx npm-check-updates@latest --upgrade --target=minor --peer --dep=prod,peer --filter=@aws-sdk/client-codedeploy,jmespath,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag cdklabs-projen-project-types esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta lambda-tester npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-codedeploy jmespath aws-cdk-lib constructs"
+          "exec": "yarn upgrade @aws-sdk/client-codedeploy jmespath aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
@@ -729,10 +718,7 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --filter=cdklabs-projen-project-types,projen --upgrade"
+          "exec": "npx npm-check-updates@latest --upgrade --target=latest --peer --dep=dev,peer,prod,optional --filter=cdklabs-projen-project-types,projen"
         },
         {
           "exec": "yarn install --check-files"
@@ -742,6 +728,33 @@
         },
         {
           "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-dev-deps": {
+      "name": "upgrade-dev-deps",
+      "description": "upgrade dev dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "npx npm-check-updates@latest --upgrade --target=minor --peer --dep=dev --filter=@aws-cdk/integ-tests-alpha,@types/aws-lambda,@types/jest,@types/lambda-tester,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,aws-cdk,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,lambda-tester,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag cdklabs-projen-project-types esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta lambda-tester npm-check-updates projen standard-version ts-jest ts-node typescript"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
         }
       ]
     },
