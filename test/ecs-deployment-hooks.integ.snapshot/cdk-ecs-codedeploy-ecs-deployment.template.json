@@ -1522,7 +1522,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -1676,7 +1676,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -2773,7 +2773,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x"
+    "Runtime": "nodejs20.x"
    },
    "DependsOn": [
     "FunctionServiceRoleDefaultPolicy2F49994A",

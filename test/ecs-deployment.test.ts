@@ -38,7 +38,7 @@ describe('CodeDeploy ECS Deployment', () => {
     Template.fromStack(stack).hasResource('AWS::Lambda::Function', {
       Properties: {
         Timeout: 60,
-        Runtime: 'nodejs18.x',
+        Runtime: 'nodejs20.x',
         Handler: 'index.handler',
       },
     });
@@ -46,7 +46,7 @@ describe('CodeDeploy ECS Deployment', () => {
     Template.fromStack(stack).hasResource('AWS::Lambda::Function', {
       Properties: {
         Timeout: 60,
-        Runtime: 'nodejs18.x',
+        Runtime: 'nodejs20.x',
         Handler: 'index.handler',
       },
     });

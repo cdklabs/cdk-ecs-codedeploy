@@ -60,7 +60,7 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -69,7 +69,7 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },
@@ -78,7 +78,7 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -87,7 +87,7 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
+          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },

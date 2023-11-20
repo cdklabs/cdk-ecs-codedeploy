@@ -162,7 +162,7 @@ const dg = new codedeploy.EcsDeploymentGroup(stack, 'DG', {
 });
 
 const testLambda = new lambda.Function(stack, 'Function', {
-  runtime: lambda.Runtime.NODEJS_18_X,
+  runtime: lambda.Runtime.NODEJS_20_X,
   handler: 'index.handler',
   code: new lambda.InlineCode(`
     var { CodeDeployClient, PutLifecycleEventHookExecutionStatusCommand } = require('@aws-sdk/client-codedeploy');

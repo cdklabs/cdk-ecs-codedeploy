@@ -777,8 +777,7 @@
     "ClusterVpcPublicSubnet1RouteTableAssociation0FBEF1F4",
     "ClusterVpcPublicSubnet2DefaultRoute97446C8A",
     "ClusterVpcPublicSubnet2RouteTableAssociation8446B27D",
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
+    "ServiceAccessLogBucketPolicyAB330285"
    ],
    "Metadata": {
     "cdk_nag": {
@@ -815,10 +814,6 @@
      "Ref": "ClusterVpcFAA3CEDF"
     }
    },
-   "DependsOn": [
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
-   ],
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
@@ -850,10 +845,6 @@
     "IpProtocol": "tcp",
     "ToPort": 80
    },
-   "DependsOn": [
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
-   ],
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
@@ -883,8 +874,6 @@
     "Protocol": "HTTP"
    },
    "DependsOn": [
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D",
     "ServiceGreenTargetGroup3BE32266"
    ],
    "Metadata": {
@@ -915,8 +904,6 @@
     }
    },
    "DependsOn": [
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D",
     "ServiceGreenTargetGroup3BE32266"
    ],
    "Metadata": {
@@ -947,10 +934,6 @@
     "Port": 8080,
     "Protocol": "HTTP"
    },
-   "DependsOn": [
-    "ServiceAccessLogBucketPolicyAB330285",
-    "ServiceAccessLogBucket010FE97D"
-   ],
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
@@ -2037,7 +2020,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -2180,7 +2163,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 60
    },
    "DependsOn": [
