@@ -73,7 +73,7 @@
   "devDependencies": {
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
-    "@types/aws-lambda": "^8.10.129",
+    "@types/aws-lambda": "^8.10.130",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.2",
     "@types/node": "^16",
@@ -83,7 +83,7 @@
     "aws-cdk-lib": "2.110.0",
     "aws-sdk-client-mock": "^3.0.0",
     "aws-sdk-client-mock-jest": "^3.0.0",
-    "cdk-nag": "^2.27.203",
+    "cdk-nag": "^2.27.204",
     "cdklabs-projen-project-types": "^0.1.182",
     "constructs": "10.0.5",
     "esbuild": "^0.19.8",
