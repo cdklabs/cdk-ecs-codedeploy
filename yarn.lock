@@ -1857,16 +1857,16 @@
   integrity sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==
 
 "@types/node@*":
-  version "20.10.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.3.tgz#4900adcc7fc189d5af5bb41da8f543cea6962030"
-  integrity sha512-XJavIpZqiXID5Yxnxv3RUDKTN5b81ddNC3ecsA0SoFXz/QU8OGBwZGMomiq0zw+uuqbL/krztv/DINAQ/EV4gg==
+  version "20.10.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.4.tgz#b246fd84d55d5b1b71bf51f964bd514409347198"
+  integrity sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==
   dependencies:
     undici-types "~5.26.4"
 
 "@types/node@^16":
-  version "16.18.67"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.67.tgz#518feb681958dedf2d187b8b4d20bf3530afe1fb"
-  integrity sha512-gUa0tDO9oxyAYO9V9tqxDJguVMDpqUwH5I5Q9ASYBCso+8CUdJlKPKDYS1YSS9kyZWIduDafZvucGM0zGNKFjg==
+  version "16.18.68"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.68.tgz#3155f64a961b3d8d10246c80657f9a7292e3421a"
+  integrity sha512-sG3hPIQwJLoewrN7cr0dwEy+yF5nD4D/4FxtQpFciRD/xwUzgD+G05uxZHv5mhfXo4F9Jkp13jjn0CC2q325sg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.4"
@@ -2471,10 +2471,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.27.209:
-  version "2.27.209"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.209.tgz#a72097f87e9572da40cb5ac164dd65b99a068710"
-  integrity sha512-S3Fa39LVdf7x0A2tDnIzYmVxX6uEMhq3UZkE+kfi7dXZajZQMGM0WNix7ghmTLcllhC7L1RfpUW6IILOOPhr5w==
+cdk-nag@^2.27.210:
+  version "2.27.210"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.210.tgz#3e717f2d16d05e3bbb9bd8c249124af872feee4f"
+  integrity sha512-RD2l1sRnaZfZgUpfoReqCn64+psW4dKFnLyPyJpss04e/iI+Mu2k58wNN+njk+nz0QDgHmohhVw003oxi+Ycug==
 
 cdklabs-projen-project-types@^0.1.182:
   version "0.1.182"
@@ -3062,9 +3062,9 @@ downlevel-dts@^0.11.0:
     typescript next
 
 electron-to-chromium@^1.4.601:
-  version "1.4.606"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.606.tgz#d9f83f7d06a253ccdd99475dccbbd38d4758ba2f"
-  integrity sha512-Zdv0XuhfyWZUsQ5Uq59d43ZmZOdoGZNWjeN4WCxxlQaP8crAWdnWcTxfHKcaJl6PW2SWpHx6DsxSx7v6KcGCuw==
+  version "1.4.608"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.608.tgz#ff567c51dde4892ae330860c7d9f19571e9e1d69"
+  integrity sha512-J2f/3iIIm3Mo0npneITZ2UPe4B1bg8fTNrFjD8715F/k1BvbviRuqYGkET1PgprrczXYTHFvotbBOmUp6KE0uA==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -6548,9 +6548,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.4.0-dev.20231206"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.0-dev.20231206.tgz#222631e1241de9e833ed2dbd8bc0853c3f43250a"
-  integrity sha512-bKJ5+3jwj4qTzNg7C97rCVLgyyYuzjYh/Pf0zlpOyyq9vpI3TVLO09d1gQ8jS5M+BSLONojTijei0KHmFoBezw==
+  version "5.4.0-dev.20231207"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.0-dev.20231207.tgz#a4b22bb6f47251d2000c0a7cebedd6d6be1bf4ac"
+  integrity sha512-9OsUooJnRMwemgmnZVwLewnl3XzbEj61obef4BbooBr9w9L7i0ILMDYHAwQnYsxx/LLpw1+mvbDl30jO48mReA==
 
 typescript@~3.9.10:
   version "3.9.10"
