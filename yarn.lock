@@ -1864,9 +1864,9 @@
   integrity sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==
 
 "@types/node@*":
-  version "20.10.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.4.tgz#b246fd84d55d5b1b71bf51f964bd514409347198"
-  integrity sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==
+  version "20.10.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.5.tgz#47ad460b514096b7ed63a1dae26fad0914ed3ab2"
+  integrity sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2478,10 +2478,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.27.218:
-  version "2.27.218"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.218.tgz#134246c636727509ecaed4697c2f7a2a590756dd"
-  integrity sha512-eANLuS6sSNcpWUAIojwb6e3lOuoeuKn0v74/EPjj86Wmt+koxhEsXcHqUNYIkpTkiNbdIRMtaIUiaYxvchlaow==
+cdk-nag@^2.27.219:
+  version "2.27.219"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.27.219.tgz#7cc85c087c9b35ae6b5f79317290b1c8d34ab6a2"
+  integrity sha512-PmjVjOjfoj3wBPgx73POsD+QZwH/aq/wvgPuwjZQJH44zpwfKolEwfc2bLtKOFL2NSbzr0Qpy1iSsX0F+O043w==
 
 cdklabs-projen-project-types@^0.1.182:
   version "0.1.182"
@@ -6555,9 +6555,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.4.0-dev.20231216"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.0-dev.20231216.tgz#5dbbc18000b8b868605299fa69507b9a7873db42"
-  integrity sha512-N38i9y3t+zXZuhzVuU7Czkfb1gGhsp4qCrOFxjJrTywFYFx8BlE2ugpYCbS59Sb7e42RpHxKjTGrPOBpOnouXQ==
+  version "5.4.0-dev.20231217"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.0-dev.20231217.tgz#7b774444c14ae6ede3149753ca9f9301f91200e6"
+  integrity sha512-LfTSjpGkhz5vojqrbHPD0UyPplTewag9lJpWP0U4hfeOXi62DN1CBp/us35zPVmD49iznxiIgTW9rNMbEiJYtw==
 
 typescript@~3.9.10:
   version "3.9.10"
