@@ -76,7 +76,7 @@
     "@types/aws-lambda": "^8.10.130",
     "@types/jest": "^27",
     "@types/lambda-tester": "^3.6.2",
-    "@types/node": "^16",
+    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "^2",
@@ -84,7 +84,7 @@
     "aws-sdk-client-mock": "^3.0.0",
     "aws-sdk-client-mock-jest": "^3.0.0",
     "cdk-nag": "^2.27.221",
-    "cdklabs-projen-project-types": "^0.1.182",
+    "cdklabs-projen-project-types": "^0.1.183",
     "constructs": "10.0.5",
     "esbuild": "^0.19.10",
     "eslint": "^8",
@@ -92,7 +92,7 @@
     "eslint-plugin-import": "^2.29.1",
     "jest": "^27",
     "jest-junit": "^15",
-    "jsii": "1.x",
+    "jsii": "~5.2",
     "jsii-diff": "^1.93.0",
     "jsii-docgen": "^7.2.9",
     "jsii-pacmak": "^1.93.0",
@@ -116,10 +116,6 @@
     "@aws-sdk/client-codedeploy",
     "jmespath"
   ],
-  "resolutions": {
-    "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
-  },
   "keywords": [
     "aws",
     "cdk",
