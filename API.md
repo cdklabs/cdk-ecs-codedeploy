@@ -1409,7 +1409,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentConfig">deploymentConfig</a></code> | <code>aws-cdk-lib.aws_codedeploy.IEcsDeploymentConfig</code> | The deployment configuration to use for the deployment group. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentTimeout">deploymentTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for a CodeDeploy deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deregistrationDelay">deregistrationDelay</a></code> | <code>aws-cdk-lib.Duration</code> | The amount of time for ELB to wait before changing the state of a deregistering target from 'draining' to 'unused'. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_ecs.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | Optional lifecycle hooks. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.responseTimeAlarmThreshold">responseTimeAlarmThreshold</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for response time alarm. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.terminationWaitTime">terminationWaitTime</a></code> | <code>aws-cdk-lib.Duration</code> | The time to wait before terminating the original (blue) task set. |
@@ -2116,7 +2116,7 @@ The amount of time for ELB to wait before changing the state of a deregistering 
 public readonly healthCheck: HealthCheck;
 ```
 
-- *Type:* aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck
+- *Type:* aws-cdk-lib.aws_ecs.HealthCheck
 - *Default:* no health check is configured
 
 The healthcheck to configure on the Application Load Balancer target groups.

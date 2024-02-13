@@ -1,9 +1,9 @@
 import { Duration } from 'aws-cdk-lib';
 import { Alarm, AlarmRule, ComparisonOperator, CompositeAlarm, IAlarm } from 'aws-cdk-lib/aws-cloudwatch';
 import { EcsApplication, EcsDeploymentConfig, EcsDeploymentGroup, IEcsDeploymentConfig } from 'aws-cdk-lib/aws-codedeploy';
-import { BaseService, DeploymentControllerType } from 'aws-cdk-lib/aws-ecs';
+import { BaseService, DeploymentControllerType, HealthCheck } from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService, ApplicationLoadBalancedFargateServiceProps } from 'aws-cdk-lib/aws-ecs-patterns';
-import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, HealthCheck, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { BlockPublicAccess, Bucket, BucketEncryption, IBucket } from 'aws-cdk-lib/aws-s3';
 import { Schedule } from 'aws-cdk-lib/aws-synthetics';
 import { Construct } from 'constructs';
