@@ -1398,6 +1398,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.runtimePlatform">runtimePlatform</a></code> | <code>aws-cdk-lib.aws_ecs.RuntimePlatform</code> | The runtime platform of the task definition. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.taskDefinition">taskDefinition</a></code> | <code>aws-cdk-lib.aws_ecs.FargateTaskDefinition</code> | The task definition to use for tasks in the service. TaskDefinition or TaskImageOptions must be specified, but not both. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.assignPublicIp">assignPublicIp</a></code> | <code>boolean</code> | Determines whether the service will be assigned a public IP address. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_ecs.HealthCheck</code> | The health check command and associated configuration parameters for the container. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.securityGroups">securityGroups</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup[]</code> | The security groups to associate with the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.taskSubnets">taskSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | The subnets to associate with the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.accessLogBucket">accessLogBucket</a></code> | <code>aws-cdk-lib.aws_s3.IBucket</code> | The bucket to use for access logs from the Application Load Balancer. |
@@ -1409,9 +1410,9 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentConfig">deploymentConfig</a></code> | <code>aws-cdk-lib.aws_codedeploy.IEcsDeploymentConfig</code> | The deployment configuration to use for the deployment group. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentTimeout">deploymentTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for a CodeDeploy deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deregistrationDelay">deregistrationDelay</a></code> | <code>aws-cdk-lib.Duration</code> | The amount of time for ELB to wait before changing the state of a deregistering target from 'draining' to 'unused'. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_ecs.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | Optional lifecycle hooks. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.responseTimeAlarmThreshold">responseTimeAlarmThreshold</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for response time alarm. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.targetHealthCheck">targetHealthCheck</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck</code> | The healthcheck to configure on the Application Load Balancer target groups. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.terminationWaitTime">terminationWaitTime</a></code> | <code>aws-cdk-lib.Duration</code> | The time to wait before terminating the original (blue) task set. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.testPort">testPort</a></code> | <code>number</code> | The port to use for test traffic on the listener. |
 
@@ -1965,6 +1966,19 @@ Determines whether the service will be assigned a public IP address.
 
 ---
 
+##### `healthCheck`<sup>Optional</sup> <a name="healthCheck" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck"></a>
+
+```typescript
+public readonly healthCheck: HealthCheck;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.HealthCheck
+- *Default:* Health check configuration from container.
+
+The health check command and associated configuration parameters for the container.
+
+---
+
 ##### `securityGroups`<sup>Optional</sup> <a name="securityGroups" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.securityGroups"></a>
 
 ```typescript
@@ -2110,19 +2124,6 @@ The amount of time for ELB to wait before changing the state of a deregistering 
 
 ---
 
-##### `healthCheck`<sup>Optional</sup> <a name="healthCheck" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck"></a>
-
-```typescript
-public readonly healthCheck: HealthCheck;
-```
-
-- *Type:* aws-cdk-lib.aws_ecs.HealthCheck
-- *Default:* no health check is configured
-
-The healthcheck to configure on the Application Load Balancer target groups.
-
----
-
 ##### `hooks`<sup>Optional</sup> <a name="hooks" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks"></a>
 
 ```typescript
@@ -2146,6 +2147,19 @@ public readonly responseTimeAlarmThreshold: Duration;
 - *Default:* no alarm will be created
 
 The threshold for response time alarm.
+
+---
+
+##### `targetHealthCheck`<sup>Optional</sup> <a name="targetHealthCheck" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.targetHealthCheck"></a>
+
+```typescript
+public readonly targetHealthCheck: HealthCheck;
+```
+
+- *Type:* aws-cdk-lib.aws_elasticloadbalancingv2.HealthCheck
+- *Default:* no health check is configured
+
+The healthcheck to configure on the Application Load Balancer target groups.
 
 ---
 
