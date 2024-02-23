@@ -1,9 +1,9 @@
 import { Duration } from 'aws-cdk-lib';
 import { Alarm, AlarmRule, ComparisonOperator, CompositeAlarm, IAlarm } from 'aws-cdk-lib/aws-cloudwatch';
 import { EcsApplication, EcsDeploymentConfig, EcsDeploymentGroup, IEcsDeploymentConfig } from 'aws-cdk-lib/aws-codedeploy';
-import { BaseService, DeploymentControllerType, HealthCheck } from 'aws-cdk-lib/aws-ecs';
+import { BaseService, DeploymentControllerType } from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService, ApplicationLoadBalancedFargateServiceProps } from 'aws-cdk-lib/aws-ecs-patterns';
-import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationListener, ApplicationProtocol, ApplicationTargetGroup, HealthCheck, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { BlockPublicAccess, Bucket, BucketEncryption, IBucket } from 'aws-cdk-lib/aws-s3';
 import { Schedule } from 'aws-cdk-lib/aws-synthetics';
 import { Construct } from 'constructs';
@@ -49,7 +49,7 @@ export interface ApplicationLoadBalancedCodeDeployedFargateServiceProps extends 
    *
    * @default - no health check is configured
    */
-  readonly healthCheck?: HealthCheck;
+  readonly targetHealthCheck?: HealthCheck;
 
   /**
    * The bucket to use for access logs from the Application Load Balancer.
@@ -173,8 +173,8 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
     if (props.deregistrationDelay) {
       this.targetGroup.setAttribute('deregistration_delay.timeout_seconds', props.deregistrationDelay.toSeconds().toString());
     }
-    if (props.healthCheck) {
-      this.targetGroup.configureHealthCheck(props.healthCheck);
+    if (props.targetHealthCheck) {
+      this.targetGroup.configureHealthCheck(props.targetHealthCheck);
     }
     this.accessLogBucket = props.accessLogBucket ??
       new Bucket(this, 'AccessLogBucket', {
@@ -259,7 +259,7 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       protocol: props.targetProtocol ?? ApplicationProtocol.HTTP,
       protocolVersion: props.protocolVersion,
       deregistrationDelay: props.deregistrationDelay,
-      healthCheck: props.healthCheck,
+      healthCheck: props.targetHealthCheck,
       targetType: TargetType.IP,
     });
 

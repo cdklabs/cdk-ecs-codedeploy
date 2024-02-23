@@ -1,6 +1,7 @@
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import { AssetImage } from 'aws-cdk-lib/aws-ecs';
+import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as cdk from 'aws-cdk-lib/core';
 import { ApplicationLoadBalancedCodeDeployedFargateService } from '../src';
@@ -39,6 +40,59 @@ describe('Fargate Service', () => {
     });
     template.resourceCountIs('AWS::CloudWatch::CompositeAlarm', 1);
 
+  });
+  test('can be created with target group health check', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', {
+      env: {
+        account: 'dummy',
+        region: 'us-east-1',
+      },
+    });
+    const cluster = new ecs.Cluster(stack, 'Cluster');
+    const image = new AssetImage('test/nginx');
+    new ApplicationLoadBalancedCodeDeployedFargateService(stack, 'Service', {
+      cluster,
+      taskImageOptions: {
+        image,
+      },
+      healthCheck: {
+        command: ['CMD-SHELL', 'exit 0'],
+        interval: cdk.Duration.seconds(10),
+        timeout: cdk.Duration.seconds(5),
+      },
+      targetHealthCheck: {
+        path: '/health',
+        port: '80',
+        protocol: elb.Protocol.HTTP,
+        timeout: cdk.Duration.seconds(29),
+        interval: cdk.Duration.seconds(30),
+      },
+    });
+    const template = Template.fromStack(stack);
+    template.hasResource('AWS::ECS::TaskDefinition', {
+      Properties: {
+        ContainerDefinitions: [
+          {
+            Essential: true,
+            HealthCheck: {
+              Command: ['CMD-SHELL', 'exit 0'],
+              Interval: 10,
+              Timeout: 5,
+            },
+          },
+        ],
+      },
+    });
+    template.hasResource('AWS::ElasticLoadBalancingV2::TargetGroup', {
+      Properties: {
+        HealthCheckIntervalSeconds: 30,
+        HealthCheckPath: '/health',
+        HealthCheckPort: '80',
+        HealthCheckProtocol: 'HTTP',
+        HealthCheckTimeoutSeconds: 29,
+      },
+    });
   });
   test('can create without alarms', () => {
     const app = new cdk.App();
