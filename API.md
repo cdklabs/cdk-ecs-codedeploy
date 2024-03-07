@@ -1407,7 +1407,9 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.apiCanaryThreadCount">apiCanaryThreadCount</a></code> | <code>number</code> | The number of threads to run concurrently for the synthetic test. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.apiCanaryTimeout">apiCanaryTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The threshold for how long a api canary can take to run. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.apiTestSteps">apiTestSteps</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiTestStep">ApiTestStep</a>[]</code> | The steps to run in the canary. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.applicationName">applicationName</a></code> | <code>string</code> | The physical, human-readable name of the CodeDeploy Application. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentConfig">deploymentConfig</a></code> | <code>aws-cdk-lib.aws_codedeploy.IEcsDeploymentConfig</code> | The deployment configuration to use for the deployment group. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentGroupName">deploymentGroupName</a></code> | <code>string</code> | The physical, human-readable name of the CodeDeploy Deployment Group. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentTimeout">deploymentTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The timeout for a CodeDeploy deployment. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deregistrationDelay">deregistrationDelay</a></code> | <code>aws-cdk-lib.Duration</code> | The amount of time for ELB to wait before changing the state of a deregistering target from 'draining' to 'unused'. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.hooks">hooks</a></code> | <code><a href="#@cdklabs/cdk-ecs-codedeploy.AppSpecHooks">AppSpecHooks</a></code> | Optional lifecycle hooks. |
@@ -2085,6 +2087,19 @@ The steps to run in the canary.
 
 ---
 
+##### `applicationName`<sup>Optional</sup> <a name="applicationName" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.applicationName"></a>
+
+```typescript
+public readonly applicationName: string;
+```
+
+- *Type:* string
+- *Default:* an auto-generated name will be used
+
+The physical, human-readable name of the CodeDeploy Application.
+
+---
+
 ##### `deploymentConfig`<sup>Optional</sup> <a name="deploymentConfig" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentConfig"></a>
 
 ```typescript
@@ -2095,6 +2110,19 @@ public readonly deploymentConfig: IEcsDeploymentConfig;
 - *Default:* EcsDeploymentConfig.ALL_AT_ONCE
 
 The deployment configuration to use for the deployment group.
+
+---
+
+##### `deploymentGroupName`<sup>Optional</sup> <a name="deploymentGroupName" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.deploymentGroupName"></a>
+
+```typescript
+public readonly deploymentGroupName: string;
+```
+
+- *Type:* string
+- *Default:* An auto-generated name will be used.
+
+The physical, human-readable name of the CodeDeploy Deployment Group.
 
 ---
 

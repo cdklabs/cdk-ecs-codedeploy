@@ -113,6 +113,20 @@ export interface ApplicationLoadBalancedCodeDeployedFargateServiceProps extends 
    * @default - no lifecycle hooks
    */
   readonly hooks?: AppSpecHooks;
+
+  /**
+   * The physical, human-readable name of the CodeDeploy Application.
+   *
+   * @default an auto-generated name will be used
+   */
+  readonly applicationName?: string;
+
+  /**
+   * The physical, human-readable name of the CodeDeploy Deployment Group.
+   *
+   * @default An auto-generated name will be used.
+   */
+  readonly deploymentGroupName?: string;
 }
 
 /**
@@ -269,9 +283,13 @@ export class ApplicationLoadBalancedCodeDeployedFargateService extends Applicati
       targetGroups: [this.greenTargetGroup],
     });
 
-    this.application = new EcsApplication(this, 'Application');
+    this.application = new EcsApplication(this, 'Application', {
+      applicationName: props.applicationName,
+    });
+
     this.deploymentGroup = new EcsDeploymentGroup(this, 'DeploymentGroup', {
       application: this.application,
+      deploymentGroupName: props.deploymentGroupName,
       alarms: this.healthAlarm?[this.healthAlarm]:undefined,
       service: this.service,
       blueGreenDeploymentConfig: {
