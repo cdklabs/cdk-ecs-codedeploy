@@ -1867,7 +1867,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
+     "S3Key": "4b8313cdc235017293aeaa9b32282f38142f7e6923fd0ac5322de1edf4b426d7.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2092,7 +2092,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
+     "S3Key": "4b8313cdc235017293aeaa9b32282f38142f7e6923fd0ac5322de1edf4b426d7.zip"
     },
     "Description": "AWS CDK resource provider framework - isComplete (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2314,7 +2314,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
+     "S3Key": "4b8313cdc235017293aeaa9b32282f38142f7e6923fd0ac5322de1edf4b426d7.zip"
     },
     "Description": "AWS CDK resource provider framework - onTimeout (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {

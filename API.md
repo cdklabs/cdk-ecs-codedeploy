@@ -1393,6 +1393,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.taskImageOptions">taskImageOptions</a></code> | <code>aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedTaskImageOptions</code> | The properties required to create a new task definition. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC where the container instances will be launched or the elastic network interfaces (ENIs) will be deployed. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.cpu">cpu</a></code> | <code>number</code> | The number of cpu units used by the task. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.ephemeralStorageGiB">ephemeralStorageGiB</a></code> | <code>number</code> | The amount (in GiB) of ephemeral storage to be allocated to the task. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.memoryLimitMiB">memoryLimitMiB</a></code> | <code>number</code> | The amount (in MiB) of memory used by the task. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.platformVersion">platformVersion</a></code> | <code>aws-cdk-lib.aws_ecs.FargatePlatformVersion</code> | The platform version on which to run your service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.runtimePlatform">runtimePlatform</a></code> | <code>aws-cdk-lib.aws_ecs.RuntimePlatform</code> | The runtime platform of the task definition. |
@@ -1875,6 +1876,23 @@ Valid values, which determines your range of valid values for the memory paramet
 16384 (16 vCPU) - Available memory values: Between 32GB and 120GB in 8GB increments
 
 This default is set in the underlying FargateTaskDefinition construct.
+
+---
+
+##### `ephemeralStorageGiB`<sup>Optional</sup> <a name="ephemeralStorageGiB" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.ephemeralStorageGiB"></a>
+
+```typescript
+public readonly ephemeralStorageGiB: number;
+```
+
+- *Type:* number
+- *Default:* Undefined, in which case, the task will receive 20GiB ephemeral storage.
+
+The amount (in GiB) of ephemeral storage to be allocated to the task.
+
+The minimum supported value is `21` GiB and the maximum supported value is `200` GiB.
+
+Only supported in Fargate platform version 1.4.0 or later.
 
 ---
 

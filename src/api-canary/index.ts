@@ -223,7 +223,7 @@ export class ApiCanary extends Canary {
         code: Code.fromBucket(canaryAsset.bucket, canaryAsset.s3ObjectKey),
         handler: 'index.handler',
       }),
-      runtime: Runtime.SYNTHETICS_NODEJS_PUPPETEER_4_0,
+      runtime: Runtime.SYNTHETICS_NODEJS_PUPPETEER_6_2,
       environmentVariables: {
         baseUrl: props.baseUrl,
         threadCount: (props.threadCount ?? 20).toString(),

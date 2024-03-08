@@ -229,7 +229,7 @@
       "testSteps": "[{\"name\":\"info\",\"path\":\"/614/info.0.json\",\"jmesPath\":\"safe_title\",\"expectedValue\":\"Woodpecker\"}]"
      }
     },
-    "RuntimeVersion": "syn-nodejs-puppeteer-4.0",
+    "RuntimeVersion": "syn-nodejs-puppeteer-6.2",
     "Schedule": {
      "DurationInSeconds": "0",
      "Expression": "rate(5 minutes)"
