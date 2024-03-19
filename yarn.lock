@@ -115,10 +115,10 @@
     "@aws-sdk/util-utf8-browser" "^3.0.0"
     tslib "^1.11.1"
 
-"@aws-sdk/client-codedeploy@^3.535.0":
-  version "3.535.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.535.0.tgz#9676ce63d59cd277e7cdb76442172093fd182f49"
-  integrity sha512-qSXGXskAHBJUOP/ZQHPAuBLjdDJaARfWkH0wjMUqqG/FAnH+q2LmbJcx3/9QYGQBgyQBfvsRMlPCKEHMAwY1XQ==
+"@aws-sdk/client-codedeploy@^3.536.0":
+  version "3.536.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.536.0.tgz#f0c681bd9a591dc3535b93f9cb9c3247de8bb548"
+  integrity sha512-O/sVR9Gc0DH8Nqnhj7rJjpgtmz4fRSKihwAunzRYJNyN7JFpkDBVboWPN3oJbWVP6yW+IUcv7vWuElR1oAZPMQ==
   dependencies:
     "@aws-crypto/sha256-browser" "3.0.0"
     "@aws-crypto/sha256-js" "3.0.0"
