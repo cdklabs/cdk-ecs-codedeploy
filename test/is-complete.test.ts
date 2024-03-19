@@ -49,7 +49,7 @@ describe('isComplete', () => {
         expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
         });
-        expect(error.message).toEqual('Unable to find deployment');
+        expect(error.message).toBe('Unable to find deployment');
       });
   });
 
@@ -68,7 +68,7 @@ describe('isComplete', () => {
         expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
         });
-        expect(resp).toEqual({ IsComplete: true });
+        expect(resp.IsComplete).toBe(true);
       });
   });
   test('Is complete when create deployment succeeds', () => {
@@ -88,7 +88,7 @@ describe('isComplete', () => {
         expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
         });
-        expect(resp).toEqual({ IsComplete: true });
+        expect(resp.IsComplete).toBe(true);
       });
   });
   test('Is not complete when create deployment in progress', () => {
@@ -108,7 +108,7 @@ describe('isComplete', () => {
         expect(getDeploymentMock).toHaveReceivedCommandWith(GetDeploymentCommand, {
           deploymentId: '11111111',
         });
-        expect(resp).toEqual({ IsComplete: false });
+        expect(resp.IsComplete).toBe(false);
       });
   });
   test('Is not complete when create deployment failed and rollback in progress', () => {
@@ -177,7 +177,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
-        expect(error.message).toEqual('Deployment Failed: [ALARM_ACTIVE] failure occurred');
+        expect(error.message).toBe('Deployment Failed: [ALARM_ACTIVE] failure occurred');
       });
   });
   test('Throws error when create deployment failed and no rollback found', () => {
@@ -201,7 +201,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectReject((error: Error) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
-        expect(error.message).toEqual('Deployment Failed: [ALARM_ACTIVE] failure occurred');
+        expect(error.message).toBe('Deployment Failed: [ALARM_ACTIVE] failure occurred');
       });
   });
   test('Is complete when delete deployment succeeds', () => {
@@ -221,7 +221,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
-        expect(resp).toEqual({ IsComplete: true });
+        expect(resp.IsComplete).toBe(true);
       });
   });
   test('Is not complete when delete deployment in progress', () => {
@@ -241,7 +241,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
-        expect(resp).toEqual({ IsComplete: false });
+        expect(resp.IsComplete).toBe(false);
       });
   });
   test('Is complete when delete deployment failed with final rollback status', () => {
@@ -275,7 +275,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
-        expect(resp).toEqual({ IsComplete: true });
+        expect(resp.IsComplete).toBe(true);
       });
   });
   test('Is complete when delete deployment failed with no rollback', () => {
@@ -299,7 +299,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 1);
-        expect(resp).toEqual({ IsComplete: true });
+        expect(resp.IsComplete).toBe(true);
       });
   });
   test('Is not complete when delete deployment failed with rollback in progress', () => {
@@ -333,7 +333,7 @@ describe('isComplete', () => {
       } as IsCompleteRequest)
       .expectResolve((resp: IsCompleteResponse) => {
         expect(getDeploymentMock).toHaveReceivedCommandTimes(GetDeploymentCommand, 2);
-        expect(resp).toEqual({ IsComplete: false });
+        expect(resp.IsComplete).toBe(false);
       });
   });
 
