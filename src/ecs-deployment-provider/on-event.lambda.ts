@@ -1,4 +1,4 @@
-import { AutoRollbackConfiguration, AutoRollbackEvent, CodeDeploy } from '@aws-sdk/client-codedeploy';
+import { AutoRollbackConfiguration, AutoRollbackEvent, CodeDeployClient, CreateDeploymentCommand, StopDeploymentCommand } from '@aws-sdk/client-codedeploy';
 import { Logger } from './logger';
 
 /**
@@ -117,7 +117,6 @@ export interface OnEventResponse {
  */
 export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
   const logger = new Logger();
-  const codedeployClient = new CodeDeploy({});
   logger.appendKeys({
     stackEvent: event.RequestType,
   });
@@ -137,7 +136,7 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
           enabled: false,
         };
       }
-      const resp = await codedeployClient.createDeployment({
+      const resp = await codedeployClient().send(new CreateDeploymentCommand({
         applicationName: props.applicationName,
         deploymentConfigName: props.deploymentConfigName,
         deploymentGroupName: props.deploymentGroupName,
@@ -149,7 +148,7 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
             content: props.revisionAppSpecContent,
           },
         },
-      });
+      }));
       if (!resp.deploymentId) {
         throw new Error('No deploymentId received from call to CreateDeployment');
       }
@@ -171,10 +170,10 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
       });
       // cancel deployment and rollback
       try {
-        const resp = await codedeployClient.stopDeployment({
+        const resp = await codedeployClient().send(new StopDeploymentCommand({
           deploymentId: event.PhysicalResourceId,
           autoRollbackEnabled: true,
-        });
+        }));
         logger.info(`Stopped deployment: ${resp.status} ${resp.statusMessage}`);
       } catch (e) {
         logger.warn('Ignoring error', { error: e as Error });
@@ -192,3 +191,7 @@ export async function handler(event: OnEventRequest): Promise<OnEventResponse> {
   }
 }
 
+
+function codedeployClient(): CodeDeployClient {
+  return new CodeDeployClient({});
+};

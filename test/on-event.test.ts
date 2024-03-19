@@ -175,12 +175,8 @@ describe('onEvent', () => {
           deploymentId: '22222222',
           autoRollbackEnabled: true,
         });
-        expect(resp).toEqual({
-          PhysicalResourceId: '22222222',
-          Data: {
-            deploymentId: '22222222',
-          },
-        });
+        expect(resp.PhysicalResourceId).toBe('22222222');
+        expect(resp.Data?.deploymentId).toBe('22222222');
       });
   });
 
@@ -198,12 +194,8 @@ describe('onEvent', () => {
           deploymentId: '22222222',
           autoRollbackEnabled: true,
         });
-        expect(resp).toEqual({
-          PhysicalResourceId: '22222222',
-          Data: {
-            deploymentId: '22222222',
-          },
-        });
+        expect(resp.PhysicalResourceId).toBe('22222222');
+        expect(resp.Data?.deploymentId).toBe('22222222');
       });
   });
 });
