@@ -743,7 +743,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,jsii,lambda-tester,projen,ts-jest,ts-node,typescript,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,lambda-tester,projen,ts-jest,ts-node,typescript"
         },
         {
           "exec": "yarn install --check-files"
