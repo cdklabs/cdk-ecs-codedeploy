@@ -30,3 +30,4 @@ test/.tmp
 test/ecs-deployment.integ.snapshot
 /.gitattributes
 /.projenrc.ts
+/projenrc
