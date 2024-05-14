@@ -96,7 +96,7 @@
     "jsii-diff": "^1.98.0",
     "jsii-docgen": "^7.2.9",
     "jsii-pacmak": "^1.98.0",
-    "jsii-rosetta": "^5.4.14",
+    "jsii-rosetta": "^5.4.17",
     "lambda-tester": "^4.0.1",
     "projen": "0.81.10",
     "standard-version": "^9",
