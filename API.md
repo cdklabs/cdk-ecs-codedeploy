@@ -1516,7 +1516,7 @@ public readonly desiredCount: number;
 ```
 
 - *Type:* number
-- *Default:* If the feature flag, ECS_REMOVE_DEFAULT_DESIRED_COUNT is false, the default is 1; if true, the default is 1 for all new services and uses the existing services desired count when updating an existing service.
+- *Default:* The default is 1 for all new services and uses the existing service's desired count when updating an existing service.
 
 The desired number of instantiations of the task definition to keep running on the service.
 
