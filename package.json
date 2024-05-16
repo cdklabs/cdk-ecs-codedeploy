@@ -86,7 +86,7 @@
     "cdk-nag": "^2.28.115",
     "cdklabs-projen-project-types": "^0.1.196",
     "constructs": "10.0.5",
-    "esbuild": "^0.21.2",
+    "esbuild": "^0.21.3",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -98,7 +98,7 @@
     "jsii-pacmak": "^1.98.0",
     "jsii-rosetta": "^5.4.17",
     "lambda-tester": "^4.0.1",
-    "projen": "0.81.11",
+    "projen": "0.81.13",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.2",
@@ -131,7 +131,7 @@
   "jest": {
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
+      "<rootDir>/@(test|src)/**/*(*.)@(spec|test).ts?(x)"
     ],
     "clearMocks": true,
     "collectCoverage": true,
