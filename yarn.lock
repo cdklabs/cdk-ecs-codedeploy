@@ -2499,10 +2499,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.28.120:
-  version "2.28.120"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.28.120.tgz#1a6b82e35034089196053010e4bc88b0dd5ccf73"
-  integrity sha512-IyfqhowlClAIJmWY0vsPlHTZg7pL/WLyW8GPtD94Cry4zMrGPY0DkLVMozMs2i0ouVJtvUiaw8W75ebvM0EHPg==
+cdk-nag@^2.28.121:
+  version "2.28.121"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.28.121.tgz#801674ff6346b632d3ea85148b2fa41ef8cc07d0"
+  integrity sha512-35e+/mgXcfb7iOgeWiaxG6DabKv47hP/jZvEvd5vsjTs4xSPPZc/mGnuLUEoarvP2rhM7QQpr9gjZ49wcca7VQ==
 
 cdklabs-projen-project-types@^0.1.196:
   version "0.1.196"
@@ -3127,9 +3127,9 @@ downlevel-dts@^0.11.0:
     typescript next
 
 electron-to-chromium@^1.4.668:
-  version "1.4.778"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.778.tgz#1e429f3f9cf572936693a898c0527adf6123ef76"
-  integrity sha512-C6q/xcUJf/2yODRxAVCfIk4j3y3LMsD0ehiE2RQNV2cxc8XU62gR6vvYh3+etSUzlgTfil+qDHI1vubpdf0TOA==
+  version "1.4.781"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.781.tgz#c4ad71dfbe6f24bdc04ef30d8db6c00573e7489e"
+  integrity sha512-aBI40ltvcWJQDW+V803FY6HjXAfi5xCWzpa3vSM/NGg7GfKEvI7ftzW4Gb2XKTRO4WsxDG7YG8ykrr/pG9bkKQ==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -6174,9 +6174,9 @@ spdx-expression-parse@^3.0.0:
     spdx-license-ids "^3.0.0"
 
 spdx-license-ids@^3.0.0:
-  version "3.0.17"
-  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.17.tgz#887da8aa73218e51a1d917502d79863161a93f9c"
-  integrity sha512-sh8PWc/ftMqAAdFiBu6Fy6JUOYjqDJBJvIhpfDMyHrr0Rbp5liZqd4TjtQ/RgfLjKFZb+LMx5hpml5qOWy0qvg==
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.18.tgz#22aa922dcf2f2885a6494a261f2d8b75345d0326"
+  integrity sha512-xxRs31BqRYHwiMzudOrpSiHtZ8i/GeionCBDSilhYRj+9gIcI8wCZTlXZKu9vZIVqViP3dcp9qE5G6AlIaD+TQ==
 
 spdx-license-list@^6.8.0, spdx-license-list@^6.9.0:
   version "6.9.0"
@@ -6669,9 +6669,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.5.0-dev.20240522"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.0-dev.20240522.tgz#5c6166165ee081d8ab81ba08494a09ace7be1a17"
-  integrity sha512-Lckk1709+mAFXxFVbO+QnpXo5TRSZsYcq0a96OTfcgP7eLOa0ZjX6/4lnS/8DODWBlQCPa0EvkegzWIwLZqC3w==
+  version "5.5.0-dev.20240523"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.0-dev.20240523.tgz#1ad5c838946cfb885d584780ed4f4fd36b4b29e3"
+  integrity sha512-YOB70i/IXEmSACEQ87NIPif84AGq4mjufwmoAp4HCOpgTjq6KFZe51OtNGvZbi+kMwlmQiKSrKlkfRGMndmsRA==
 
 typescript@~3.9.10:
   version "3.9.10"
