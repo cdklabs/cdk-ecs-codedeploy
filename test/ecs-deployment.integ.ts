@@ -209,6 +209,8 @@ NagSuppressions.addResourceSuppressionsByPath(stack, [
   { id: 'AwsSolutions-IAM4', reason: 'Unrelated to construct under test' },
   { id: 'AwsSolutions-IAM5', reason: 'Unrelated to construct under test' },
   { id: 'AwsSolutions-L1', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-SF1', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-SF2', reason: 'Unrelated to construct under test' },
 ], true);
 NagSuppressions.addResourceSuppressions(deployment, [
   {

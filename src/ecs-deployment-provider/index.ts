@@ -81,6 +81,7 @@ export class EcsDeploymentProvider extends cr.Provider {
       isCompleteHandler: completeLambda,
       queryInterval: props.queryInterval || cdk.Duration.seconds(15),
       totalTimeout: props.timeout,
+      disableWaiterStateMachineLogging: true,
     });
   }
 }

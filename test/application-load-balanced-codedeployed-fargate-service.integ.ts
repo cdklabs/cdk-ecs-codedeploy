@@ -46,6 +46,8 @@ NagSuppressions.addResourceSuppressionsByPath(stack, [
 ], [
   { id: 'AwsSolutions-IAM5', reason: 'Unrelated to construct under test' },
   { id: 'AwsSolutions-L1', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-SF1', reason: 'Unrelated to construct under test' },
+  { id: 'AwsSolutions-SF2', reason: 'Unrelated to construct under test' },
 ], true);
 
 // Ignore findings from access log bucket
