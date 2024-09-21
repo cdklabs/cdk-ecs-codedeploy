@@ -750,13 +750,13 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-pacmak,jsii-rosetta,lambda-tester,projen,ts-jest,ts-node,typescript"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-pacmak,jsii-rosetta,lambda-tester,ts-jest,ts-node,typescript"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag cdklabs-projen-project-types commit-and-tag-version esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii lambda-tester projen ts-jest ts-node typescript @aws-cdk/integ-runner"
+          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag commit-and-tag-version esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii lambda-tester ts-jest ts-node typescript @aws-cdk/integ-runner"
         },
         {
           "exec": "npx projen"
