@@ -1358,9 +1358,9 @@
     "@sinonjs/commons" "^3.0.0"
 
 "@sinonjs/fake-timers@^13.0.1":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-13.0.2.tgz#3ffe88abb062067a580fdfba706ad00435a0f2a6"
-  integrity sha512-4Bb+oqXZTSTZ1q27Izly9lv8B9dlV61CROxPiVtywwzv5SnytJqhvYe6FclHYuXml4cd1VHPo1zd5PmTeJozvA==
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-13.0.3.tgz#3338263cbdfdb5cd40be61c3c315f360bf4f3a3b"
+  integrity sha512-golm/Sc4CqLV/ZalIP14Nre7zPgd8xG/S3nHULMTBHMX0llyTNhE1O6nrgbfvLX2o0y849CnLKdu8OE05Ztiiw==
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
@@ -2571,10 +2571,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.29.8:
-  version "2.29.8"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.29.8.tgz#3e35d1962886d0e4d5ff593c6ea57e79d0f8475d"
-  integrity sha512-tpnd0a0BNgwZ8jiSbGdzZppki1GcYS02OnxLejeTmvdeLbUHP+rE+TUDzRpSmkMEGJBeM06lTexwdqoEiiqP4g==
+cdk-nag@^2.29.9:
+  version "2.29.9"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.29.9.tgz#fde41f3d109fb146f9bc30fcdaaa51a251069b95"
+  integrity sha512-ZLvc7G6ZT5cgtYMdq1PqIJlrHBUMJ4UGHfKySik1pBC2k9jwrW4bMjLHmVwMFYlV4xgeWjAC9S/O4SwUoNUqAQ==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -3222,9 +3222,9 @@ downlevel-dts@^0.11.0:
     typescript next
 
 electron-to-chromium@^1.5.28:
-  version "1.5.40"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.40.tgz#5f6aec13751123c5c3185999ebe3e7bcaf828c2b"
-  integrity sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==
+  version "1.5.41"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.41.tgz#eae1ba6c49a1a61d84cf8263351d3513b2bcc534"
+  integrity sha512-dfdv/2xNjX0P8Vzme4cfzHqnPm5xsZXwsolTYr0eyW18IUmNyG08vL+fttvinTfhKfIKdRoqkDIC9e9iWQCNYQ==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -6814,9 +6814,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.7.0-dev.20241016"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.0-dev.20241016.tgz#675aa208bd8d1a906c4aae7be50e6c755d592a7b"
-  integrity sha512-rbZrQidxikK2ilvAFVxwy0DP6137GOlFhUvdW+zoJSDfi/jvUBWlcpSuwHH4ZPrlOTno+ZsJkUMiik2gKXz1zg==
+  version "5.7.0-dev.20241017"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.0-dev.20241017.tgz#9e4c7c91cf8829ca1fd8b612d14bb65ad3d4d99d"
+  integrity sha512-ZxR14EdfbJK3JjGJ0dm6SjmHbOkJ86QM7k2ARlQzRyzNJV23E2bkdLW24fjVk5UyLyuTtIH9OMgpP++Q0G/Glg==
 
 typescript@~5.2:
   version "5.2.2"
