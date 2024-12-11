@@ -2542,10 +2542,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.34.20:
-  version "2.34.20"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.34.20.tgz#128c0dc9177ec2374de5d0f0741ad09a6954d14a"
-  integrity sha512-yM8lWlYGFy/wQO5JHShvEhgaSTLkT7LXbuv0FkfOzxZ28+lPfCZ92wo5uFiJMY4VwXiNKqGVNWZz9t34Skjr6w==
+cdk-nag@^2.34.21:
+  version "2.34.21"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.34.21.tgz#b0e91f5a6b8cc07491b88470fda61997059f9807"
+  integrity sha512-TrLVXZZGvWJsi7BDvXZvsCqhgPoR+OoTE8EO5UybO+zskkxlz/WGA1CjdqHXZwY7soLDpS03O4qDdCAxe/1amw==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -5576,9 +5576,9 @@ node-int64@^0.4.0:
   integrity sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==
 
 node-releases@^2.0.18:
-  version "2.0.18"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.18.tgz#f010e8d35e2fe8d6b2944f03f70213ecedc4ca3f"
-  integrity sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
+  integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
   version "2.5.0"
@@ -6861,9 +6861,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.8.0-dev.20241209"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20241209.tgz#3610a6251b04eae3cd4ac92454922a3ffe2db9d4"
-  integrity sha512-LouJoEV8bwgTD1pmLck1aKNa2s9pE1uTQUHB14EubuRv/G5EY5v3O0+WmeX3c65VIpC8xUoSoc3bPjIsHrjNJQ==
+  version "5.8.0-dev.20241210"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20241210.tgz#618bdda5c296f98579d7632f63ad9f6b23cba75f"
+  integrity sha512-KPdRJ6b3MyUfKo+rrJKWnT/n47kfa2B+MR1tyPV3h0FM2Bu5DPHBvto9bdpDXGFYF6kt3TEZdCgEv0Chk/MnCA==
 
 typescript@~5.2:
   version "5.2.2"
