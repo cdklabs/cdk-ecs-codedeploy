@@ -1750,9 +1750,9 @@
     tslib "^2.6.2"
 
 "@smithy/util-waiter@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@smithy/util-waiter/-/util-waiter-4.0.0.tgz#66f2cd8096c6b405f92b8fe0c714070a0a47b251"
-  integrity sha512-C8dSfGmZH0ecrmnJOw4aDXJ47krihnUtee8eDZ2fA+28wTjD4TVM3L/bBQYnBBlDVWcYzldLV7loPRsPc1kERg==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@smithy/util-waiter/-/util-waiter-4.0.1.tgz#669b6e740f3c90f6590c48c97367ac92b080a801"
+  integrity sha512-PiLI5OMSDOw0IyA+lB8Ta0CIgaJuIyXE97Khvrk1G1ab71WbMTruzLKP9j3nS6QJScGirkUVN9sTOhZHU8q3OQ==
   dependencies:
     "@smithy/abort-controller" "^4.0.0"
     "@smithy/types" "^4.0.0"
