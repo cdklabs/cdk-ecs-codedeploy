@@ -2012,35 +2012,35 @@
   integrity sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==
 
 "@vitest/expect@>1.6.0":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-3.0.2.tgz#26a480597a80402f972b1ac8478071b5fd66a698"
-  integrity sha512-dKSHLBcoZI+3pmP5hiZ7I5grNru2HRtEW8Z5Zp4IXog8QYcxhlox7JUPyIIFWfN53+3HW3KPLIl6nSzUGgKSuQ==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-3.0.3.tgz#a83af04a68e70a9af8aa6f68442a696b4bc599c5"
+  integrity sha512-SbRCHU4qr91xguu+dH3RUdI5dC86zm8aZWydbp961aIR7G8OYNN6ZiayFuf9WAngRbFOfdrLHCGgXTj3GtoMRQ==
   dependencies:
-    "@vitest/spy" "3.0.2"
-    "@vitest/utils" "3.0.2"
+    "@vitest/spy" "3.0.3"
+    "@vitest/utils" "3.0.3"
     chai "^5.1.2"
     tinyrainbow "^2.0.0"
 
-"@vitest/pretty-format@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vitest/pretty-format/-/pretty-format-3.0.2.tgz#d1d0ac72a7b9ed6e8421aa54686b925b72a91fab"
-  integrity sha512-yBohcBw/T/p0/JRgYD+IYcjCmuHzjC3WLAKsVE4/LwiubzZkE8N49/xIQ/KGQwDRA8PaviF8IRO8JMWMngdVVQ==
+"@vitest/pretty-format@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vitest/pretty-format/-/pretty-format-3.0.3.tgz#4bd59463d1c944c22287c3da2060785269098183"
+  integrity sha512-gCrM9F7STYdsDoNjGgYXKPq4SkSxwwIU5nkaQvdUxiQ0EcNlez+PdKOVIsUJvh9P9IeIFmjn4IIREWblOBpP2Q==
   dependencies:
     tinyrainbow "^2.0.0"
 
-"@vitest/spy@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vitest/spy/-/spy-3.0.2.tgz#0e306746cc56943db75b69449747483ba466f74a"
-  integrity sha512-8mI2iUn+PJFMT44e3ISA1R+K6ALVs47W6eriDTfXe6lFqlflID05MB4+rIFhmDSLBj8iBsZkzBYlgSkinxLzSQ==
+"@vitest/spy@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vitest/spy/-/spy-3.0.3.tgz#ea4e5f7f8b3513e3ac0e556557e4ed339edc82e8"
+  integrity sha512-7/dgux8ZBbF7lEIKNnEqQlyRaER9nkAL9eTmdKJkDO3hS8p59ATGwKOCUDHcBLKr7h/oi/6hP+7djQk8049T2A==
   dependencies:
     tinyspy "^3.0.2"
 
-"@vitest/utils@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-3.0.2.tgz#dff19c1d05890c93a2c4d0ff861e65fb81224d52"
-  integrity sha512-Qu01ZYZlgHvDP02JnMBRpX43nRaZtNpIzw3C1clDXmn8eakgX6iQVGzTQ/NjkIr64WD8ioqOjkaYRVvHQI5qiw==
+"@vitest/utils@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-3.0.3.tgz#25d5a2e0cd0b5529132b76482fd48139ca56c197"
+  integrity sha512-f+s8CvyzPtMFY1eZKkIHGhPsQgYo5qCm6O8KZoim9qm1/jT64qBgGpO5tHscNH6BzRHM+edLNOP+3vO8+8pE/A==
   dependencies:
-    "@vitest/pretty-format" "3.0.2"
+    "@vitest/pretty-format" "3.0.3"
     loupe "^3.1.2"
     tinyrainbow "^2.0.0"
 
@@ -3875,9 +3875,9 @@ get-symbol-description@^1.1.0:
     get-intrinsic "^1.2.6"
 
 get-tsconfig@^4.7.5:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.9.0.tgz#704ae2ce2a94935921675dd19c05508b713a405d"
-  integrity sha512-52n24W52sIueosRe0XZ8Ex5Yle+WbhfCKnV/gWXpbVR8FXNTfqdKEKUSypKso66VRHTvvcQxL44UTZbJRlCTnw==
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.10.0.tgz#403a682b373a823612475a4c2928c7326fc0f6bb"
+  integrity sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==
   dependencies:
     resolve-pkg-maps "^1.0.0"
 
@@ -5097,9 +5097,9 @@ jsii-diff@^1.106.0:
     yargs "^16.2.0"
 
 jsii-docgen@^10.5.0:
-  version "10.6.3"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.6.3.tgz#d4cdba3301739178c92e6335b93e6b2078adb7c1"
-  integrity sha512-LJafkX3sHRe85ByXvxm0WvBRlhI62XkYJzEONbxQ1YkcWs1rj2NfxUF0NZgpr7+DSzxHyXSQ8cYSRsZYMQ2hjA==
+  version "10.6.4"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.6.4.tgz#f19868fc7fa7e655d7019af49ace01fc0c8ce98c"
+  integrity sha512-nnUM31OnENdNj400mKdXVCsOqmFQvpne0pxyr+UydCrQcahFheU6uAyRBN85bakoLfXuNAcF0RJBhEyHmLdFOA==
   dependencies:
     "@jsii/spec" "^1.106.0"
     case "^1.6.3"
@@ -6972,9 +6972,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.8.0-dev.20250120"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20250120.tgz#e30c0df79d6e22ced0682d48fa1b1dc420d285cb"
-  integrity sha512-hxQOiTq/ZM8CHmOCzmrvPOwRRkaI9Ua16MMOQAym2SVdPkBl5PYaGc3m9Bd27K0UIh9GmxP7dQMc1KpyHRk8FQ==
+  version "5.8.0-dev.20250121"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20250121.tgz#569b37c5e5b11cd85f6d79dfc32cfc2a126d3bcc"
+  integrity sha512-cRbtTDQVu4ZV28kEzT6EgGd1mT75C92i/5pFcQHVqa60S2HhbFbY+4Wpo0ebumER/YMoC63sfTzruaR2Z6kOJw==
 
 typescript@~5.2:
   version "5.2.2"
