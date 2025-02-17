@@ -2543,19 +2543,19 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001688:
-  version "1.0.30001699"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001699.tgz#a102cf330d153bf8c92bfb5be3cd44c0a89c8c12"
-  integrity sha512-b+uH5BakXZ9Do9iK+CkDmctUSEqZl+SP056vc5usa0PL+ev5OHw003rZXcnjNDv3L8P5j6rwT6C0BPKSikW08w==
+  version "1.0.30001700"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001700.tgz#26cd429cf09b4fd4e745daf4916039c794d720f6"
+  integrity sha512-2S6XIXwaE7K7erT8dY+kLQcpa5ms63XlRkMkReXjle+kf6c5g38vyMl+Z5y8dSxOFDhcFe+nxnn261PLxBSQsQ==
 
 case@1.6.3, case@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.35.19:
-  version "2.35.19"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.19.tgz#e83b20b3ef3b222e22d1a3640c06618c6694eed1"
-  integrity sha512-GcPC3V0t5iQ0cDX9xLeuD6GVvPt6pi2vO23/UshIRekkZAp86wXDm+AWyfJ8gWJV7CiY4zwo7afvXdfX68HaYg==
+cdk-nag@^2.35.20:
+  version "2.35.20"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.20.tgz#2c0738f87aa108e62fbd2e2510eb61807c20c6bb"
+  integrity sha512-xefEpc4alrZAHXZ0+eIJzVj6HMTojqce01INdS2XVmJQ8oNI6KCf363u6ZZ3JEbMCSFhAv/kkbaDhkCFDkeCsA==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -6997,9 +6997,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.8.0-dev.20250215"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20250215.tgz#1d4caff16afedf6253836c84bb2b40f86f93b30d"
-  integrity sha512-pPyocA7eJK+fv1Yx7yXaLSxgjz4wgDsDJEqLSCg+qaiIdgSxZMUVyb4Cm1kklpL+LZ69NF+UJKQxfBihKz0Yyg==
+  version "5.8.0-dev.20250216"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20250216.tgz#1c5ccc8cea6d1c3668011fdfe1cba4f1068fd443"
+  integrity sha512-yk0nq9GDx1NVK8gi8NgJULq3NJxkepX/B8ZQtopaLM0cUbjBhZLcXeHUs+LBv8AUUGq9alZGPQuC/W/IG/yoXA==
 
 typescript@~5.2:
   version "5.2.2"
