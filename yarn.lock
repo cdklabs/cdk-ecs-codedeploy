@@ -2560,10 +2560,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.35.31:
-  version "2.35.31"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.31.tgz#686366b5219e01e64222b436dd5435665e1df05f"
-  integrity sha512-EImmHr0oybtmOSb81E2KSxPlevjICXlfcn+ljlAE2TeR/Tp+cLYVMEMKpXZ13V4sIvmafDbOqZV//BwaXxZJxA==
+cdk-nag@^2.35.32:
+  version "2.35.32"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.32.tgz#fd0bb3f024dd4b0f82ff3aa843e56c8205256648"
+  integrity sha512-8JdA28A2/v812eSVF13sdFPe9G5kmvZtfM/LGS+e4j6ml3uDzLAy50cq5oFAlTOugTS17YOQcnjCs6aZZnlFEA==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -3221,9 +3221,9 @@ dunder-proto@^1.0.0, dunder-proto@^1.0.1:
     gopd "^1.2.0"
 
 electron-to-chromium@^1.5.73:
-  version "1.5.106"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.106.tgz#ed07e5eb617eacbfbb96d22f077c28315f2a5bc9"
-  integrity sha512-12keJGdXQWPnfVOu6/6ZzZgPPNodiDOSe3LjA8qk2yXTjnCnw2LeGUsAmtlNAmH4UW0K7tOLcz0j9lI2eJCJRA==
+  version "1.5.108"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.108.tgz#5a83c99d01d391a6d6b5bb658cb645985a717f53"
+  integrity sha512-tiGxpQmvXBEzrfU5ertmbCV/nG5yqCkC1G4T1SIKP335Y5rjXzPWmijR6XcoGXZvVoo4dknfdNe4Tl7lcIROLg==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -6787,17 +6787,17 @@ tinyspy@^3.0.2:
   resolved "https://registry.yarnpkg.com/tinyspy/-/tinyspy-3.0.2.tgz#86dd3cf3d737b15adcf17d7887c84a75201df20a"
   integrity sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==
 
-tldts-core@^6.1.78:
-  version "6.1.78"
-  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.78.tgz#47b477d9742870daa01dbd5ff9a598a48379728c"
-  integrity sha512-jS0svNsB99jR6AJBmfmEWuKIgz91Haya91Z43PATaeHJ24BkMoNRb/jlaD37VYjb0mYf6gRL/HOnvS1zEnYBiw==
+tldts-core@^6.1.79:
+  version "6.1.79"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.79.tgz#2d98689a161fbafe38a6640a54f5d4c88bd941a1"
+  integrity sha512-HM+Ud/2oQuHt4I43Nvjc213Zji/z25NSH5OkJskJwHXNtYh9DTRlHMDFhms9dFMP7qyve/yVaXFIxmcJ7TdOjw==
 
 tldts@^6.1.32:
-  version "6.1.78"
-  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.78.tgz#ee94576653a60d421ff94162c4e9060f2e62467b"
-  integrity sha512-fSgYrW0ITH0SR/CqKMXIruYIPpNu5aDgUp22UhYoSrnUQwc7SBqifEBFNce7AAcygUPBo6a/gbtcguWdmko4RQ==
+  version "6.1.79"
+  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.79.tgz#1804eddc48f8ae22a0e20937c9d92634ace7580b"
+  integrity sha512-wjlYwK8lC/WcywLWf3A7qbK07SexezXjTRVwuPWXHvcjD7MnpPS2RXY5rLO3g12a8CNc7Y7jQRQsV7XyuBZjig==
   dependencies:
-    tldts-core "^6.1.78"
+    tldts-core "^6.1.79"
 
 tmpl@1.0.5:
   version "1.0.5"
@@ -7005,9 +7005,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.9.0-dev.20250226"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250226.tgz#e7515a1ece8f113f7112f425f2148d9bd4296e8d"
-  integrity sha512-5mIqZ5ilcOYPZ+EXcOo5hpXJt51N7fPlkjxX5e9hbM+Ao7gd+t+XN5trQk3iWyvBNEPMn7950rAE0Kxl4thnCA==
+  version "5.9.0-dev.20250227"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250227.tgz#ffcd405a81c6608500be31a7032ff99076924034"
+  integrity sha512-lv9IWTed2sumK+b44crXjNlL/jgnTXTrxB5aqNj2igTjqR6MkLrBig0Zw+qMDcVNPUGUhgOHaRC5Eehf07km2Q==
 
 typescript@~5.2:
   version "5.2.2"
