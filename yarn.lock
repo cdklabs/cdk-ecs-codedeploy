@@ -2678,10 +2678,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.35.84:
-  version "2.35.84"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.84.tgz#3f97a34e220b99d0b1d2ccb1ec058f03f692d350"
-  integrity sha512-vjgwUHpgcrEoZ7cU7yOJk1tEq6JO5NE81ysi4tg9T+Mj/IvnC9HJTAI5RZidl5uiLe1QnZFBJ1t3YDOfzpfAhg==
+cdk-nag@^2.35.85:
+  version "2.35.85"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.85.tgz#3214b4afb3caf844f1067a34b3c0bbb0bad5bdaf"
+  integrity sha512-FgIoQ0+iPBZElW3xEi1DH7DRrIkJo1yL2g2J31EVD5z3BJMzHQBi/4FnZDEdmpULYuhO3GnRSVw+a5qpNuj1+g==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -3339,9 +3339,9 @@ dunder-proto@^1.0.0, dunder-proto@^1.0.1:
     gopd "^1.2.0"
 
 electron-to-chromium@^1.5.73:
-  version "1.5.146"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.146.tgz#c09fb78882a89f94c02c37b99f4e61fb88ce837c"
-  integrity sha512-KI0DFJBdqehWSqXmNKIAHpjW4rHL1ugBx4ljOXli41E+IV3JKyTxZ6E7/NgVifzDXBHUqR8Ae1I+eu9vAIqfyQ==
+  version "1.5.148"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.148.tgz#afed6a5771ec18d41e26541f71ba2ccc65f102ac"
+  integrity sha512-8uc1QXwwqayD4mblcsQYZqoi+cOc97A2XmKSBOIRbEAvbp6vrqmSYs4dHD2qVygUgn7Mi0qdKgPaJ9WC8cv63A==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -7115,9 +7115,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.9.0-dev.20250430"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250430.tgz#5f82d3936e24a60763557635c392ceaede4c8202"
-  integrity sha512-XCv8HsA7GgiWPibRv/7GtB9R4MNmR0kgQpWp1B+NtvVd1iCHCu7xsAnI0jSuiX5mzRDV5k04G4j8fZJmlrfyFw==
+  version "5.9.0-dev.20250501"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250501.tgz#7fb8b7ac23c3eb0d1bf9997dbf9420d5d02b357d"
+  integrity sha512-oVdMnDZTyAKb0Bv9Lx5Uiy2XrHWeN6nHwekRxElXs6OJpQK1oPTd2uaL7xVJUD5CiVTlQGQQeCXJQZFrXmrgQw==
 
 typescript@~5.2:
   version "5.2.2"
