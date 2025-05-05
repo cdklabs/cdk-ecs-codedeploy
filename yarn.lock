@@ -2678,10 +2678,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@^2.35.87:
-  version "2.35.87"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.87.tgz#1b3dd9d535c3cdedaf2f5d4e0b6fc9f5ea0e776f"
-  integrity sha512-Af1KPa+ATzuoSAtQhIpymBUZ3rh7F2vtq57HYsACvQgFFzfN42uG1uutCM2KshJC5MDSTR1OVxkWUvYMsJKkpg==
+cdk-nag@^2.35.88:
+  version "2.35.88"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.35.88.tgz#e06913a952ff9052e9ff7c1fe1da5631a63e0ba6"
+  integrity sha512-5I5RPgDg8i8NAqTIyC5786r9USXFJRhh0ZTEQgNj7QiOc+UF0iXY+8Vl7CYaQ7eJ7e14IljhINkx/n1CkeU6jA==
 
 cdklabs-projen-project-types@^0.1.204:
   version "0.1.204"
@@ -7115,9 +7115,9 @@ typescript@^4.9.5:
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@next:
-  version "5.9.0-dev.20250503"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250503.tgz#4b3e10a1409e1804c1853ad3eb5408383d228329"
-  integrity sha512-91TijWPubqcACvWr9n8qTZJPioEsP/Jo/X8c6v+JQYwHs9sKOb85CVYo5FinBGc/g7J+yNIv699ysphzaiI0xw==
+  version "5.9.0-dev.20250504"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250504.tgz#f561549a41b50702ee85b6e999cc6f0a8c9295ba"
+  integrity sha512-tdJ5/k+fpLlZbGlvpY9BM54lLu4W7kSG42hKbZokiKM+IahMjv7JgLo3qb/vH0o0khhM9C6e7eES5Yh0Zewx8w==
 
 typescript@~5.2:
   version "5.2.2"
