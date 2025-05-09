@@ -83,7 +83,7 @@
     "aws-cdk-lib": "2.139.0",
     "aws-sdk-client-mock": "^4.1.0",
     "aws-sdk-client-mock-jest": "^4.1.0",
-    "cdk-nag": "^2.35.91",
+    "cdk-nag": "^2.35.93",
     "cdklabs-projen-project-types": "^0.1.204",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.5",
