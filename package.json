@@ -97,7 +97,7 @@
     "jsii-diff": "^1.112.0",
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.112.0",
-    "jsii-rosetta": "^5.8.7",
+    "jsii-rosetta": "^5.8.8",
     "lambda-tester": "^4.0.1",
     "projen": "0.87.4",
     "ts-jest": "^27",
