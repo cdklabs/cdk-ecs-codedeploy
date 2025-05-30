@@ -64,7 +64,7 @@ const project = new CdklabsConstructLibrary({
     javaPackage: 'io.github.cdklabs.cdk.ecs.codedeploy',
     mavenGroupId: 'io.github.cdklabs',
     mavenArtifactId: 'cdk-ecs-codedeploy',
-    mavenEndpoint: 'https://s01.oss.sonatype.org',
+    mavenServerId: 'central-ossrh',
   },
   publishToNuget: {
     dotNetNamespace: 'Cdklabs.CdkEcsCodeDeploy',
