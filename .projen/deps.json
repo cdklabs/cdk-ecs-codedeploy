@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@aws-cdk/integ-tests-alpha",
-      "version": "^2.139.0-alpha.0",
+      "version": "^2.233.0-alpha.0",
       "type": "build"
     },
     {
@@ -151,7 +151,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.139.0",
+      "version": "^2.233.0",
       "type": "peer"
     },
     {

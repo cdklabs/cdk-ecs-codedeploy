@@ -205,6 +205,8 @@ NagSuppressions.addResourceSuppressionsByPath(stack, [
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-isComplete`,
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-onTimeout`,
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/waiter-state-machine`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProviderOnEventLambda`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProviderIsCompleteLambda`,
 ], [
   { id: 'AwsSolutions-IAM4', reason: 'Unrelated to construct under test' },
   { id: 'AwsSolutions-IAM5', reason: 'Unrelated to construct under test' },
