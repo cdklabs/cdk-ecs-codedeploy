@@ -162,7 +162,7 @@ const dg = new codedeploy.EcsDeploymentGroup(stack, 'DG', {
 });
 
 const testLambda = new lambda.Function(stack, 'Function', {
-  runtime: lambda.Runtime.NODEJS_20_X,
+  runtime: lambda.Runtime.NODEJS_22_X,
   handler: 'index.handler',
   code: new lambda.InlineCode(`
     var { CodeDeployClient, PutLifecycleEventHookExecutionStatusCommand } = require('@aws-sdk/client-codedeploy');
@@ -240,6 +240,8 @@ NagSuppressions.addResourceSuppressionsByPath(stack, [
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-isComplete`,
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/framework-onTimeout`,
   `/${stack.stackName}/DG/Deployment/DeploymentProvider/waiter-state-machine`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProviderOnEventLambda`,
+  `/${stack.stackName}/DG/Deployment/DeploymentProviderIsCompleteLambda`,
 ], [
   { id: 'AwsSolutions-IAM4', reason: 'Unrelated to construct under test' },
   { id: 'AwsSolutions-IAM5', reason: 'Unrelated to construct under test' },
@@ -259,6 +261,10 @@ NagSuppressions.addResourceSuppressions(testLambda, [
     id: 'AwsSolutions-IAM4',
     reason: 'Allow AWSLambdaBasicExecutionRole policy',
     appliesTo: ['Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'],
+  },
+  {
+    id: 'AwsSolutions-L1',
+    reason: 'Using NODEJS_LATEST runtime',
   },
 ], true);
 NagSuppressions.addResourceSuppressions(testLambda, [

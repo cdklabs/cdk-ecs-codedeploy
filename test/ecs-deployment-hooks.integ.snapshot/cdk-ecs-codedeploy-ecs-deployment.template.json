@@ -1167,15 +1167,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "Service": {
-         "Fn::FindInMap": [
-          "ServiceprincipalMap",
-          {
-           "Ref": "AWS::Region"
-          },
-          "codedeploy"
-         ]
-        }
+        "Service": "codedeploy.amazonaws.com"
        }
       }
      ],
@@ -1366,6 +1358,26 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -1490,6 +1502,26 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -1522,7 +1554,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -1533,6 +1565,26 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -1580,6 +1632,26 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -1644,6 +1716,26 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -1676,7 +1768,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -1687,6 +1779,26 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM4"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -1797,6 +1909,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderOnEventLambdaBFB24F49",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -1821,6 +1943,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderIsCompleteLambda07F9DC34",
+         "Arn"
+        ]
+       }
       },
       {
        "Action": "states:StartExecution",
@@ -1883,7 +2015,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {
@@ -1906,13 +2038,17 @@
      }
     },
     "Handler": "framework.onEvent",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "DGDeploymentDeploymentProviderframeworkonEventServiceRoleC4DB5791",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2053,6 +2189,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderOnEventLambdaBFB24F49",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -2077,6 +2223,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderIsCompleteLambda07F9DC34",
+         "Arn"
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -2132,7 +2288,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - isComplete (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2152,13 +2308,17 @@
      }
     },
     "Handler": "framework.isComplete",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "DGDeploymentDeploymentProviderframeworkisCompleteServiceRole06E09942",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2299,6 +2459,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderOnEventLambdaBFB24F49",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -2323,6 +2493,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DGDeploymentDeploymentProviderIsCompleteLambda07F9DC34",
+         "Arn"
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -2378,7 +2558,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - onTimeout (cdk-ecs-codedeploy-ecs-deployment/DG/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2398,13 +2578,17 @@
      }
     },
     "Handler": "framework.onTimeout",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "DGDeploymentDeploymentProviderframeworkonTimeoutServiceRole2B298F04",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2455,15 +2639,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "Service": {
-         "Fn::FindInMap": [
-          "ServiceprincipalMap",
-          {
-           "Ref": "AWS::Region"
-          },
-          "states"
-         ]
-        }
+        "Service": "states.amazonaws.com"
        }
       }
      ],
@@ -2811,6 +2987,10 @@
        ]
       },
       {
+       "reason": "Using NODEJS_LATEST runtime",
+       "id": "AwsSolutions-L1"
+      },
+      {
        "reason": "Allow wildcard resources",
        "id": "AwsSolutions-IAM5"
       }
@@ -2849,6 +3029,10 @@
        ]
       },
       {
+       "reason": "Using NODEJS_LATEST runtime",
+       "id": "AwsSolutions-L1"
+      },
+      {
        "reason": "Allow wildcard resources",
        "id": "AwsSolutions-IAM5"
       }
@@ -2869,7 +3053,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x"
+    "Runtime": "nodejs22.x"
    },
    "DependsOn": [
     "FunctionServiceRoleDefaultPolicy2F49994A",
@@ -2884,6 +3068,10 @@
        "applies_to": [
         "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
        ]
+      },
+      {
+       "reason": "Using NODEJS_LATEST runtime",
+       "id": "AwsSolutions-L1"
       },
       {
        "reason": "Allow wildcard resources",
@@ -2929,150 +3117,6 @@
      "DGDeployment6F80FA0B",
      "deploymentId"
     ]
-   }
-  }
- },
- "Mappings": {
-  "ServiceprincipalMap": {
-   "af-south-1": {
-    "codedeploy": "codedeploy.af-south-1.amazonaws.com",
-    "states": "states.af-south-1.amazonaws.com"
-   },
-   "ap-east-1": {
-    "codedeploy": "codedeploy.ap-east-1.amazonaws.com",
-    "states": "states.ap-east-1.amazonaws.com"
-   },
-   "ap-northeast-1": {
-    "codedeploy": "codedeploy.ap-northeast-1.amazonaws.com",
-    "states": "states.ap-northeast-1.amazonaws.com"
-   },
-   "ap-northeast-2": {
-    "codedeploy": "codedeploy.ap-northeast-2.amazonaws.com",
-    "states": "states.ap-northeast-2.amazonaws.com"
-   },
-   "ap-northeast-3": {
-    "codedeploy": "codedeploy.ap-northeast-3.amazonaws.com",
-    "states": "states.ap-northeast-3.amazonaws.com"
-   },
-   "ap-south-1": {
-    "codedeploy": "codedeploy.ap-south-1.amazonaws.com",
-    "states": "states.ap-south-1.amazonaws.com"
-   },
-   "ap-south-2": {
-    "codedeploy": "codedeploy.ap-south-2.amazonaws.com",
-    "states": "states.ap-south-2.amazonaws.com"
-   },
-   "ap-southeast-1": {
-    "codedeploy": "codedeploy.ap-southeast-1.amazonaws.com",
-    "states": "states.ap-southeast-1.amazonaws.com"
-   },
-   "ap-southeast-2": {
-    "codedeploy": "codedeploy.ap-southeast-2.amazonaws.com",
-    "states": "states.ap-southeast-2.amazonaws.com"
-   },
-   "ap-southeast-3": {
-    "codedeploy": "codedeploy.ap-southeast-3.amazonaws.com",
-    "states": "states.ap-southeast-3.amazonaws.com"
-   },
-   "ap-southeast-4": {
-    "codedeploy": "codedeploy.ap-southeast-4.amazonaws.com",
-    "states": "states.ap-southeast-4.amazonaws.com"
-   },
-   "ca-central-1": {
-    "codedeploy": "codedeploy.ca-central-1.amazonaws.com",
-    "states": "states.ca-central-1.amazonaws.com"
-   },
-   "cn-north-1": {
-    "codedeploy": "codedeploy.cn-north-1.amazonaws.com.cn",
-    "states": "states.cn-north-1.amazonaws.com"
-   },
-   "cn-northwest-1": {
-    "codedeploy": "codedeploy.cn-northwest-1.amazonaws.com.cn",
-    "states": "states.cn-northwest-1.amazonaws.com"
-   },
-   "eu-central-1": {
-    "codedeploy": "codedeploy.eu-central-1.amazonaws.com",
-    "states": "states.eu-central-1.amazonaws.com"
-   },
-   "eu-central-2": {
-    "codedeploy": "codedeploy.eu-central-2.amazonaws.com",
-    "states": "states.eu-central-2.amazonaws.com"
-   },
-   "eu-north-1": {
-    "codedeploy": "codedeploy.eu-north-1.amazonaws.com",
-    "states": "states.eu-north-1.amazonaws.com"
-   },
-   "eu-south-1": {
-    "codedeploy": "codedeploy.eu-south-1.amazonaws.com",
-    "states": "states.eu-south-1.amazonaws.com"
-   },
-   "eu-south-2": {
-    "codedeploy": "codedeploy.eu-south-2.amazonaws.com",
-    "states": "states.eu-south-2.amazonaws.com"
-   },
-   "eu-west-1": {
-    "codedeploy": "codedeploy.eu-west-1.amazonaws.com",
-    "states": "states.eu-west-1.amazonaws.com"
-   },
-   "eu-west-2": {
-    "codedeploy": "codedeploy.eu-west-2.amazonaws.com",
-    "states": "states.eu-west-2.amazonaws.com"
-   },
-   "eu-west-3": {
-    "codedeploy": "codedeploy.eu-west-3.amazonaws.com",
-    "states": "states.eu-west-3.amazonaws.com"
-   },
-   "il-central-1": {
-    "codedeploy": "codedeploy.il-central-1.amazonaws.com",
-    "states": "states.il-central-1.amazonaws.com"
-   },
-   "me-central-1": {
-    "codedeploy": "codedeploy.me-central-1.amazonaws.com",
-    "states": "states.me-central-1.amazonaws.com"
-   },
-   "me-south-1": {
-    "codedeploy": "codedeploy.me-south-1.amazonaws.com",
-    "states": "states.me-south-1.amazonaws.com"
-   },
-   "sa-east-1": {
-    "codedeploy": "codedeploy.sa-east-1.amazonaws.com",
-    "states": "states.sa-east-1.amazonaws.com"
-   },
-   "us-east-1": {
-    "codedeploy": "codedeploy.us-east-1.amazonaws.com",
-    "states": "states.us-east-1.amazonaws.com"
-   },
-   "us-east-2": {
-    "codedeploy": "codedeploy.us-east-2.amazonaws.com",
-    "states": "states.us-east-2.amazonaws.com"
-   },
-   "us-gov-east-1": {
-    "codedeploy": "codedeploy.us-gov-east-1.amazonaws.com",
-    "states": "states.us-gov-east-1.amazonaws.com"
-   },
-   "us-gov-west-1": {
-    "codedeploy": "codedeploy.us-gov-west-1.amazonaws.com",
-    "states": "states.us-gov-west-1.amazonaws.com"
-   },
-   "us-iso-east-1": {
-    "codedeploy": "codedeploy.amazonaws.com",
-    "states": "states.amazonaws.com"
-   },
-   "us-iso-west-1": {
-    "codedeploy": "codedeploy.amazonaws.com",
-    "states": "states.amazonaws.com"
-   },
-   "us-isob-east-1": {
-    "codedeploy": "codedeploy.amazonaws.com",
-    "states": "states.amazonaws.com"
-   },
-   "us-west-1": {
-    "codedeploy": "codedeploy.us-west-1.amazonaws.com",
-    "states": "states.us-west-1.amazonaws.com"
-   },
-   "us-west-2": {
-    "codedeploy": "codedeploy.us-west-2.amazonaws.com",
-    "states": "states.us-west-2.amazonaws.com"
    }
   }
  },

@@ -1715,7 +1715,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "Service": "codedeploy.us-west-2.amazonaws.com"
+        "Service": "codedeploy.amazonaws.com"
        }
       }
      ],
@@ -1882,6 +1882,22 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -1988,6 +2004,22 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -2020,7 +2052,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -2030,6 +2062,22 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -2074,6 +2122,22 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -2131,6 +2195,22 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
+      {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
        "applies_to": [
@@ -2163,7 +2243,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 60
    },
    "DependsOn": [
@@ -2173,6 +2253,22 @@
    "Metadata": {
     "cdk_nag": {
      "rules_to_suppress": [
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-IAM5"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-L1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF1"
+      },
+      {
+       "reason": "Unrelated to construct under test",
+       "id": "AwsSolutions-SF2"
+      },
       {
        "reason": "Allow AWSLambdaBasicExecutionRole policy",
        "id": "AwsSolutions-IAM4",
@@ -2276,6 +2372,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderOnEventLambda9ABD290E",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -2300,6 +2406,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderIsCompleteLambdaAA2C6C46",
+         "Arn"
+        ]
+       }
       },
       {
        "Action": "states:StartExecution",
@@ -2355,7 +2471,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2378,13 +2494,17 @@
      }
     },
     "Handler": "framework.onEvent",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonEventServiceRole4597B89C",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2513,6 +2633,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderOnEventLambda9ABD290E",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -2537,6 +2667,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderIsCompleteLambdaAA2C6C46",
+         "Arn"
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -2585,7 +2725,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - isComplete (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2605,13 +2745,17 @@
      }
     },
     "Handler": "framework.isComplete",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkisCompleteServiceRole36179A24",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2740,6 +2884,16 @@
        ]
       },
       {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderOnEventLambda9ABD290E",
+         "Arn"
+        ]
+       }
+      },
+      {
        "Action": "lambda:InvokeFunction",
        "Effect": "Allow",
        "Resource": [
@@ -2764,6 +2918,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ServiceDeploymentGroupDeploymentDeploymentProviderIsCompleteLambdaAA2C6C46",
+         "Arn"
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -2812,7 +2976,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2"
      },
-     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
+     "S3Key": "07a90cc3efdfc34da22208dcd9d211f06f5b0e01b21e778edc7c3966b1f61d57.zip"
     },
     "Description": "AWS CDK resource provider framework - onTimeout (cdk-ecs-codedeploy-service/Service/DeploymentGroup/Deployment/DeploymentProvider)",
     "Environment": {
@@ -2832,13 +2996,17 @@
      }
     },
     "Handler": "framework.onTimeout",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "ServiceDeploymentGroupDeploymentDeploymentProviderframeworkonTimeoutServiceRole92068547",
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
@@ -2884,7 +3052,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "Service": "states.us-west-2.amazonaws.com"
+        "Service": "states.amazonaws.com"
        }
       }
      ],

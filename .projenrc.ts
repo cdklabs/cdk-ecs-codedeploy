@@ -23,7 +23,7 @@ export class WorkflowDotNetVersionPatch {
     );
   }
 }
-const cdkVersion = '2.139.0';
+const cdkVersion = '2.233.0';
 const project = new CdklabsConstructLibrary({
   setNodeEngineVersion: false,
   private: false,
@@ -55,7 +55,7 @@ const project = new CdklabsConstructLibrary({
     secret: 'GITHUB_TOKEN',
   },
   lambdaOptions: {
-    runtime: awscdk.LambdaRuntime.NODEJS_20_X,
+    runtime: awscdk.LambdaRuntime.NODEJS_22_X,
   },
   jestOptions: {
     updateSnapshot: javascript.UpdateSnapshot.NEVER,

@@ -159,7 +159,7 @@ ApiTestStep to add.
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.ApiCanary.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.ApiCanary.isConstruct"></a>
 
 ```typescript
 import { ApiCanary } from '@cdklabs/cdk-ecs-codedeploy'
@@ -168,20 +168,6 @@ ApiCanary.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
-
-Use this method instead of `instanceof` to properly detect `Construct`
-instances, even when the construct library is symlinked.
-
-Explanation: in JavaScript, multiple copies of the `constructs` library on
-disk are seen as independent, completely different libraries. As a
-consequence, the class `Construct` in each copy of the `constructs` library
-is seen as a different class, and an instance of one class will not test as
-`instanceof` the other class. `npm install` will not create installations
-like this, but users may manually symlink construct libraries together or
-use a monorepo tool: in those cases, multiple copies of the `constructs`
-library can be accidentally installed, and `instanceof` will behave
-unpredictably. It is safest to avoid using `instanceof`, and using
-this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-ecs-codedeploy.ApiCanary.isConstruct.parameter.x"></a>
 
@@ -228,7 +214,7 @@ Check whether the given construct is a Resource.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.artifactsBucket">artifactsBucket</a></code> | <code>aws-cdk-lib.aws_s3.IBucket</code> | Bucket where data from each canary run is stored. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.canaryId">canaryId</a></code> | <code>string</code> | The canary ID. |
@@ -259,16 +245,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
@@ -384,6 +371,25 @@ A CloudWatch Alarm that triggers when the duration of the tests exceeds the give
 
 ---
 
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.PROPERTY_INJECTION_ID">PROPERTY_INJECTION_ID</a></code> | <code>string</code> | Uniquely identifies this class. |
+
+---
+
+##### `PROPERTY_INJECTION_ID`<sup>Required</sup> <a name="PROPERTY_INJECTION_ID" id="@cdklabs/cdk-ecs-codedeploy.ApiCanary.property.PROPERTY_INJECTION_ID"></a>
+
+```typescript
+public readonly PROPERTY_INJECTION_ID: string;
+```
+
+- *Type:* string
+
+Uniquely identifies this class.
+
+---
 
 ### ApplicationLoadBalancedCodeDeployedFargateService <a name="ApplicationLoadBalancedCodeDeployedFargateService" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService"></a>
 
@@ -447,7 +453,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.isConstruct"></a>
 
 ```typescript
 import { ApplicationLoadBalancedCodeDeployedFargateService } from '@cdklabs/cdk-ecs-codedeploy'
@@ -456,20 +462,6 @@ ApplicationLoadBalancedCodeDeployedFargateService.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
-
-Use this method instead of `instanceof` to properly detect `Construct`
-instances, even when the construct library is symlinked.
-
-Explanation: in JavaScript, multiple copies of the `constructs` library on
-disk are seen as independent, completely different libraries. As a
-consequence, the class `Construct` in each copy of the `constructs` library
-is seen as a different class, and an instance of one class will not test as
-`instanceof` the other class. `npm install` will not create installations
-like this, but users may manually symlink construct libraries together or
-use a monorepo tool: in those cases, multiple copies of the `constructs`
-library can be accidentally installed, and `instanceof` will behave
-unpredictably. It is safest to avoid using `instanceof`, and using
-this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.isConstruct.parameter.x"></a>
 
@@ -736,6 +728,25 @@ Composite alarm for monitoring health of service.
 
 ---
 
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.PROPERTY_INJECTION_ID">PROPERTY_INJECTION_ID</a></code> | <code>string</code> | Uniquely identifies this class. |
+
+---
+
+##### `PROPERTY_INJECTION_ID`<sup>Required</sup> <a name="PROPERTY_INJECTION_ID" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateService.property.PROPERTY_INJECTION_ID"></a>
+
+```typescript
+public readonly PROPERTY_INJECTION_ID: string;
+```
+
+- *Type:* string
+
+Uniquely identifies this class.
+
+---
 
 ### EcsDeployment <a name="EcsDeployment" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment"></a>
 
@@ -791,7 +802,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment.isConstruct"></a>
 
 ```typescript
 import { EcsDeployment } from '@cdklabs/cdk-ecs-codedeploy'
@@ -800,20 +811,6 @@ EcsDeployment.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
-
-Use this method instead of `instanceof` to properly detect `Construct`
-instances, even when the construct library is symlinked.
-
-Explanation: in JavaScript, multiple copies of the `constructs` library on
-disk are seen as independent, completely different libraries. As a
-consequence, the class `Construct` in each copy of the `constructs` library
-is seen as a different class, and an instance of one class will not test as
-`instanceof` the other class. `npm install` will not create installations
-like this, but users may manually symlink construct libraries together or
-use a monorepo tool: in those cases, multiple copies of the `constructs`
-library can be accidentally installed, and `instanceof` will behave
-unpredictably. It is safest to avoid using `instanceof`, and using
-this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-ecs-codedeploy.EcsDeployment.isConstruct.parameter.x"></a>
 
@@ -1255,6 +1252,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.enableExecuteCommand">enableExecuteCommand</a></code> | <code>boolean</code> | Whether ECS Exec should be enabled. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheckGracePeriod">healthCheckGracePeriod</a></code> | <code>aws-cdk-lib.Duration</code> | The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.idleTimeout">idleTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | The load balancer idle timeout, in seconds. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.ipAddressType">ipAddressType</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.IpAddressType</code> | The type of IP address to use. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.listenerPort">listenerPort</a></code> | <code>number</code> | Listener port of the application load balancer that will serve traffic to the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.loadBalancer">loadBalancer</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer</code> | The application load balancer that will serve traffic to the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.loadBalancerName">loadBalancerName</a></code> | <code>string</code> | Name of the load balancer. |
@@ -1266,7 +1264,7 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.protocolVersion">protocolVersion</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationProtocolVersion</code> | The protocol version to use. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.publicLoadBalancer">publicLoadBalancer</a></code> | <code>boolean</code> | Determines whether the Load Balancer will be internet-facing. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.recordType">recordType</a></code> | <code>aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedServiceRecordType</code> | Specifies whether the Route53 record should be a CNAME, an A record using the Alias feature or no record at all. |
-| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.redirectHTTP">redirectHTTP</a></code> | <code>boolean</code> | Specifies whether the load balancer should redirect traffic on port 80 to port 443 to support HTTP->HTTPS redirects This is only valid if the protocol of the ALB is HTTPS. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.redirectHTTP">redirectHTTP</a></code> | <code>boolean</code> | Specifies whether the load balancer should redirect traffic on port 80 to the {@link listenerPort} to support HTTP->HTTPS redirects. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.serviceName">serviceName</a></code> | <code>string</code> | The name of the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.sslPolicy">sslPolicy</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.SslPolicy</code> | The security policy that defines which ciphers and protocols are supported by the ALB Listener. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.targetProtocol">targetProtocol</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationProtocol</code> | The protocol for connections from the load balancer to the ECS tasks. |
@@ -1279,6 +1277,8 @@ const applicationLoadBalancedCodeDeployedFargateServiceProps: ApplicationLoadBal
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.runtimePlatform">runtimePlatform</a></code> | <code>aws-cdk-lib.aws_ecs.RuntimePlatform</code> | The runtime platform of the task definition. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.taskDefinition">taskDefinition</a></code> | <code>aws-cdk-lib.aws_ecs.FargateTaskDefinition</code> | The task definition to use for tasks in the service. TaskDefinition or TaskImageOptions must be specified, but not both. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.assignPublicIp">assignPublicIp</a></code> | <code>boolean</code> | Determines whether the service will be assigned a public IP address. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.containerCpu">containerCpu</a></code> | <code>number</code> | The minimum number of CPU units to reserve for the container. |
+| <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.containerMemoryLimitMiB">containerMemoryLimitMiB</a></code> | <code>number</code> | The amount (in MiB) of memory to present to the container. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_ecs.HealthCheck</code> | The health check command and associated configuration parameters for the container. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.securityGroups">securityGroups</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup[]</code> | The security groups to associate with the service. |
 | <code><a href="#@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.taskSubnets">taskSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | The subnets to associate with the service. |
@@ -1487,6 +1487,19 @@ Can be between 1 and 4000 seconds
 
 ---
 
+##### `ipAddressType`<sup>Optional</sup> <a name="ipAddressType" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.ipAddressType"></a>
+
+```typescript
+public readonly ipAddressType: IpAddressType;
+```
+
+- *Type:* aws-cdk-lib.aws_elasticloadbalancingv2.IpAddressType
+- *Default:* IpAddressType.IPV4
+
+The type of IP address to use.
+
+---
+
 ##### `listenerPort`<sup>Optional</sup> <a name="listenerPort" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.listenerPort"></a>
 
 ```typescript
@@ -1652,7 +1665,9 @@ public readonly redirectHTTP: boolean;
 - *Type:* boolean
 - *Default:* false
 
-Specifies whether the load balancer should redirect traffic on port 80 to port 443 to support HTTP->HTTPS redirects This is only valid if the protocol of the ALB is HTTPS.
+Specifies whether the load balancer should redirect traffic on port 80 to the {@link listenerPort} to support HTTP->HTTPS redirects.
+
+This is only valid if the protocol of the ALB is HTTPS.
 
 ---
 
@@ -1863,6 +1878,35 @@ public readonly assignPublicIp: boolean;
 - *Default:* false
 
 Determines whether the service will be assigned a public IP address.
+
+---
+
+##### `containerCpu`<sup>Optional</sup> <a name="containerCpu" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.containerCpu"></a>
+
+```typescript
+public readonly containerCpu: number;
+```
+
+- *Type:* number
+- *Default:* No minimum CPU units reserved.
+
+The minimum number of CPU units to reserve for the container.
+
+---
+
+##### `containerMemoryLimitMiB`<sup>Optional</sup> <a name="containerMemoryLimitMiB" id="@cdklabs/cdk-ecs-codedeploy.ApplicationLoadBalancedCodeDeployedFargateServiceProps.property.containerMemoryLimitMiB"></a>
+
+```typescript
+public readonly containerMemoryLimitMiB: number;
+```
+
+- *Type:* number
+- *Default:* No memory limit.
+
+The amount (in MiB) of memory to present to the container.
+
+If your container attempts to exceed the allocated memory, the container
+is terminated.
 
 ---
 
