@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Install dependencies
         run: yarn install --check-files --frozen-lockfile
       - name: release
@@ -76,7 +76,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
@@ -101,7 +101,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
@@ -146,7 +146,7 @@ jobs:
           java-version: "11"
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
@@ -190,7 +190,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - uses: actions/setup-python@v6
         with:
           python-version: 3.x
@@ -232,7 +232,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 6.x
@@ -274,7 +274,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 18.x
+          node-version: 22.x
       - uses: actions/setup-go@v6
         with:
           go-version: ^1.18.0

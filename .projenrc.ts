@@ -27,7 +27,7 @@ const cdkVersion = '2.233.0';
 const project = new CdklabsConstructLibrary({
   setNodeEngineVersion: false,
   private: false,
-  workflowNodeVersion: '18.x',
+  workflowNodeVersion: '22.x',
   versionrcOptions: {
     types: [
       { type: 'feat', section: 'Features' },
