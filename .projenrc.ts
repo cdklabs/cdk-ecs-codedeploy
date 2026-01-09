@@ -110,4 +110,10 @@ project.upgradeWorkflow?.postUpgradeTask.spawn(
 new WorkflowDotNetVersionPatch(project, { workflow: 'build', jobName: 'package-dotnet', dotNetVersion: '6.x' });
 new WorkflowDotNetVersionPatch(project, { workflow: 'release', jobName: 'release_nuget', dotNetVersion: '6.x' });
 
+// For Trusted Publishing, because we are currently forcing the workflow in this repo to 22.x
+// @see https://projen.io/docs/publishing/trusted-publishing#meeting-the-npm-version-requirement
+project.github?.tryFindWorkflow('release')?.file?.patch(
+  JsonPatch.replace('/jobs/release_npm/steps/0/with/node-version', '24.x'),
+);
+
 project.synth();
