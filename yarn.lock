@@ -87,9 +87,9 @@
     tslib "^2.6.2"
 
 "@aws-sdk/client-codedeploy@^3.980.0":
-  version "3.980.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.980.0.tgz#2cc8c13e0eb07cf58242968d203b1adb67aaed01"
-  integrity sha512-PvRTMuzSXHiEhMkYWBT/eG+oqSXDwTjIhK2KS5ifEhhr2KbQCIqCeTIT5ZmcRYXeZU0VprLDkBGKSmEZ3R5Tsw==
+  version "3.981.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.981.0.tgz#51b3212438c2c281d6d4154352600c5a3154682f"
+  integrity sha512-d3+A0M0u4WQBERG588adKVh0toB6rvE/L1e01e40PPUYw6I7QXxwZvXATHBGD4crsMg1SIzVkcdHBf71DAnYUg==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
@@ -101,7 +101,7 @@
     "@aws-sdk/middleware-user-agent" "^3.972.5"
     "@aws-sdk/region-config-resolver" "^3.972.3"
     "@aws-sdk/types" "^3.973.1"
-    "@aws-sdk/util-endpoints" "3.980.0"
+    "@aws-sdk/util-endpoints" "3.981.0"
     "@aws-sdk/util-user-agent-browser" "^3.972.3"
     "@aws-sdk/util-user-agent-node" "^3.972.3"
     "@smithy/config-resolver" "^4.4.6"
@@ -436,6 +436,17 @@
   version "3.980.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/util-endpoints/-/util-endpoints-3.980.0.tgz#0d2665ad75f92f3f208541f6fa88451d2a2e96ce"
   integrity sha512-AjKBNEc+rjOZQE1HwcD9aCELqg1GmUj1rtICKuY8cgwB73xJ4U/kNyqKKpN2k9emGqlfDY2D8itIp/vDc6OKpw==
+  dependencies:
+    "@aws-sdk/types" "^3.973.1"
+    "@smithy/types" "^4.12.0"
+    "@smithy/url-parser" "^4.2.8"
+    "@smithy/util-endpoints" "^3.2.8"
+    tslib "^2.6.2"
+
+"@aws-sdk/util-endpoints@3.981.0":
+  version "3.981.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-endpoints/-/util-endpoints-3.981.0.tgz#b303a735877e0e63dcc9da1ab9c2a84153a6ce96"
+  integrity sha512-a8nXh/H3/4j+sxhZk+N3acSDlgwTVSZbX9i55dx41gI1H+geuonuRG+Shv3GZsCb46vzc08RK2qC78ypO8uRlg==
   dependencies:
     "@aws-sdk/types" "^3.973.1"
     "@smithy/types" "^4.12.0"
