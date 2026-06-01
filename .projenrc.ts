@@ -59,6 +59,12 @@ const project = new CdklabsConstructLibrary({
   },
   jestOptions: {
     updateSnapshot: javascript.UpdateSnapshot.NEVER,
+    jestConfig: {
+      moduleNameMapper: {
+        '^@smithy/core/(.*)$': '<rootDir>/node_modules/@smithy/core/dist-cjs/submodules/$1/index.js',
+        '^@aws-sdk/core/(.*)$': '<rootDir>/node_modules/@aws-sdk/core/dist-cjs/submodules/$1/index.js',
+      },
+    },
   },
   publishToMaven: {
     javaPackage: 'io.github.cdklabs.cdk.ecs.codedeploy',
