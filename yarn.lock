@@ -48,10 +48,10 @@
   dependencies:
     "@cdklabs/tskb" "^0.0.4"
 
-"@aws-sdk/client-codedeploy@^3.1131.0":
-  version "3.1131.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.1131.0.tgz#f8f4be5df1f8d5775c6a9218877e1448df2c5241"
-  integrity sha512-c9srHhMwdU0IINodZAu3w3wmJiUSgb5PLLyzlBHRmmXx7dDILeXtWPRTSaH7v1e36d5LqalXxTUICV6TVtTMEA==
+"@aws-sdk/client-codedeploy@^3.1136.0":
+  version "3.1136.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.1136.0.tgz#b13386610b76b362ec5cd542e6eaa9c1ac9abffb"
+  integrity sha512-1NIQHrQr0ZksTwYGSlEY/c2/zZia6tEWtcTbHZOlFp8RZ33nWqrUUXJfdio3mPvp7t6zYucHd+RRCjOTVsCCgA==
   dependencies:
     "@aws-sdk/core" "^3.978.0"
     "@aws-sdk/credential-provider-node" "^3.972.83"
