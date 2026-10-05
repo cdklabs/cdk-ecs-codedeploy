@@ -48,10 +48,10 @@
   dependencies:
     "@cdklabs/tskb" "^0.0.4"
 
-"@aws-sdk/client-codedeploy@^3.1141.0":
-  version "3.1141.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.1141.0.tgz#b460c0a8ad39102442107f0c5c55fdee4c64e31f"
-  integrity sha512-j5FvOl9jZZS6weCVNX3Zqcg7UBOfO3WeCfA/n5j7t461HRKQ9DsW3AliCP1+h69liz3Ufy3vJLgsl0t+z7DHkg==
+"@aws-sdk/client-codedeploy@^3.1146.0":
+  version "3.1146.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-codedeploy/-/client-codedeploy-3.1146.0.tgz#c014c3c9911a94e5f5024edaa14b0bc5d6406cbd"
+  integrity sha512-8eEqwylqE3jhuYKMwhHj+SM5mCF3cp0ATnCOfk6MAxM6aAOnJf+draWgBDfVWyvNEYqEA2dehJ3t+GsYeSjf6Q==
   dependencies:
     "@aws-sdk/core" "^3.978.1"
     "@aws-sdk/credential-provider-node" "^3.972.84"
@@ -1214,9 +1214,9 @@
     type-detect "^4.1.0"
 
 "@smithy/core@^3.33.2", "@smithy/core@^3.33.3", "@smithy/core@^3.35.0":
-  version "3.35.0"
-  resolved "https://registry.yarnpkg.com/@smithy/core/-/core-3.35.0.tgz#52f180a314d735af8ba8970967c4c9499fc21d3e"
-  integrity sha512-zRMhfkByhT2snNdr1si24vJitU6Cr9ix2MikUfWmkAgp4jrNP0GcKSP5YvwQ+TlI8AZXER5QOGJn3JsVtSD9/A==
+  version "3.35.1"
+  resolved "https://registry.yarnpkg.com/@smithy/core/-/core-3.35.1.tgz#9bcc2a52d331027021db17ed699d251ca041797a"
+  integrity sha512-i4YPS4B6ts7bjn7UwLnGjiZdprOvHvgGobFZsYK3GIY3E5hIqtj0rReU69BcTpGp+fvtraSNXeG1l+jtJvF55w==
   dependencies:
     "@smithy/types" "^4.19.0"
     tslib "^2.6.2"
