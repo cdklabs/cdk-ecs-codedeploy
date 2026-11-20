@@ -1,4 +1,8 @@
 {
+  "manifestVersion": 3,
+  "env": {
+    "PATH": "$(npx -c \"node --print process.env.PATH\")"
+  },
   "tasks": {
     "build": {
       "name": "build",
@@ -34,15 +38,36 @@
         "RELEASETAG": "dist/releasetag.txt",
         "RELEASE_TAG_PREFIX": "",
         "VERSIONRCOPTIONS": "{\"types\":[{\"type\":\"feat\",\"section\":\"Features\"},{\"type\":\"fix\",\"section\":\"Bug Fixes\"},{\"type\":\"chore\",\"section\":\"Chores\"},{\"type\":\"test\",\"hidden\":true},{\"type\":\"build\",\"hidden\":true},{\"type\":\"ci\",\"hidden\":true}]}",
-        "BUMP_PACKAGE": "commit-and-tag-version@^12",
-        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\""
+        "BUMP_PACKAGE": "commit-and-tag-version@^13"
       },
       "steps": [
         {
-          "builtin": "release/bump-version"
+          "builtin": "release/resolve-latest-tag",
+          "outputEnv": "LATEST_TAG"
+        },
+        {
+          "spawn": "bump:releasable-commits",
+          "outputEnv": "RELEASABLE_COMMITS",
+          "condition": "git rev-parse --verify --quiet \"refs/tags/$LATEST_TAG\""
+        },
+        {
+          "builtin": "release/suggest-version-bump",
+          "outputEnv": "SUGGESTED_BUMP"
+        },
+        {
+          "builtin": "release/apply-version-bump"
         }
       ],
-      "condition": "git log --oneline -1 | grep -qv \"chore(release):\""
+      "condition": "git log --oneline -1 | grep -v \"chore(release):\" > /dev/null"
+    },
+    "bump:releasable-commits": {
+      "name": "bump:releasable-commits",
+      "description": "Print the releasable commits since the latest release",
+      "steps": [
+        {
+          "exec": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep '^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+'"
+        }
+      ]
     },
     "bundle": {
       "name": "bundle",
@@ -61,7 +86,17 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
+          "execArgs": [
+            "esbuild",
+            "--bundle",
+            "src/ecs-deployment-provider/is-complete.lambda.ts",
+            "--target=node22",
+            "--platform=node",
+            "--outfile=assets/ecs-deployment-provider/is-complete.lambda/index.js",
+            "--packages=bundle",
+            "--tsconfig=test/tsconfig.json",
+            "--external:@aws-sdk/*"
+          ]
         }
       ]
     },
@@ -70,7 +105,18 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/is-complete.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/is-complete.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/is-complete.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
+          "execArgs": [
+            "esbuild",
+            "--bundle",
+            "src/ecs-deployment-provider/is-complete.lambda.ts",
+            "--target=node22",
+            "--platform=node",
+            "--outfile=assets/ecs-deployment-provider/is-complete.lambda/index.js",
+            "--packages=bundle",
+            "--tsconfig=test/tsconfig.json",
+            "--external:@aws-sdk/*",
+            "--watch"
+          ]
         }
       ]
     },
@@ -79,7 +125,17 @@
       "description": "Create a JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
+          "execArgs": [
+            "esbuild",
+            "--bundle",
+            "src/ecs-deployment-provider/on-event.lambda.ts",
+            "--target=node22",
+            "--platform=node",
+            "--outfile=assets/ecs-deployment-provider/on-event.lambda/index.js",
+            "--packages=bundle",
+            "--tsconfig=test/tsconfig.json",
+            "--external:@aws-sdk/*"
+          ]
         }
       ]
     },
@@ -88,7 +144,18 @@
       "description": "Continuously update the JavaScript bundle from src/ecs-deployment-provider/on-event.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/ecs-deployment-provider/on-event.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/ecs-deployment-provider/on-event.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
+          "execArgs": [
+            "esbuild",
+            "--bundle",
+            "src/ecs-deployment-provider/on-event.lambda.ts",
+            "--target=node22",
+            "--platform=node",
+            "--outfile=assets/ecs-deployment-provider/on-event.lambda/index.js",
+            "--packages=bundle",
+            "--tsconfig=test/tsconfig.json",
+            "--external:@aws-sdk/*",
+            "--watch"
+          ]
         }
       ]
     },
@@ -96,30 +163,39 @@
       "name": "clobber",
       "description": "hard resets to HEAD of origin and cleans the local repo",
       "env": {
-        "BRANCH": "$(git branch --show-current)"
+        "BRANCH": "$(git branch --show-current)",
+        "HEAD_COMMIT": "$(git rev-parse --short HEAD)"
       },
       "steps": [
         {
-          "exec": "git checkout -b scratch",
-          "name": "save current HEAD in \"scratch\" branch"
+          "exec": "git checkout -B \"scratch-$HEAD_COMMIT\"",
+          "name": "save current HEAD in a \"scratch-<commit>\" branch"
         },
         {
-          "exec": "git checkout $BRANCH"
+          "exec": "git checkout \"$BRANCH\""
         },
         {
-          "exec": "git fetch origin",
+          "execArgs": [
+            "git",
+            "fetch",
+            "origin"
+          ],
           "name": "fetch latest changes from origin"
         },
         {
-          "exec": "git reset --hard origin/$BRANCH",
+          "exec": "git reset --hard \"origin/$BRANCH\"",
           "name": "hard reset to origin commit"
         },
         {
-          "exec": "git clean -fdx",
+          "execArgs": [
+            "git",
+            "clean",
+            "-fdx"
+          ],
           "name": "clean all untracked files"
         },
         {
-          "say": "ready to rock! (unpushed commits are under the \"scratch\" branch)"
+          "say": "ready to rock! (unpushed commits are under a \"scratch-<commit>\" branch)"
         }
       ],
       "condition": "git diff --exit-code > /dev/null"
@@ -129,7 +205,13 @@
       "description": "Perform API compatibility check against latest version",
       "steps": [
         {
-          "exec": "jsii-diff npm:$(node -p \"require('./package.json').name\") -k --ignore-file .compatignore || (echo \"\nUNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .compatignore to skip.\n\" && exit 1)"
+          "execArgs": [
+            "jsii-diff",
+            "npm:@cdklabs/cdk-ecs-codedeploy",
+            "-k",
+            "--ignore-file",
+            ".compatignore"
+          ]
         }
       ]
     },
@@ -147,7 +229,12 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
+          "execArgs": [
+            "ts-node",
+            "--project",
+            "projenrc/tsconfig.json",
+            ".projenrc.ts"
+          ]
         }
       ]
     },
@@ -156,7 +243,11 @@
       "description": "Generate API.md from .jsii manifest",
       "steps": [
         {
-          "exec": "jsii-docgen -o API.md"
+          "execArgs": [
+            "jsii-docgen",
+            "-o",
+            "API.md"
+          ]
         }
       ]
     },
@@ -181,7 +272,19 @@
       },
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
+          "execArgs": [
+            "eslint",
+            "--ext",
+            ".ts,.tsx",
+            "--fix",
+            "--no-error-on-unmatched-pattern",
+            "$@",
+            "src",
+            "test",
+            "build-tools",
+            "projenrc",
+            ".projenrc.ts"
+          ],
           "receiveArgs": true
         }
       ]
@@ -209,7 +312,7 @@
       "description": "Run integration snapshot tests",
       "steps": [
         {
-          "exec": "yarn integ-runner --language typescript",
+          "exec": "integ-runner --language typescript",
           "receiveArgs": true
         }
       ]
@@ -219,13 +322,45 @@
       "description": "assert the snapshot of integration test 'api-canary'",
       "steps": [
         {
-          "exec": "[ -d \"test/api-canary.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'api-canary'. Run 'projen integ:api-canary:deploy' to capture.\" && exit 1)"
+          "execArgs": [
+            "node",
+            "-e",
+            "const [dir, name, task] = process.argv.slice(1); const stat = require('fs').statSync(dir, { throwIfNoEntry: false }); if (!stat || !stat.isDirectory()) { console.error(`No snapshot available for integration test '${name}'. Run 'projen ${task}' to capture.`); process.exit(1); }",
+            "test/api-canary.integ.snapshot",
+            "api-canary",
+            "integ:api-canary:deploy"
+          ]
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/api-canary.integ/assert.cdk.out > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/api-canary.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/.tmp/api-canary.integ/assert.cdk.out"
+          ]
         },
         {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/api-canary.integ.snapshot/ test/.tmp/api-canary.integ/assert.cdk.out/"
+          "execArgs": [
+            "diff",
+            "-r",
+            "-x",
+            "asset.*",
+            "-x",
+            "cdk.out",
+            "-x",
+            "manifest.json",
+            "-x",
+            "tree.json",
+            "test/api-canary.integ.snapshot/",
+            "test/.tmp/api-canary.integ/assert.cdk.out/"
+          ]
         }
       ]
     },
@@ -234,16 +369,41 @@
       "description": "deploy integration test 'api-canary' and capture snapshot",
       "steps": [
         {
-          "exec": "rm -fr test/.tmp/api-canary.integ/deploy.cdk.out"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/.tmp/api-canary.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/api-canary.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "deploy",
+            "--app",
+            "ts-node -P test/tsconfig.json test/api-canary.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "--require-approval=never",
+            "-o",
+            "test/.tmp/api-canary.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "rm -fr test/api-canary.integ.snapshot"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/api-canary.integ.snapshot"
+          ]
         },
         {
-          "exec": "mv test/.tmp/api-canary.integ/deploy.cdk.out test/api-canary.integ.snapshot"
+          "execArgs": [
+            "mv",
+            "test/.tmp/api-canary.integ/deploy.cdk.out",
+            "test/api-canary.integ.snapshot"
+          ]
         },
         {
           "spawn": "integ:api-canary:destroy"
@@ -255,7 +415,14 @@
       "description": "destroy integration test 'api-canary'",
       "steps": [
         {
-          "exec": "cdk destroy --app test/api-canary.integ.snapshot '**' --no-version-reporting"
+          "execArgs": [
+            "cdk",
+            "destroy",
+            "--app",
+            "test/api-canary.integ.snapshot",
+            "**",
+            "--no-version-reporting"
+          ]
         }
       ]
     },
@@ -264,7 +431,19 @@
       "description": "update snapshot for integration test \"api-canary\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/api-canary.integ.snapshot > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/api-canary.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/api-canary.integ.snapshot"
+          ]
         }
       ]
     },
@@ -273,7 +452,19 @@
       "description": "watch integration test 'api-canary' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/api-canary.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/api-canary.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "watch",
+            "--app",
+            "ts-node -P test/tsconfig.json test/api-canary.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "-o",
+            "test/.tmp/api-canary.integ/deploy.cdk.out"
+          ]
         }
       ]
     },
@@ -282,13 +473,45 @@
       "description": "assert the snapshot of integration test 'application-load-balanced-codedeployed-fargate-service'",
       "steps": [
         {
-          "exec": "[ -d \"test/application-load-balanced-codedeployed-fargate-service.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'application-load-balanced-codedeployed-fargate-service'. Run 'projen integ:application-load-balanced-codedeployed-fargate-service:deploy' to capture.\" && exit 1)"
+          "execArgs": [
+            "node",
+            "-e",
+            "const [dir, name, task] = process.argv.slice(1); const stat = require('fs').statSync(dir, { throwIfNoEntry: false }); if (!stat || !stat.isDirectory()) { console.error(`No snapshot available for integration test '${name}'. Run 'projen ${task}' to capture.`); process.exit(1); }",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot",
+            "application-load-balanced-codedeployed-fargate-service",
+            "integ:application-load-balanced-codedeployed-fargate-service:deploy"
+          ]
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/application-load-balanced-codedeployed-fargate-service.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out"
+          ]
         },
         {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/ test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out/"
+          "execArgs": [
+            "diff",
+            "-r",
+            "-x",
+            "asset.*",
+            "-x",
+            "cdk.out",
+            "-x",
+            "manifest.json",
+            "-x",
+            "tree.json",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot/",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/assert.cdk.out/"
+          ]
         }
       ]
     },
@@ -297,16 +520,41 @@
       "description": "deploy integration test 'application-load-balanced-codedeployed-fargate-service' and capture snapshot",
       "steps": [
         {
-          "exec": "rm -fr test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "deploy",
+            "--app",
+            "ts-node -P test/tsconfig.json test/application-load-balanced-codedeployed-fargate-service.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "--require-approval=never",
+            "-o",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "rm -fr test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+          ]
         },
         {
-          "exec": "mv test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+          "execArgs": [
+            "mv",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+          ]
         },
         {
           "spawn": "integ:application-load-balanced-codedeployed-fargate-service:destroy"
@@ -318,7 +566,14 @@
       "description": "destroy integration test 'application-load-balanced-codedeployed-fargate-service'",
       "steps": [
         {
-          "exec": "cdk destroy --app test/application-load-balanced-codedeployed-fargate-service.integ.snapshot '**' --no-version-reporting"
+          "execArgs": [
+            "cdk",
+            "destroy",
+            "--app",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot",
+            "**",
+            "--no-version-reporting"
+          ]
         }
       ]
     },
@@ -327,7 +582,19 @@
       "description": "update snapshot for integration test \"application-load-balanced-codedeployed-fargate-service\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/application-load-balanced-codedeployed-fargate-service.integ.snapshot > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/application-load-balanced-codedeployed-fargate-service.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/application-load-balanced-codedeployed-fargate-service.integ.snapshot"
+          ]
         }
       ]
     },
@@ -336,7 +603,19 @@
       "description": "watch integration test 'application-load-balanced-codedeployed-fargate-service' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/application-load-balanced-codedeployed-fargate-service.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "watch",
+            "--app",
+            "ts-node -P test/tsconfig.json test/application-load-balanced-codedeployed-fargate-service.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "-o",
+            "test/.tmp/application-load-balanced-codedeployed-fargate-service.integ/deploy.cdk.out"
+          ]
         }
       ]
     },
@@ -345,13 +624,45 @@
       "description": "assert the snapshot of integration test 'ecs-deployment-hooks'",
       "steps": [
         {
-          "exec": "[ -d \"test/ecs-deployment-hooks.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ecs-deployment-hooks'. Run 'projen integ:ecs-deployment-hooks:deploy' to capture.\" && exit 1)"
+          "execArgs": [
+            "node",
+            "-e",
+            "const [dir, name, task] = process.argv.slice(1); const stat = require('fs').statSync(dir, { throwIfNoEntry: false }); if (!stat || !stat.isDirectory()) { console.error(`No snapshot available for integration test '${name}'. Run 'projen ${task}' to capture.`); process.exit(1); }",
+            "test/ecs-deployment-hooks.integ.snapshot",
+            "ecs-deployment-hooks",
+            "integ:ecs-deployment-hooks:deploy"
+          ]
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment-hooks.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out"
+          ]
         },
         {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/ecs-deployment-hooks.integ.snapshot/ test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out/"
+          "execArgs": [
+            "diff",
+            "-r",
+            "-x",
+            "asset.*",
+            "-x",
+            "cdk.out",
+            "-x",
+            "manifest.json",
+            "-x",
+            "tree.json",
+            "test/ecs-deployment-hooks.integ.snapshot/",
+            "test/.tmp/ecs-deployment-hooks.integ/assert.cdk.out/"
+          ]
         }
       ]
     },
@@ -360,16 +671,41 @@
       "description": "deploy integration test 'ecs-deployment-hooks' and capture snapshot",
       "steps": [
         {
-          "exec": "rm -fr test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "deploy",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment-hooks.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "--require-approval=never",
+            "-o",
+            "test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "rm -fr test/ecs-deployment-hooks.integ.snapshot"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/ecs-deployment-hooks.integ.snapshot"
+          ]
         },
         {
-          "exec": "mv test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out test/ecs-deployment-hooks.integ.snapshot"
+          "execArgs": [
+            "mv",
+            "test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out",
+            "test/ecs-deployment-hooks.integ.snapshot"
+          ]
         },
         {
           "spawn": "integ:ecs-deployment-hooks:destroy"
@@ -381,7 +717,14 @@
       "description": "destroy integration test 'ecs-deployment-hooks'",
       "steps": [
         {
-          "exec": "cdk destroy --app test/ecs-deployment-hooks.integ.snapshot '**' --no-version-reporting"
+          "execArgs": [
+            "cdk",
+            "destroy",
+            "--app",
+            "test/ecs-deployment-hooks.integ.snapshot",
+            "**",
+            "--no-version-reporting"
+          ]
         }
       ]
     },
@@ -390,7 +733,19 @@
       "description": "update snapshot for integration test \"ecs-deployment-hooks\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/ecs-deployment-hooks.integ.snapshot > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment-hooks.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/ecs-deployment-hooks.integ.snapshot"
+          ]
         }
       ]
     },
@@ -399,7 +754,19 @@
       "description": "watch integration test 'ecs-deployment-hooks' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/ecs-deployment-hooks.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "watch",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment-hooks.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "-o",
+            "test/.tmp/ecs-deployment-hooks.integ/deploy.cdk.out"
+          ]
         }
       ]
     },
@@ -408,13 +775,45 @@
       "description": "assert the snapshot of integration test 'ecs-deployment'",
       "steps": [
         {
-          "exec": "[ -d \"test/ecs-deployment.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ecs-deployment'. Run 'projen integ:ecs-deployment:deploy' to capture.\" && exit 1)"
+          "execArgs": [
+            "node",
+            "-e",
+            "const [dir, name, task] = process.argv.slice(1); const stat = require('fs').statSync(dir, { throwIfNoEntry: false }); if (!stat || !stat.isDirectory()) { console.error(`No snapshot available for integration test '${name}'. Run 'projen ${task}' to capture.`); process.exit(1); }",
+            "test/ecs-deployment.integ.snapshot",
+            "ecs-deployment",
+            "integ:ecs-deployment:deploy"
+          ]
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/ecs-deployment.integ/assert.cdk.out > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/.tmp/ecs-deployment.integ/assert.cdk.out"
+          ]
         },
         {
-          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/ecs-deployment.integ.snapshot/ test/.tmp/ecs-deployment.integ/assert.cdk.out/"
+          "execArgs": [
+            "diff",
+            "-r",
+            "-x",
+            "asset.*",
+            "-x",
+            "cdk.out",
+            "-x",
+            "manifest.json",
+            "-x",
+            "tree.json",
+            "test/ecs-deployment.integ.snapshot/",
+            "test/.tmp/ecs-deployment.integ/assert.cdk.out/"
+          ]
         }
       ]
     },
@@ -423,16 +822,41 @@
       "description": "deploy integration test 'ecs-deployment' and capture snapshot",
       "steps": [
         {
-          "exec": "rm -fr test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "deploy",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "--require-approval=never",
+            "-o",
+            "test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          ]
         },
         {
-          "exec": "rm -fr test/ecs-deployment.integ.snapshot"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "test/ecs-deployment.integ.snapshot"
+          ]
         },
         {
-          "exec": "mv test/.tmp/ecs-deployment.integ/deploy.cdk.out test/ecs-deployment.integ.snapshot"
+          "execArgs": [
+            "mv",
+            "test/.tmp/ecs-deployment.integ/deploy.cdk.out",
+            "test/ecs-deployment.integ.snapshot"
+          ]
         },
         {
           "spawn": "integ:ecs-deployment:destroy"
@@ -444,7 +868,14 @@
       "description": "destroy integration test 'ecs-deployment'",
       "steps": [
         {
-          "exec": "cdk destroy --app test/ecs-deployment.integ.snapshot '**' --no-version-reporting"
+          "execArgs": [
+            "cdk",
+            "destroy",
+            "--app",
+            "test/ecs-deployment.integ.snapshot",
+            "**",
+            "--no-version-reporting"
+          ]
         }
       ]
     },
@@ -453,7 +884,19 @@
       "description": "update snapshot for integration test \"ecs-deployment\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/ecs-deployment.integ.snapshot > /dev/null"
+          "execArgs": [
+            "cdk",
+            "synth",
+            "--quiet",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "-o",
+            "test/ecs-deployment.integ.snapshot"
+          ]
         }
       ]
     },
@@ -462,7 +905,19 @@
       "description": "watch integration test 'ecs-deployment' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/ecs-deployment.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          "execArgs": [
+            "cdk",
+            "watch",
+            "--app",
+            "ts-node -P test/tsconfig.json test/ecs-deployment.integ.ts",
+            "--no-notices",
+            "--no-version-reporting",
+            "--no-asset-metadata",
+            "--no-path-metadata",
+            "**",
+            "-o",
+            "test/.tmp/ecs-deployment.integ/deploy.cdk.out"
+          ]
         }
       ]
     },
@@ -489,7 +944,7 @@
       "description": "Run and update integration snapshot tests",
       "steps": [
         {
-          "exec": "yarn integ-runner --language typescript --update-on-failed",
+          "exec": "integ-runner --language typescript --update-on-failed",
           "receiveArgs": true
         }
       ]
@@ -534,7 +989,12 @@
       "description": "Create dotnet language bindings",
       "steps": [
         {
-          "exec": "jsii-pacmak -v --target dotnet"
+          "execArgs": [
+            "jsii-pacmak",
+            "-v",
+            "--target",
+            "dotnet"
+          ]
         }
       ]
     },
@@ -543,7 +1003,12 @@
       "description": "Create go language bindings",
       "steps": [
         {
-          "exec": "jsii-pacmak -v --target go"
+          "execArgs": [
+            "jsii-pacmak",
+            "-v",
+            "--target",
+            "go"
+          ]
         }
       ]
     },
@@ -552,7 +1017,12 @@
       "description": "Create java language bindings",
       "steps": [
         {
-          "exec": "jsii-pacmak -v --target java"
+          "execArgs": [
+            "jsii-pacmak",
+            "-v",
+            "--target",
+            "java"
+          ]
         }
       ]
     },
@@ -561,7 +1031,12 @@
       "description": "Create js language bindings",
       "steps": [
         {
-          "exec": "jsii-pacmak -v --target js"
+          "execArgs": [
+            "jsii-pacmak",
+            "-v",
+            "--target",
+            "js"
+          ]
         }
       ]
     },
@@ -570,7 +1045,12 @@
       "description": "Create python language bindings",
       "steps": [
         {
-          "exec": "jsii-pacmak -v --target python"
+          "execArgs": [
+            "jsii-pacmak",
+            "-v",
+            "--target",
+            "python"
+          ]
         }
       ]
     },
@@ -607,7 +1087,11 @@
       },
       "steps": [
         {
-          "exec": "rm -fr dist"
+          "execArgs": [
+            "rm",
+            "-fr",
+            "dist"
+          ]
         },
         {
           "spawn": "bump"
@@ -621,14 +1105,15 @@
         {
           "exec": "git diff --ignore-space-at-eol --exit-code"
         }
-      ]
+      ],
+      "condition": "git log --oneline -1 | grep -v \"chore(release):\" > /dev/null"
     },
     "rosetta:extract": {
       "name": "rosetta:extract",
       "description": "Test rosetta extract",
       "steps": [
         {
-          "exec": "yarn --silent jsii-rosetta extract --strict"
+          "exec": "jsii-rosetta extract --strict"
         }
       ]
     },
@@ -637,7 +1122,11 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --ci",
+          "execArgs": [
+            "jest",
+            "--passWithNoTests",
+            "--ci"
+          ],
           "receiveArgs": true
         },
         {
@@ -665,7 +1154,12 @@
       "description": "Update jest snapshots",
       "steps": [
         {
-          "exec": "jest --updateSnapshot --passWithNoTests --ci",
+          "execArgs": [
+            "jest",
+            "--updateSnapshot",
+            "--passWithNoTests",
+            "--ci"
+          ],
           "receiveArgs": true
         }
       ]
@@ -675,7 +1169,10 @@
       "description": "Run jest in watch mode",
       "steps": [
         {
-          "exec": "jest --watch"
+          "execArgs": [
+            "jest",
+            "--watch"
+          ]
         }
       ]
     },
@@ -689,8 +1186,7 @@
         "RELEASETAG": "dist/releasetag.txt",
         "RELEASE_TAG_PREFIX": "",
         "VERSIONRCOPTIONS": "{\"types\":[{\"type\":\"feat\",\"section\":\"Features\"},{\"type\":\"fix\",\"section\":\"Bug Fixes\"},{\"type\":\"chore\",\"section\":\"Chores\"},{\"type\":\"test\",\"hidden\":true},{\"type\":\"build\",\"hidden\":true},{\"type\":\"ci\",\"hidden\":true}]}",
-        "BUMP_PACKAGE": "commit-and-tag-version@^12",
-        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\""
+        "BUMP_PACKAGE": "commit-and-tag-version@^13"
       },
       "steps": [
         {
@@ -706,13 +1202,27 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=prod --filter=@aws-sdk/client-codedeploy,jmespath"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=prod",
+            "--filter=@aws-sdk/client-codedeploy,jmespath"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @aws-sdk/client-codedeploy jmespath"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "@aws-sdk/client-codedeploy",
+            "jmespath"
+          ]
         },
         {
           "exec": "npx projen"
@@ -730,13 +1240,27 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@18 --upgrade --target=latest --peer --no-deprecated --dep=dev,peer,prod,optional --filter=cdklabs-projen-project-types,projen"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=latest",
+            "--peer",
+            "--no-deprecated",
+            "--dep=dev,prod,peer,optional",
+            "--filter=cdklabs-projen-project-types,projen"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade cdklabs-projen-project-types projen"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "cdklabs-projen-project-types",
+            "projen"
+          ]
         },
         {
           "exec": "npx projen"
@@ -754,13 +1278,54 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-pacmak,jsii-rosetta,lambda-tester,ts-jest,ts-node,typescript"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=dev",
+            "--filter=@types/aws-lambda,@types/jest,@types/lambda-tester,aws-sdk-client-mock,aws-sdk-client-mock-jest,cdk-nag,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-pacmak,jsii-rosetta,lambda-tester,ts-jest,ts-node,typescript"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @aws-cdk/integ-tests-alpha @stylistic/eslint-plugin @types/aws-lambda @types/jest @types/lambda-tester @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk aws-sdk-client-mock aws-sdk-client-mock-jest cdk-nag commit-and-tag-version esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii lambda-tester ts-jest ts-node typescript @aws-cdk/integ-runner"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "@aws-cdk/integ-tests-alpha",
+            "@stylistic/eslint-plugin",
+            "@types/aws-lambda",
+            "@types/jest",
+            "@types/lambda-tester",
+            "@types/node",
+            "@typescript-eslint/eslint-plugin",
+            "@typescript-eslint/parser",
+            "aws-cdk",
+            "aws-sdk-client-mock",
+            "aws-sdk-client-mock-jest",
+            "cdk-nag",
+            "commit-and-tag-version",
+            "esbuild",
+            "eslint-import-resolver-typescript",
+            "eslint-plugin-import",
+            "eslint",
+            "jest",
+            "jest-junit",
+            "jsii-diff",
+            "jsii-docgen",
+            "jsii-pacmak",
+            "jsii-rosetta",
+            "jsii",
+            "lambda-tester",
+            "ts-jest",
+            "ts-node",
+            "typescript",
+            "@aws-cdk/integ-runner"
+          ]
         },
         {
           "exec": "npx projen"
@@ -779,9 +1344,6 @@
         }
       ]
     }
-  },
-  "env": {
-    "PATH": "$(npx -c \"node --print process.env.PATH\")"
   },
   "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"npx projen\"."
 }
